@@ -1,4 +1,4 @@
-package gui;
+package screenController;
 
 public class NewBookingScreen {
 
