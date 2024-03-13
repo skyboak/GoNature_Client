@@ -11,7 +11,7 @@ public class ClientController
 	  //Instance variables **********************************************
 	   
 	  //The instance of the client that created this ConsoleChat.
-	  Client client;
+	  static public Client client;
 	  
 
 
@@ -28,7 +28,7 @@ public class ClientController
 	    try 
 	    {
 	      client = new Client(host, port, this);
-	      client.sendToServer("Tried Connecting...");
+	      
 	    } 
 	    catch(IOException exception) 
 	    {

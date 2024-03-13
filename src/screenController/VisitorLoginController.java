@@ -1,5 +1,8 @@
 package screenController;
+import java.util.ArrayList;
 
+import client.ClientController;
+import enums.Commands;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import logic.LoginDetail;
+import logic.Message;
 public class VisitorLoginController extends ScreenController {
 
 	@FXML
@@ -38,6 +42,14 @@ public class VisitorLoginController extends ScreenController {
 	private String getID() {
 		return idT.getText();
 	}
+	private String getUsername() {
+		return usernameT.getText();
+	}
+	private String getPassword() {
+		return passwordT.getText();
+	}
+	
+	
 	
 	public void checkBox(ActionEvent event) throws Exception {
 		if(workerCB.isSelected())
@@ -63,6 +75,19 @@ public class VisitorLoginController extends ScreenController {
 	
 	public void loginBtn(ActionEvent event) throws Exception {
 		//TODO: Add Implementation.
+		if(workerCB.isSelected()) {
+			LoginDetail loginDetail = new LoginDetail(getUsername(),getPassword());
+			Message loginDetailMsg = new Message(loginDetail,Commands.CheckWorkerLogin);
+			ClientController.client.sendToServer(loginDetailMsg);
+			
+		}else 
+		{
+			LoginDetail loginDetail = new LoginDetail(getID());
+			//TODO Transfer Login Screen 
+		}
+		
+		
+		
 		System.exit(0);
 	}
 	
