@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" style="-fx-border-color: #311906#311906; -fx-border-width: 6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutY="2.0" prefHeight="576.0" prefWidth="255.0" style="-fx-background-color: #1e525b; -fx-background-radius: 30 0 0 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="logOutBtn" buttonType="RAISED" layoutX="65.0" layoutY="488.0" onAction="#getLogoutBtn" prefHeight="36.0" prefWidth="130.0" ripplerFill="#242633" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="169.0" prefHeight="291.0" prefWidth="255.0" spacing="10.0">
+               <children>
+                  <JFXButton fx:id="myOrderBtn" alignment="BASELINE_LEFT" disable="true" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="255.0" ripplerFill="#faf9f6" style="-fx-background-color: dff9e8;" text="new order">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-new-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="newOrderBtn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="255.0" ripplerFill="#faf9f6" style="-fx-background-color: dff9e8;" text="my orderes">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-schedule-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="pricesBtn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="255.0" ripplerFill="#faf9f6" style="-fx-background-color: dff9e8;" text="prices">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-price-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="aboutUsBtn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="255.0" ripplerFill="#faf9f6" style="-fx-background-color: dff9e8;" text="about us">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-about-us-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <Text fill="#dff9e8" layoutX="21.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go Nature">
+               <font>
+                  <Font name="System Bold Italic" size="45.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Separator layoutX="261.0" layoutY="99.0" opacity="0.5" prefHeight="5.0" prefWidth="385.0" style="-fx-background-color: #242633;" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="0.0" />
+      <Text fill="#1e525b" layoutX="424.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="new order">
+         <font>
+            <Font name="System Bold Italic" size="44.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="371.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-forest-94.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="657.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-forest-94.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="350.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Park name:" wrappingWidth="143.99999380111694">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+      <Text layoutX="349.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date &amp; Time:" wrappingWidth="129.99999523162842">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+      <Text layoutX="350.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of visitors:" wrappingWidth="242.20350456237793">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+      <Text layoutX="349.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="75.20350456237793">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+      <Text layoutX="349.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone:" wrappingWidth="108.20350456237793">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="emailT" focusColor="BLACK" focusTraversable="false" labelFloat="true" layoutX="414.0" layoutY="395.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="example@example.com" styleClass="txtField" unFocusColor="BLACK">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="telephoneT" focusColor="BLACK" focusTraversable="false" labelFloat="true" layoutX="458.0" layoutY="461.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="054-123-456" styleClass="txtField" unFocusColor="BLACK">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="Ebrima" size="14.0" />
+         </font>
+      </JFXTextField>
+      <ComboBox fx:id="parkNameCombo" layoutX="472.0" layoutY="168.0" prefWidth="150.0" promptText="select" />
+      <JFXDatePicker fx:id="datePicker" layoutX="483.0" layoutY="336.0" prefHeight="31.0" prefWidth="150.0" />
+      <JFXComboBox fx:id="numOfVisitorsCombo" layoutX="547.0" layoutY="228.0" prefHeight="31.0" prefWidth="40.0" promptText="1" />
+      <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="608.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-users-64.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="610.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-mail-24.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="632.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-phone-50.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="nextBtn" buttonType="RAISED" layoutX="669.0" layoutY="513.0" onAction="#getLogoutBtn" prefHeight="36.0" prefWidth="100.0" ripplerFill="#242633" style="-fx-background-color: #7FFF00; -fx-background-radius: 10 10 10 10;" text="next">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <Circle fill="#61a994" layoutX="459.0" layoutY="135.0" radius="20.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="WHITE" layoutX="585.0" layoutY="135.0" radius="18.0" stroke="#00e1ff" strokeType="INSIDE" />
+      <Line endX="63.0" endY="-0.9999961853027344" layoutX="505.0" layoutY="136.0" startX="-25.0" startY="-0.9999961853027344" stroke="#1e525b" />
+      <Text layoutX="362.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in progress" />
+      <Text layoutX="610.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="confirm &amp; pay" />
+      <JFXComboBox fx:id="timeCombo" layoutX="631.0" layoutY="336.0" prefHeight="31.0" prefWidth="75.0" />
+      <JFXComboBox fx:id="visitTypeCombo" layoutX="457.0" layoutY="282.0" prefHeight="31.0" prefWidth="100.0" />
+      <Text layoutX="350.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VisitType:" wrappingWidth="94.59962844848633">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
