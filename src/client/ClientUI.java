@@ -2,7 +2,7 @@ package client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import screenController.LoginMainScreen;
+import screenController.ConnectionScreenController;
 
 public class ClientUI extends Application { 
 	
@@ -16,7 +16,7 @@ public class ClientUI extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		LoginMainScreen mainScreen = new LoginMainScreen(); // create MainScreen and start it.		 
+		ConnectionScreenController mainScreen = new ConnectionScreenController(); // create MainScreen and start it.		 
 		mainScreen.start(primaryStage); 
 						 
 		 

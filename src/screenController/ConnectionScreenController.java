@@ -4,18 +4,15 @@ import client.ClientController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-public class LoginMainScreen extends ScreenController
+public class ConnectionScreenController extends ScreenController
 {
-
-	
 	@FXML
 	private Button connectBtn = null;
     @FXML
@@ -37,9 +34,9 @@ public class LoginMainScreen extends ScreenController
 	public void connectBtn(ActionEvent event) throws Exception {
 		ClientController clientController = new ClientController(getIpAddress(), getPort());
 		clientController.display("Connected");
-		
-		//TODO: Add Implementation.
-		System.exit(0);
+		((Node)event.getSource()).getScene().getWindow().hide();
+		VisitorLoginController newScreen = new VisitorLoginController();
+		newScreen.start(new Stage());
 	}
 	
 	
@@ -52,7 +49,7 @@ public class LoginMainScreen extends ScreenController
 	
 	
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/LoginMainScreen.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ConnectionScreen.fxml"));
     	loader.setController(this); // Set the controller
     	Parent root = loader.load();
     	Scene scene = new Scene(root);
