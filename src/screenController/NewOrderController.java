@@ -23,15 +23,13 @@ public class NewOrderController extends ScreenController {
 
 	private StringBuilder errorMessage = new StringBuilder();
 	@FXML
-	private ComboBox<String> visitTypeCombo;
-	@FXML
 	private ComboBox<String> timeCombo;
 	@FXML
 	private ComboBox<String> parkNameCombo;
 	@FXML
 	private ComboBox<String> numOfVisitorsCombo;
 	@FXML
-	private ComboBox<String> combobox;
+	private ComboBox<String> numOfVisitorsGCombo;
 	@FXML
 	private TextField telephoneT;
 	@FXML
@@ -41,12 +39,8 @@ public class NewOrderController extends ScreenController {
 	@FXML
 	private DatePicker dateCombo;
 	@FXML
-	private CheckBox guideCB;
+	private CheckBox guide;
 	
-	
-	public void getVisitType() {
-		visitTypeCombo.getValue();
-	}
 	
 	public void getTime() {
 		timeCombo.getValue();
@@ -60,6 +54,10 @@ public class NewOrderController extends ScreenController {
 		numOfVisitorsCombo.getValue();
 	}
 	
+	public void getNumOfVisitorsG() {
+		numOfVisitorsGCombo.getValue();
+	}
+	
 	public void getTelephone() {
 		telephoneT.getText();
 	}
@@ -71,15 +69,16 @@ public class NewOrderController extends ScreenController {
 	public void nextBtn(ActionEvent event) throws Exception {
 		if (validateInputs()) {
 			BookingDetails details = new BookingDetails();
-            details.setVisitType(visitTypeCombo.getValue());
             details.setTime(timeCombo.getValue());
             details.setParkName(parkNameCombo.getValue());
             details.setNumOfVisitors(numOfVisitorsCombo.getValue());
             details.setTelephone(telephoneT.getText());
             details.setEmail(emailT.getText());
             details.setVisitDate(dateCombo.getValue());
-            //Call next window
-            //((Node)event.getSource()).getScene().getWindow().hide();		
+            //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
+            //else waitinglist
+       
+           
 		}
 		else
 		{
@@ -91,7 +90,7 @@ public class NewOrderController extends ScreenController {
 	    	primaryStage.setScene(scene);
 	    	RemoveTopBar(primaryStage,root);
 	    	primaryStage.show();
-	    	errorT.setText(errorMessage.toString()); //FIX THIS!!!
+	    	errorT.setText(errorMessage.toString());
 		}
 	}
 	
@@ -104,7 +103,7 @@ public class NewOrderController extends ScreenController {
 	    if (parkNameCombo.getValue() == null) {
 	        errorMessage.append("Park name is required.\n");
 	    }
-	    if (numOfVisitorsCombo.getValue() == null) {
+	    if (numOfVisitorsCombo.getValue() == null && numOfVisitorsGCombo.getValue() == null) {
 	        errorMessage.append("Number of visitors is required.\n");
 	    }
 	    if (telephoneT.getText().isEmpty()) {
@@ -119,6 +118,22 @@ public class NewOrderController extends ScreenController {
 	    return errorMessage.length() == 0 ? true : false;
 	}
 	
+	public void guideCB(ActionEvent event) throws Exception {
+		if(guide.isSelected()) {
+			numOfVisitorsCombo.setDisable(true);
+			numOfVisitorsCombo.setVisible(false);
+			numOfVisitorsGCombo.setDisable(false);
+			numOfVisitorsGCombo.setVisible(true);
+		}
+		else
+		{
+			numOfVisitorsCombo.setDisable(false);
+			numOfVisitorsCombo.setVisible(true);
+			numOfVisitorsGCombo.setDisable(true);
+			numOfVisitorsGCombo.setVisible(false);
+		}
+	}
+	
 	// clears error text and close the widnow
 	public void okBtn(ActionEvent event) throws Exception {
 		errorMessage.delete(0, errorMessage.length());
@@ -128,14 +143,20 @@ public class NewOrderController extends ScreenController {
 	private void setComboBox() {
 		ArrayList<String> parkNames = new ArrayList<String>();
 		ArrayList<String> NumOfVisitors = new ArrayList<String>();
+		ArrayList<String> NumOfVisitorsG = new ArrayList<String>();
 		ArrayList<String> Time = new ArrayList<String>();
 		
 		parkNames.add("YellowStone");
 		parkNames.add("Hyde Park");
 		parkNames.add("YellowStone");
-		for(int i=1; i < 16 ; i++) {
+		
+		for(int i=1; i < 6 ; i++) {
 			NumOfVisitors.add(String.valueOf(i));
 		}
+		for(int i=2; i < 16 ; i++) {
+			NumOfVisitorsG.add(String.valueOf(i));
+		}
+		
 		Time.add("06:00 - 10:00");
 		Time.add("10:00 - 14:00");
 		Time.add("14:00 - 18:00");
@@ -146,6 +167,10 @@ public class NewOrderController extends ScreenController {
 		numOfVisitorsCombo.setItems(list2);
 		ObservableList<String> list3 = FXCollections.observableArrayList(Time);
 		timeCombo.setItems(list3);
+		ObservableList<String> list4 = FXCollections.observableArrayList(NumOfVisitorsG);
+		numOfVisitorsGCombo.setItems(list4);
+		numOfVisitorsCombo.getSelectionModel().select("1");
+		numOfVisitorsGCombo.getSelectionModel().select("2");
 	}
 	
 //	private boolean checkGuide() {
@@ -164,6 +189,6 @@ public class NewOrderController extends ScreenController {
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
     	setComboBox();
-    	//guideCB.setDisable(checkGuide());
+    	//guide.isDisable(checkGuide());
 	}
 }

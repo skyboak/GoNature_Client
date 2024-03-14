@@ -110,7 +110,11 @@ public class VisitorLoginController extends ScreenController {
 		else 
 		{
 
+
 			LoginDetail loginDetail = new LoginDetail(getID());
+			Message loginDetailMsg = new Message(loginDetail,Commands.CheckVisitorLogin);
+			ClientController.client.sendToServer(loginDetailMsg);
+
 			((Node)event.getSource()).getScene().getWindow().hide();
 			NewOrderController newScreen = new NewOrderController();
 			newScreen.start(new Stage());

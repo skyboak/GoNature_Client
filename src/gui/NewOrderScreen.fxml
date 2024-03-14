@@ -133,7 +133,8 @@
       <TextField fx:id="emailT" layoutX="386.0" layoutY="373.0" promptText="example@example.com" />
       <DatePicker fx:id="dateCombo" layoutX="450.0" layoutY="319.0" prefHeight="31.0" prefWidth="196.0" />
       <ComboBox fx:id="timeCombo" layoutX="658.0" layoutY="319.0" prefHeight="31.0" prefWidth="95.0" />
-      <ComboBox fx:id="numOfVisitorsCombo" layoutX="509.0" layoutY="266.0" prefHeight="31.0" prefWidth="95.0" />
-      <CheckBox fx:id="guideCB" disable="true" layoutX="661.0" layoutY="271.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="89.0" text="Guide" />
+      <ComboBox fx:id="numOfVisitorsCombo" layoutX="508.0" layoutY="266.0" prefHeight="31.0" prefWidth="95.0" />
+      <CheckBox fx:id="guide" layoutX="661.0" layoutY="271.0" mnemonicParsing="false" onAction="#guideCB" prefHeight="21.0" prefWidth="89.0" text="Guide" />
+      <ComboBox fx:id="numOfVisitorsGCombo" disable="true" layoutX="508.0" layoutY="266.0" prefHeight="31.0" prefWidth="95.0" visible="false" />
    </children>
 </AnchorPane>

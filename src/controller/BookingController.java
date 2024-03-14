@@ -1,6 +1,15 @@
 package controller;
 
 public class BookingController {
+	private boolean isAvailable;
+
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
 	
 	/*public void CreateNewBooking(String vistorID   ) {
 		
@@ -8,8 +17,8 @@ public class BookingController {
 	
 	
 	
-	public boolean checkAvialablity() {
-		return false;
+	public void checkAvialablity(boolean Condition) {
+		return Condition;
 	}
 	
 	
