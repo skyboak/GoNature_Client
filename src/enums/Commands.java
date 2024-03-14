@@ -6,7 +6,7 @@ public enum Commands {
 	
 	
 	
-	WorkerLoginResult
+	WorkerLoginResult, VisitorLoginResult
 	;
 }
 

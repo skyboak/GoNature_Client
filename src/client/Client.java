@@ -67,6 +67,9 @@ public class Client extends AbstractClient
 	      		Boolean workerLoginResult =  (Boolean)m.getObj();
 	      		mainScreenController.setWorkerLoginValid(workerLoginResult);
 	      		
+	      	case VisitorLoginResult:
+	      		Boolean visitorLoginResult =  (Boolean)m.getObj();
+	      		mainScreenController.setVisitorLoginValid(visitorLoginResult);
 		default:
 			break;
 	      		

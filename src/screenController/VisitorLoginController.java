@@ -100,17 +100,9 @@ public class VisitorLoginController extends ScreenController {
 				//move to workerscreen
 				System.out.println("good worker");
 			}
-			
-            
-			
-			
-			
-			
 		}
-		else 
+		else
 		{
-
-
 			LoginDetail loginDetail = new LoginDetail(getID());
 			Message loginDetailMsg = new Message(loginDetail,Commands.CheckVisitorLogin);
 			ClientController.client.sendToServer(loginDetailMsg);
@@ -118,13 +110,7 @@ public class VisitorLoginController extends ScreenController {
 			((Node)event.getSource()).getScene().getWindow().hide();
 			NewOrderController newScreen = new NewOrderController();
 			newScreen.start(new Stage());
-			//System.exit(0);
 		}
-
-		
-		
-		
-
 	}
 	
 	public void start(Stage primaryStage) throws Exception {
