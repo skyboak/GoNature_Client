@@ -1,11 +1,12 @@
 package client;
 
 import java.io.IOException;
+import controller.*;
 import java.util.ArrayList;
 
 
 import ocsf.client.AbstractClient;
-
+import logic.Message;
 public class Client extends AbstractClient
 {
 	  //Instance variables **********************************************
@@ -27,6 +28,10 @@ public class Client extends AbstractClient
 	   * @param clientUI The interface type variable.
 	   */
 	  
+	  static public ReportController reportController;
+	  static public MainScreenController mainScreenController;
+	  static public BookingController bookingController;
+	  
 	  public Client(String host, int port, ClientController clientUI) 
 	    throws IOException 
 	  {
@@ -34,6 +39,13 @@ public class Client extends AbstractClient
 	    this.clientUI = clientUI;
 	    System.out.println("Connecting...");
 	    openConnection();
+	    
+	    //Initilazing The Contorllers
+	    
+	    bookingController = new BookingController();
+	    mainScreenController = new MainScreenController();
+	    reportController = new ReportController();
+	    //to be continued if needed
 	  }
 
 	  
@@ -46,7 +58,26 @@ public class Client extends AbstractClient
 	   */
 	  public void handleMessageFromServer(Object msg) 
 	  {
-			/*			 
+		  //get the message a message object from the server (getcmd,getobj) while obj is the data from the server  
+	      Message m = (Message)msg;
+
+	      switch(m.getCmd()) {
+	      
+	      	case WorkerLoginResult:
+	      		Boolean workerLoginResult =  (Boolean)m.getObj();
+	      		mainScreenController.setWorkerLoginValid(workerLoginResult);
+	      		
+		default:
+			break;
+	      		
+	      
+	      }
+		  
+		  
+			/*	
+			 * 
+			 * 
+			 * 		 
 			 * 
 				//TODO: Add Switch case for all msgs from server.
 			 */

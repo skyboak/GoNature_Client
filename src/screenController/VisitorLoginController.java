@@ -78,17 +78,40 @@ public class VisitorLoginController extends ScreenController {
 		if(workerCB.isSelected()) {
 			LoginDetail loginDetail = new LoginDetail(getUsername(),getPassword());
 			Message loginDetailMsg = new Message(loginDetail,Commands.CheckWorkerLogin);
-			ClientController.client.sendToServer(loginDetailMsg);
 			
-		}else 
-		{
+			boolean awaitResponse = true;
+			ClientController.client.sendToServer(loginDetailMsg);
+	            // wait for response
+			while (awaitResponse) {
+				try {
+					Thread.sleep(100);
+					awaitResponse = ClientController.client.mainScreenController.isGotResponse();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			if(!ClientController.client.mainScreenController.isWorkerLoginValid()) {
+				//error in usernameandpasssword. 
+				System.out.println("error worker");
+			}
+			else {
+				//move to workerscreen
+				System.out.println("good worker");
+			}
+			
+            
+			
+			
+			
+			
+		}else {
 			LoginDetail loginDetail = new LoginDetail(getID());
 			//TODO Transfer Login Screen 
 		}
 		
 		
 		
-		System.exit(0);
+		
 	}
 	
 	public void start(Stage primaryStage) throws Exception {

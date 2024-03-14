@@ -2,8 +2,11 @@ package enums;
 
 public enum Commands {
 
-	CheckWorkerLogin,CheckVisitorLogin
+	CheckWorkerLogin,CheckVisitorLogin,
 	
+	
+	
+	WorkerLoginResult
 	;
 }
 
