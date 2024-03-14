@@ -3,8 +3,6 @@ package screenController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -15,18 +13,13 @@ public class ScreenController {
 	private double xOffset = 0;
     private double yOffset = 0;
 	
-
-
 	@FXML
 	public void xBtn(MouseEvent event) throws Exception {
 		System.exit(0);
 	}
 	
 	
-	
 	public void RemoveTopBar(Stage primaryStage,Parent root) {
-		
-		  
 		  // remove the top bar(minimize, resize, exit)
 		  primaryStage.initStyle(StageStyle.UNDECORATED);
 		  
@@ -41,8 +34,26 @@ public class ScreenController {
 	            primaryStage.setX(event.getScreenX() - xOffset);
 	            primaryStage.setY(event.getScreenY() - yOffset);
 	        });
-	        
-		 
+	}
+	
+	public void pricesBtn(ActionEvent event) throws Exception {
+		
+	}
+	
+	public void newBookingBtn(ActionEvent event) throws Exception {
+		
+	}
+	
+	public void myBookingBtn(ActionEvent event) throws Exception {
+		
+	}
+	
+	public void logoutBtn(ActionEvent event) throws Exception {
+		
+	}
+	
+	public void aboutUsBtn(ActionEvent event) throws Exception {
+		
 	}
 
 }

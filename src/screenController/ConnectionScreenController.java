@@ -56,7 +56,6 @@ public class ConnectionScreenController extends ScreenController
     	primaryStage.setTitle("GoNatureClient");
     	primaryStage.setScene(scene);
     	RemoveTopBar(primaryStage,root);
-		 		  
     	primaryStage.show();
 	}
 }
