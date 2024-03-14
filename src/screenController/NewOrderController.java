@@ -98,9 +98,6 @@ public class NewOrderController extends ScreenController {
 	private boolean validateInputs() {
 
 	    // Check if all required fields are filled
-	    if (visitTypeCombo.getValue() == null) {
-	        errorMessage.append("Visit type is required.\n");
-	    }
 	    if (timeCombo.getValue() == null) {
 	        errorMessage.append("Time is required.\n");
 	    }
