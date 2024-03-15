@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import logic.BookingDetails;
 
 
-public class NewOrderController extends ScreenController {
+public class NewOrderController extends VisitorScreenController {
 
 	private StringBuilder errorMessage = new StringBuilder();
 	@FXML

@@ -35,7 +35,7 @@ public class ConnectionScreenController extends ScreenController
 		ClientController clientController = new ClientController(getIpAddress(), getPort());
 		clientController.display("Connected");
 		((Node)event.getSource()).getScene().getWindow().hide();
-		VisitorLoginController newScreen = new VisitorLoginController();
+		LoginController newScreen = new LoginController();
 		newScreen.start(new Stage());
 	}
 	

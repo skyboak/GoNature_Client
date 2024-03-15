@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import logic.LoginDetail;
 import logic.Message;
 
-public class VisitorLoginController extends ScreenController {
+public class LoginController extends ScreenController {
 
 	@FXML
 	private Text usernameS;
@@ -106,19 +106,35 @@ public class VisitorLoginController extends ScreenController {
 			LoginDetail loginDetail = new LoginDetail(getID());
 			Message loginDetailMsg = new Message(loginDetail,Commands.CheckVisitorLogin);
 			ClientController.client.sendToServer(loginDetailMsg);
-
-			((Node)event.getSource()).getScene().getWindow().hide();
-			NewOrderController newScreen = new NewOrderController();
-			newScreen.start(new Stage());
+			boolean awaitResponse = true;
+			while (awaitResponse) {
+				try {
+					Thread.sleep(100);
+					awaitResponse = ClientController.client.mainScreenController.isGotResponse();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			if(!ClientController.client.mainScreenController.isVisitorLoginValid()) {
+				//Visitor is logged in  
+				System.out.println("visitor is logged in already");
+			}
+			else {
+				//move to visitor screen
+				System.out.println("visitor ok");
+			}
+//			((Node)event.getSource()).getScene().getWindow().hide();
+//			NewOrderController newScreen = new NewOrderController();
+//			newScreen.start(new Stage());
 		}
 	}
 	
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/VisitorLoginScreen.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/LoginScreen.fxml"));
     	loader.setController(this); // Set the controller
     	Parent root = loader.load();
     	Scene scene = new Scene(root);
-    	primaryStage.setTitle("VisitorLogin");
+    	primaryStage.setTitle("LoginScreen");
     	primaryStage.setScene(scene);
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
