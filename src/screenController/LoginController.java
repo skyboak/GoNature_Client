@@ -26,6 +26,10 @@ public class LoginController extends ScreenController {
 	@FXML
 	private Text idS;
 	@FXML
+	private Text errorT;
+	@FXML
+	private Text errorIDT;
+	@FXML
 	private TextField usernameT;
 	@FXML
 	private TextField passwordT;
@@ -54,6 +58,8 @@ public class LoginController extends ScreenController {
 	}
 	
 	public void checkBox(ActionEvent event) throws Exception {
+		errorIDT.setVisible(false);
+		errorT.setVisible(false);
 		if(workerCB.isSelected())
 			setVisableDisable(true , false);
 		else
@@ -76,6 +82,8 @@ public class LoginController extends ScreenController {
 	}
 	
 	public void loginBtn(ActionEvent event) throws Exception {
+		errorIDT.setVisible(false);
+		errorT.setVisible(false);
 		//TODO: Add Implementation.
 		if(workerCB.isSelected()) {
 			LoginDetail loginDetail = new LoginDetail(getUsername(),getPassword());
@@ -103,6 +111,10 @@ public class LoginController extends ScreenController {
 		}
 		else
 		{
+			if(getID().length() != 9 ) {
+				errorIDT.setVisible(true);
+				return;
+			}
 			LoginDetail loginDetail = new LoginDetail(getID());
 			Message loginDetailMsg = new Message(loginDetail,Commands.CheckVisitorLogin);
 			ClientController.client.sendToServer(loginDetailMsg);
@@ -114,21 +126,16 @@ public class LoginController extends ScreenController {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+			}			
+			if(!ClientController.client.mainScreenController.isVisitorLoginValid())
+				//Visitor is logged in  
+				errorT.setVisible(true);
+			else {
+				//move to visitor screen
+				((Node)event.getSource()).getScene().getWindow().hide();
+				NewOrderController newScreen = new NewOrderController();
+				newScreen.start(new Stage());
 			}
-			System.out.println(ClientController.client.mainScreenController.isVisitorLoginValid());
-			Thread.sleep(10000);
-			System.out.println(ClientController.client.mainScreenController.isVisitorLoginValid());
-//			if(!ClientController.client.mainScreenController.isVisitorLoginValid()) {
-//				//Visitor is logged in  
-//				System.out.println("visitor is logged in already");
-//			}
-//			else {
-//				//move to visitor screen
-//				System.out.println("visitor ok");
-//			}
-//			((Node)event.getSource()).getScene().getWindow().hide();
-//			NewOrderController newScreen = new NewOrderController();
-//			newScreen.start(new Stage());
 		}
 	}
 	
