@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import logic.BookingDetails;
 
 
-public class NewOrderController extends VisitorScreenController {
+public class NewBookingController extends VisitorScreenController {
 
 	private StringBuilder errorMessage = new StringBuilder();
 	@FXML
@@ -40,7 +40,6 @@ public class NewOrderController extends VisitorScreenController {
 	private DatePicker dateCombo;
 	@FXML
 	private CheckBox guide;
-	
 	
 	public void getTime() {
 		timeCombo.getValue();
@@ -137,7 +136,7 @@ public class NewOrderController extends VisitorScreenController {
 	// clears error text and close the widnow
 	public void okBtn(ActionEvent event) throws Exception {
 		errorMessage.delete(0, errorMessage.length());
-		((Node)event.getSource()).getScene().getWindow().hide();;
+		((Node)event.getSource()).getScene().getWindow().hide();
 	}
 	
 	private void setComboBox() {
@@ -173,6 +172,7 @@ public class NewOrderController extends VisitorScreenController {
 		numOfVisitorsGCombo.getSelectionModel().select("2");
 	}
 	
+// Check in DB if the user is Guide(ID)
 //	private boolean checkGuide() {
 //		if user is guide:
 //			return false;
@@ -180,11 +180,11 @@ public class NewOrderController extends VisitorScreenController {
 //	}
 	
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/NewOrderScreen.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/NewBookingScreen.fxml"));
     	loader.setController(this); // Set the controller
     	Parent root = loader.load();
     	Scene scene = new Scene(root);
-    	primaryStage.setTitle("NewOrder");
+    	primaryStage.setTitle("NewBooking");
     	primaryStage.setScene(scene);
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();

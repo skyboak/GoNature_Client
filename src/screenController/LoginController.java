@@ -28,8 +28,6 @@ public class LoginController extends ScreenController {
 	@FXML
 	private Text errorT;
 	@FXML
-	private Text errorIDT;
-	@FXML
 	private TextField usernameT;
 	@FXML
 	private TextField passwordT;
@@ -58,7 +56,6 @@ public class LoginController extends ScreenController {
 	}
 	
 	public void checkBox(ActionEvent event) throws Exception {
-		errorIDT.setVisible(false);
 		errorT.setVisible(false);
 		if(workerCB.isSelected())
 			setVisableDisable(true , false);
@@ -82,7 +79,6 @@ public class LoginController extends ScreenController {
 	}
 	
 	public void loginBtn(ActionEvent event) throws Exception {
-		errorIDT.setVisible(false);
 		errorT.setVisible(false);
 		//TODO: Add Implementation.
 		if(workerCB.isSelected()) {
@@ -112,7 +108,8 @@ public class LoginController extends ScreenController {
 		else
 		{
 			if(getID().length() != 9 ) {
-				errorIDT.setVisible(true);
+				errorT.setText("**ID is too short, enter 9 digits");
+				errorT.setVisible(true);
 				return;
 			}
 			LoginDetail loginDetail = new LoginDetail(getID());
@@ -127,13 +124,16 @@ public class LoginController extends ScreenController {
 					e.printStackTrace();
 				}
 			}			
-			if(!ClientController.client.mainScreenController.isVisitorLoginValid())
+			if(!ClientController.client.mainScreenController.isVisitorLoginValid()) {
 				//Visitor is logged in  
 				errorT.setVisible(true);
+				errorT.setText("**User is already logged in");
+			}
 			else {
 				//move to visitor screen
 				((Node)event.getSource()).getScene().getWindow().hide();
-				NewOrderController newScreen = new NewOrderController();
+				NewBookingController newScreen = new NewBookingController();
+				newScreen.setID(getID());
 				newScreen.start(new Stage());
 			}
 		}

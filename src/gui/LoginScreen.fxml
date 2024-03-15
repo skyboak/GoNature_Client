@@ -57,8 +57,7 @@
                   <Image url="@../images/lock.png" />
                </image>
             </ImageView>
-            <Text fx:id="errorT" fill="RED" layoutX="79.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="**User is already logged in" visible="false" wrappingWidth="197.6708984375" />
-            <Text fx:id="errorIDT" fill="RED" layoutX="78.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="**ID is too short(9 numbers needed)" visible="false" wrappingWidth="245.6708984375" />
+            <Text fx:id="errorT" fill="RED" layoutX="50.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" wrappingWidth="295.6708984375" />
          </children>
       </Pane>
       <ImageView blendMode="DARKEN" fitHeight="533.0" fitWidth="371.0" pickOnBounds="true">
