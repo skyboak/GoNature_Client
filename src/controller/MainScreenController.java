@@ -22,7 +22,7 @@ public class MainScreenController {
 	
 	
 	public boolean isVisitorLoginValid() {
-		return workerLoginValid;
+		return visitorLoginValid;
 	}
 	
 	public void setVisitorLoginValid(boolean visitorLoginValid) {

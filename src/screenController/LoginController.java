@@ -115,14 +115,17 @@ public class LoginController extends ScreenController {
 					e.printStackTrace();
 				}
 			}
-			if(!ClientController.client.mainScreenController.isVisitorLoginValid()) {
-				//Visitor is logged in  
-				System.out.println("visitor is logged in already");
-			}
-			else {
-				//move to visitor screen
-				System.out.println("visitor ok");
-			}
+			System.out.println(ClientController.client.mainScreenController.isVisitorLoginValid());
+			Thread.sleep(10000);
+			System.out.println(ClientController.client.mainScreenController.isVisitorLoginValid());
+//			if(!ClientController.client.mainScreenController.isVisitorLoginValid()) {
+//				//Visitor is logged in  
+//				System.out.println("visitor is logged in already");
+//			}
+//			else {
+//				//move to visitor screen
+//				System.out.println("visitor ok");
+//			}
 //			((Node)event.getSource()).getScene().getWindow().hide();
 //			NewOrderController newScreen = new NewOrderController();
 //			newScreen.start(new Stage());
