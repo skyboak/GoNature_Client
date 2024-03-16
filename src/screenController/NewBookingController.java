@@ -118,8 +118,7 @@ public class NewBookingController extends VisitorScreenController {
             System.out.println(formattedDateTime);
             //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
             //else waitinglist
-       
-           
+  
 		}
 		else
 		{
@@ -234,9 +233,13 @@ public class NewBookingController extends VisitorScreenController {
 			NumOfVisitorsG.add(String.valueOf(i));
 		}
 		//last time is closing time-visit length time
-		Time.add("06:00");
-		Time.add("10:00");
-		Time.add("14:00");
+		for(int i=8;i<=16;i++)
+		{
+			if(i<10)
+				Time.add("0"+String.valueOf(i)+":00");
+			else
+				Time.add(String.valueOf(i)+":00");
+		}
 		
 		ObservableList<String> list1 = FXCollections.observableArrayList(parkNames);
 		parkNameCombo.setItems(list1);
