@@ -222,7 +222,7 @@ public class NewBookingController extends VisitorScreenController {
 		ArrayList<String> NumOfVisitorsG = new ArrayList<String>();
 		ArrayList<String> Time = new ArrayList<String>();
 		
-		parkNames.add("YellowStone");
+		parkNames.add("BlackForest");
 		parkNames.add("Hyde Park");
 		parkNames.add("YellowStone");
 		
