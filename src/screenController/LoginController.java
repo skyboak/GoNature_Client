@@ -138,6 +138,10 @@ public class LoginController extends ScreenController {
 				newScreen.start(new Stage());
 			}
 		}
+		
+		
+		
+		
 	}
 	
 	public void start(Stage primaryStage) throws Exception {

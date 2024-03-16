@@ -10,7 +10,16 @@ import logic.Message;
 
 public class VisitorScreenController extends ScreenController {
 
+
+	private String ID;
 	
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+	public String getID() {
+		return ID;
+	}
+
 	public void pricesBtn(ActionEvent event) throws Exception {
 		
 	}

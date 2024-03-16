@@ -1,7 +1,11 @@
 package screenController;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import client.ClientController;
+import enums.Commands;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +21,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import logic.BookingDetail;
+import logic.LoginDetail;
+import logic.Message;
+//import server.ServerUI;
+
 
 
 public class NewBookingController extends VisitorScreenController {
@@ -117,6 +125,41 @@ public class NewBookingController extends VisitorScreenController {
 	    return errorMessage.length() == 0 ? true : false;
 	}
 	
+	
+	public boolean checkGuide() {
+		LoginDetail loginDetail = new LoginDetail(getID());
+		Message loginDetailMsg = new Message(loginDetail,Commands.CheckIfGroupGuide);
+		
+		boolean awaitResponse = true;
+		try {
+			ClientController.client.sendToServer(loginDetailMsg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+            // wait for response
+		while (awaitResponse) {
+			try {
+				Thread.sleep(100);
+				awaitResponse = ClientController.client.mainScreenController.isGotResponse();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		if(!ClientController.client.mainScreenController.isGroupGuideLoginValid()) 
+		{
+			//isnt group guide 
+			return true;
+		}
+		else {
+			//he is group guide
+			return false;
+		}
+	}
+	
+	 
+	
+	
 	public void guideCB(ActionEvent event) throws Exception {
 		if(guide.isSelected()) {
 			numOfVisitorsCombo.setDisable(true);
@@ -132,6 +175,7 @@ public class NewBookingController extends VisitorScreenController {
 			numOfVisitorsGCombo.setVisible(false);
 		}
 	}
+	
 	
 	// clears error text and close the widnow
 	public void okBtn(ActionEvent event) throws Exception {
@@ -169,15 +213,10 @@ public class NewBookingController extends VisitorScreenController {
 		ObservableList<String> list4 = FXCollections.observableArrayList(NumOfVisitorsG);
 		numOfVisitorsGCombo.setItems(list4);
 		numOfVisitorsCombo.getSelectionModel().select("1");
-		numOfVisitorsGCombo.getSelectionModel().select("2");
+		numOfVisitorsGCombo.getSelectionModel().select("2");//check if guide get enter alone?
 	}
 	
-// Check in DB if the user is Guide(ID)
-//	private boolean checkGuide() {
-//		if user is guide:
-//			return false;
-//		return true;
-//	}
+
 	
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/NewBookingScreen.fxml"));
@@ -189,6 +228,6 @@ public class NewBookingController extends VisitorScreenController {
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
     	setComboBox();
-    	//guide.isDisable(checkGuide());
+    	guide.setDisable(checkGuide());//perrmision for group guide only
 	}
 }

@@ -73,12 +73,19 @@ public class Client extends AbstractClient
 	      		Boolean visitorLoginResult =  (Boolean)m.getObj();
 	      		mainScreenController.setVisitorLoginValid(visitorLoginResult);
 	      		break;
+
 	      		
 	      	case VisitorMyBooking:
 	      		ArrayList<BookingDetail> myBookingList = (ArrayList<BookingDetail>)m.getObj();
 	      		bookingController.setMyBookingTableList(myBookingList);
 	      		break;
 	      		
+
+	      	case CheckIfGroupGuide:
+	      		Boolean groupguideLoginResult =  (Boolean)m.getObj();
+	      		mainScreenController.setGroupGuideValid(groupguideLoginResult);
+	      		break;
+
 		default:
 			break;
 	      		

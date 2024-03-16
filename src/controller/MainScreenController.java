@@ -4,9 +4,10 @@ public class MainScreenController {
 	
 	private boolean workerLoginValid;
 	private boolean visitorLoginValid;
+	private boolean GroupGuideLoginValid;
 	private boolean gotResponse = true;
 	
-
+	
 	public boolean isWorkerLoginValid() {
 		return workerLoginValid;
 	}
@@ -27,6 +28,17 @@ public class MainScreenController {
 	
 	public void setVisitorLoginValid(boolean visitorLoginValid) {
 		this.visitorLoginValid = visitorLoginValid;
+		this.gotResponse  = false;
+	}
+	
+	
+	
+	public boolean isGroupGuideLoginValid() {
+		return GroupGuideLoginValid;
+	}
+	
+	public void setGroupGuideValid(boolean GroupGuideLoginValide) {
+		this.GroupGuideLoginValid = GroupGuideLoginValide;
 		this.gotResponse  = false;
 	}
 	
