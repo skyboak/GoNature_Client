@@ -23,6 +23,13 @@ import javafx.stage.Stage;
 import logic.BookingDetail;
 import logic.LoginDetail;
 import logic.Message;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+import javafx.scene.control.DateCell;
+import javafx.util.Callback;
 //import server.ServerUI;
 
 
@@ -73,6 +80,23 @@ public class NewBookingController extends VisitorScreenController {
 		emailT.getText();
 	}
 	
+	private void configureDatePicker() {
+        // Set the date picker to show only future dates
+        dateCombo.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(DatePicker param) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        // Disable selection of past dates
+                        setDisable(item.isBefore(LocalDate.now()));
+                    }
+                };
+            }
+        });
+    }
+	
 	public void nextBtn(ActionEvent event) throws Exception {
 		if (validateInputs()) {
 			BookingDetail details = new BookingDetail();
@@ -81,7 +105,17 @@ public class NewBookingController extends VisitorScreenController {
             details.setNumOfVisitors(numOfVisitorsCombo.getValue());
             details.setTelephone(telephoneT.getText());
             details.setEmail(emailT.getText());
-            details.setDate(dateCombo.getValue().toString());
+            
+            // Combine date and time into LocalDateTime object
+            LocalDateTime dateTime = dateCombo.getValue().atTime(LocalTime.parse(details.getTime()));
+            
+            // Format LocalDateTime into the desired format
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+            String formattedDateTime = dateTime.format(formatter);
+            details.setDate(formattedDateTime);
+            
+            // Print formatted date and time
+            System.out.println(formattedDateTime);
             //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
             //else waitinglist
        
@@ -199,10 +233,10 @@ public class NewBookingController extends VisitorScreenController {
 		for(int i=2; i < 16 ; i++) {
 			NumOfVisitorsG.add(String.valueOf(i));
 		}
-		
-		Time.add("06:00 - 10:00");
-		Time.add("10:00 - 14:00");
-		Time.add("14:00 - 18:00");
+		//last time is closing time-visit length time
+		Time.add("06:00");
+		Time.add("10:00");
+		Time.add("14:00");
 		
 		ObservableList<String> list1 = FXCollections.observableArrayList(parkNames);
 		parkNameCombo.setItems(list1);
@@ -228,6 +262,7 @@ public class NewBookingController extends VisitorScreenController {
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
     	setComboBox();
+    	configureDatePicker();
     	guide.setDisable(checkGuide());//perrmision for group guide only
 	}
 }
