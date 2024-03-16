@@ -16,7 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import logic.BookingDetails;
+import logic.BookingDetail;
 
 
 public class NewBookingController extends VisitorScreenController {
@@ -67,13 +67,13 @@ public class NewBookingController extends VisitorScreenController {
 	
 	public void nextBtn(ActionEvent event) throws Exception {
 		if (validateInputs()) {
-			BookingDetails details = new BookingDetails();
+			BookingDetail details = new BookingDetail();
             details.setTime(timeCombo.getValue());
             details.setParkName(parkNameCombo.getValue());
             details.setNumOfVisitors(numOfVisitorsCombo.getValue());
             details.setTelephone(telephoneT.getText());
             details.setEmail(emailT.getText());
-            details.setVisitDate(dateCombo.getValue());
+            details.setDate(dateCombo.getValue().toString());
             //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
             //else waitinglist
        

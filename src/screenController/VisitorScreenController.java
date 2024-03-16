@@ -10,26 +10,25 @@ import logic.Message;
 
 public class VisitorScreenController extends ScreenController {
 
-	private String ID;
-	
-	public void setID(String ID) {
-		this.ID = ID;
-	}
 	
 	public void pricesBtn(ActionEvent event) throws Exception {
 		
 	}
 	
 	public void newBookingBtn(ActionEvent event) throws Exception {
-		
+		((Node)event.getSource()).getScene().getWindow().hide();
+		NewBookingController newScreen = new NewBookingController();
+		newScreen.start(new Stage());
 	}
 	
 	public void myBookingBtn(ActionEvent event) throws Exception {
-		
+		((Node)event.getSource()).getScene().getWindow().hide();
+		MyBookingController newScreen = new MyBookingController();
+		newScreen.start(new Stage());
 	}
 	
 	public void logoutBtn(ActionEvent event) throws Exception {
-		LoginDetail logoutDetail = new LoginDetail(ID);
+		LoginDetail logoutDetail = new LoginDetail(ClientController.client.bookingController.getID());
 		Message logoutDetailMsg = new Message(logoutDetail,Commands.VisitorLogOut);
 		ClientController.client.sendToServer(logoutDetailMsg);
 		((Node)event.getSource()).getScene().getWindow().hide();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 import ocsf.client.AbstractClient;
+import logic.BookingDetail;
 import logic.Message;
 public class Client extends AbstractClient
 {
@@ -72,6 +73,12 @@ public class Client extends AbstractClient
 	      		Boolean visitorLoginResult =  (Boolean)m.getObj();
 	      		mainScreenController.setVisitorLoginValid(visitorLoginResult);
 	      		break;
+	      		
+	      	case VisitorMyBooking:
+	      		ArrayList<BookingDetail> myBookingList = (ArrayList<BookingDetail>)m.getObj();
+	      		bookingController.setMyBookingTableList(myBookingList);
+	      		break;
+	      		
 		default:
 			break;
 	      		

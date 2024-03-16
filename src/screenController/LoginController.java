@@ -2,6 +2,7 @@ package screenController;
 
 import java.util.ArrayList;
 import client.ClientController;
+import client.ClientUI;
 import enums.Commands;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -133,7 +134,7 @@ public class LoginController extends ScreenController {
 				//move to visitor screen
 				((Node)event.getSource()).getScene().getWindow().hide();
 				NewBookingController newScreen = new NewBookingController();
-				newScreen.setID(getID());
+				ClientController.client.bookingController.setID(getID()); // saves user ID
 				newScreen.start(new Stage());
 			}
 		}

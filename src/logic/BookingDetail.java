@@ -3,16 +3,26 @@ package logic;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class BookingDetails implements Serializable {
+public class BookingDetail implements Serializable {
 
+	private String orderNumber;
     private String visitType;
     private String time;
     private String parkName;
     private String numOfVisitors;
     private String telephone;
     private String email;
-    private LocalDate visitDate;
+    private String Date;
 
+    
+    public String getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+	
     public String getVisitType() {
         return visitType;
     }
@@ -61,18 +71,20 @@ public class BookingDetails implements Serializable {
         this.email = email;
     }
 
-    public LocalDate getVisitDate() {
-        return visitDate;
+    public String getDate() {
+        return Date;
     }
 
-    public void setVisitDate(LocalDate visitDate) {
-        this.visitDate = visitDate;
+    public void setDate(String Date) {
+        this.Date = Date;
     }
 
     @Override
     public String toString() {
         return "BookingDetails [visitType=" + visitType + ", time=" + time + ", parkName=" + parkName
                 + ", numOfVisitors=" + numOfVisitors + ", telephone=" + telephone + ", email=" + email
-                + ", visitDate=" + visitDate + "]";
+                + ", visitDate=" + Date + "]";
     }
+
+	
 }

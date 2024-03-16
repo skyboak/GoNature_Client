@@ -63,23 +63,37 @@
             <Image url="@../images/forest.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="657.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="657.0" layoutY="34.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/forest.png" />
          </image>
       </ImageView>
-      <Button fx:id="next" layoutX="657.0" layoutY="492.0" mnemonicParsing="false" onAction="#nextBtn" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: e71111; -fx-background-radius: 10 10 10 10;" text="cancel">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <TableView layoutX="287.0" layoutY="143.0" prefHeight="200.0" prefWidth="492.0">
-        <columns>
-          <TableColumn fx:id="orderNumberC" prefWidth="119.0" text="OrderNumber" />
-          <TableColumn fx:id="parkNameC" minWidth="0.0" prefWidth="103.0" text="ParkName" />
-            <TableColumn fx:id="dateTimeC" prefWidth="110.0" text="Date&amp;Time" />
-            <TableColumn fx:id="numOfVisitorsC" prefWidth="159.0" text="NumOfVisitors" />
-        </columns>
-      </TableView>
+      <Pane layoutX="281.0" layoutY="129.0">
+         <children>
+            <Button fx:id="next" disable="true" layoutX="348.0" layoutY="363.0" mnemonicParsing="false" onAction="#cancelBtn" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: e71111; -fx-background-radius: 10 10 10 10;" text="Cancel Booking">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <TableView fx:id="tableView" prefHeight="234.0" prefWidth="492.0">
+              <columns>
+                <TableColumn fx:id="orderNumberC" prefWidth="119.0" text="Order Number" />
+                <TableColumn fx:id="parkNameC" minWidth="0.0" prefWidth="103.0" text="Park Name" />
+                  <TableColumn fx:id="dateTimeC" prefWidth="110.0" text="Date &amp; Time" />
+                  <TableColumn fx:id="numOfVisitorsC" prefWidth="159.0" text="Number Of Visitors" />
+              </columns>
+            </TableView>
+            <Text layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select booking to cancel">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="errorT" layoutY="370.6552734375" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.2558478564024">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
