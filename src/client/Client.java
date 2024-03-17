@@ -29,7 +29,7 @@ public class Client extends AbstractClient
 	   * @param clientUI The interface type variable.
 	   */
 	  
-	  static public ReportController reportController;
+	  static public WorkerController workerController;
 	  static public MainScreenController mainScreenController;
 	  static public BookingController bookingController;
 	  
@@ -45,7 +45,7 @@ public class Client extends AbstractClient
 	    
 	    bookingController = new BookingController();
 	    mainScreenController = new MainScreenController();
-	    reportController = new ReportController();
+	    workerController = new WorkerController();
 	    //to be continued if needed
 	  }
 
@@ -86,6 +86,21 @@ public class Client extends AbstractClient
 	      		mainScreenController.setGroupGuideValid(groupguideLoginResult);
 	      		break;
 
+	      		
+	      		
+
+	      	case AverageParkStayTimeCheck:
+	      		Boolean averageParkStayTimeResult =  (Boolean)m.getObj();
+	      		workerController.setAverageParkStayTime(averageParkStayTimeResult);
+	      		break;
+	      	case OnlineBookingCapacityCheck:
+	      		Boolean OnlineBookingCapacityResult =  (Boolean)m.getObj();
+	      		workerController.setOnlineBookingCapacity(OnlineBookingCapacityResult);
+	      		break;
+	      	case ParkCapacityCheck:
+	      		Boolean ParkCapacityResult =  (Boolean)m.getObj();
+	      		workerController.setParkCapacity(ParkCapacityResult);
+	      		break;
 		default:
 			break;
 	      		

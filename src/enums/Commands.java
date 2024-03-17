@@ -10,7 +10,11 @@ public enum Commands {
 	
 
 	
-	WorkerLoginResult, VisitorLoginResult
+	WorkerLoginResult, VisitorLoginResult,
+	
+	
+	ChangeParkCapacity,ChangeOnlineBookingCapacity,ChangeAverageParkStayTime,
+	AverageParkStayTimeCheck, OnlineBookingCapacityCheck, ParkCapacityCheck
 	;
 }
 

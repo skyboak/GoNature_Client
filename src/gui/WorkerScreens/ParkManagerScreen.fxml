@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" style="-fx-border-color: #311906#311906; -fx-border-width: 6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutY="2.0" prefHeight="576.0" prefWidth="255.0" style="-fx-background-color: #1e525b; -fx-background-radius: 30 0 0 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="169.0" prefHeight="291.0" prefWidth="255.0" spacing="10.0">
+               <children>
+                  <Button fx:id="parkDashboard" disable="true" mnemonicParsing="false" onAction="#parkDashboardBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Dashboard">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="visitorStatisticReport" mnemonicParsing="false" onAction="#visitorStatisticReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Visitor Statistic Report">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="parkAvailabilityReport" mnemonicParsing="false" onAction="#parkAvailabilityReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Availability Report">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="aboutUs" mnemonicParsing="false" onAction="#aboutUsBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="DELETE THE PARK">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Text fill="#dff9e8" layoutX="21.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go Nature">
+               <font>
+                  <Font name="System Bold Italic" size="45.0" />
+               </font>
+            </Text>
+            <Button fx:id="logout" layoutX="59.0" layoutY="485.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Text layoutX="326.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$PARK NAME$" wrappingWidth="141.5555067062378">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="320.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Untitled.jpeg" />
+         </image>
+      </ImageView>
+      <Text layoutX="515.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visitors Currently In Park:" wrappingWidth="240.22219371795654">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+      <Pane layoutX="360.0" layoutY="370.0">
+         <children>
+            <Pane layoutX="-95.0">
+               <children>
+                  <TextField alignment="CENTER" layoutX="170.0" />
+                  <Button fx:id="setParkCapacity" mnemonicParsing="false" onAction="#setParkCapacityBtn" prefHeight="25.0" prefWidth="163.0" text="Set Park Capacity" />
+               </children>
+            </Pane>
+            <Pane layoutX="-95.0" layoutY="50.0">
+               <children>
+                  <TextField alignment="CENTER" layoutX="170.0" />
+                  <Button fx:id="setOnlineBookingCapacity" mnemonicParsing="false" onAction="#setOnlineBookingCapacityBtn" prefHeight="25.0" prefWidth="163.0" text="Set Online Booking Capacity">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="-95.0" layoutY="100.0">
+               <children>
+                  <TextField alignment="CENTER" layoutX="170.0" />
+                  <Button fx:id="setAverageParkStayTime" mnemonicParsing="false" onAction="#setAverageParkStayTimeBtn" prefHeight="25.0" prefWidth="163.0" text="Set Average Park Stay Time" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Text layoutX="588.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="106.16662949323654">
+         <font>
+            <Font name="Segoe UI Emoji" size="96.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
