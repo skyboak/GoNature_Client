@@ -70,7 +70,7 @@
       </ImageView>
       <Pane layoutX="281.0" layoutY="129.0">
          <children>
-            <Button fx:id="next" disable="true" layoutX="348.0" layoutY="363.0" mnemonicParsing="false" onAction="#cancelBtn" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: e71111; -fx-background-radius: 10 10 10 10;" text="Cancel Booking">
+            <Button fx:id="cancel" disable="true" layoutX="348.0" layoutY="363.0" mnemonicParsing="false" onAction="#cancelBtn" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: e71111; -fx-background-radius: 10 10 10 10;" text="Cancel Booking">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -91,6 +91,11 @@
             <Text fx:id="errorT" layoutY="370.6552734375" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.2558478564024">
                <font>
                   <Font size="17.0" />
+               </font>
+            </Text>
+            <Text fx:id="errorT" fill="RED" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="275.09765625">
+               <font>
+                  <Font size="16.0" />
                </font>
             </Text>
          </children>

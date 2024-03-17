@@ -8,6 +8,8 @@ public class BookingController {
 	private boolean isAvailable;
 	private String ID;
 	private ArrayList<BookingDetail> myBookingList;
+	private boolean isGotResponse = false;
+	private boolean isCanceled = false;;
 
 	public boolean isAvailable() {
 		return isAvailable;
@@ -27,10 +29,28 @@ public class BookingController {
 	
 	public void setMyBookingTableList(ArrayList<BookingDetail> myBookingList) {
 		this.myBookingList = myBookingList;
+		this.isGotResponse = true;
 	}
 
 	public ArrayList<BookingDetail> getMyBookingList() {
 		return myBookingList;
+	}
+	
+	public void setCancelBooking(boolean result) {
+		isCanceled = result;
+		this.isGotResponse = true;
+	}
+	
+	public boolean getCancelBooking() {
+		return isCanceled;	
+	}
+	
+	public void setGotResponse() {
+		isGotResponse = false;
+	}
+
+	public boolean isGotResponse() {
+		return isGotResponse;
 	}
 	
 	/*public void CreateNewBooking(String vistorID   ) {

@@ -7,7 +7,7 @@ public enum Commands {
 
 	VisitorMyBooking,
 	CheckIfGroupGuide,
-	
+	CancelBooking,
 
 	
 	WorkerLoginResult, VisitorLoginResult,
