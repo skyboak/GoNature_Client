@@ -29,7 +29,7 @@ public class Client extends AbstractClient
 	   * @param clientUI The interface type variable.
 	   */
 	  
-	  static public ReportController reportController;
+	  static public WorkerController workerController;
 	  static public MainScreenController mainScreenController;
 	  static public BookingController bookingController;
 	  
@@ -45,7 +45,7 @@ public class Client extends AbstractClient
 	    
 	    bookingController = new BookingController();
 	    mainScreenController = new MainScreenController();
-	    reportController = new ReportController();
+	    workerController = new WorkerController();
 	    //to be continued if needed
 	  }
 
@@ -73,19 +73,37 @@ public class Client extends AbstractClient
 	      		Boolean visitorLoginResult =  (Boolean)m.getObj();
 	      		mainScreenController.setVisitorLoginValid(visitorLoginResult);
 	      		break;
-
-	      		
+	      
 	      	case VisitorMyBooking:
 	      		ArrayList<BookingDetail> myBookingList = (ArrayList<BookingDetail>)m.getObj();
 	      		bookingController.setMyBookingTableList(myBookingList);
 	      		break;
 	      		
-
 	      	case CheckIfGroupGuide:
 	      		Boolean groupguideLoginResult =  (Boolean)m.getObj();
 	      		mainScreenController.setGroupGuideValid(groupguideLoginResult);
 	      		break;
+	      		
+	      	case CancelBooking:
+	      		Boolean cancelBookingResult =  (Boolean)m.getObj();
+	      		bookingController.setCancelBooking(cancelBookingResult);
+	      		break;
 
+	      		
+	      		
+
+	      	case AverageParkStayTimeCheck:
+	      		Boolean averageParkStayTimeResult =  (Boolean)m.getObj();
+	      		workerController.setAverageParkStayTime(averageParkStayTimeResult);
+	      		break;
+	      	case OnlineBookingCapacityCheck:
+	      		Boolean OnlineBookingCapacityResult =  (Boolean)m.getObj();
+	      		workerController.setOnlineBookingCapacity(OnlineBookingCapacityResult);
+	      		break;
+	      	case ParkCapacityCheck:
+	      		Boolean ParkCapacityResult =  (Boolean)m.getObj();
+	      		workerController.setParkCapacity(ParkCapacityResult);
+	      		break;
 		default:
 			break;
 	      		

@@ -7,10 +7,14 @@ public enum Commands {
 
 	VisitorMyBooking,
 	CheckIfGroupGuide,
-	
+	CancelBooking,
 
 	
-	WorkerLoginResult, VisitorLoginResult
+	WorkerLoginResult, VisitorLoginResult,
+	
+	
+	ChangeParkCapacity,ChangeOnlineBookingCapacity,ChangeAverageParkStayTime,
+	AverageParkStayTimeCheck, OnlineBookingCapacityCheck, ParkCapacityCheck
 	;
 }
 

@@ -160,7 +160,7 @@ public class NewBookingController extends VisitorScreenController {
 	
 	
 	public boolean checkGuide() {
-		LoginDetail loginDetail = new LoginDetail(getID());
+		LoginDetail loginDetail = new LoginDetail(ClientController.client.bookingController.getID());
 		Message loginDetailMsg = new Message(loginDetail,Commands.CheckIfGroupGuide);
 		
 		boolean awaitResponse = true;
