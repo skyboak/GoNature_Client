@@ -13,6 +13,7 @@ public class BookingDetail implements Serializable {
     private String telephone;
     private String email;
     private String Date;
+    private String visitorID;
 
     
     public String getOrderNumber() {
@@ -54,6 +55,14 @@ public class BookingDetail implements Serializable {
     public void setNumOfVisitors(String numOfVisitors) {
         this.numOfVisitors = numOfVisitors;
     }
+    
+    public String getNumOfVisitorsG() {
+        return numOfVisitors;
+    }
+
+    public void setNumOfVisitorsG(String numOfVisitors) {
+        this.numOfVisitors = numOfVisitors;
+    }
 
     public String getTelephone() {
         return telephone;
@@ -78,10 +87,19 @@ public class BookingDetail implements Serializable {
     public void setDate(String Date) {
         this.Date = Date;
     }
+    public void setVisitorID(String visitorID)
+    {
+    	this.visitorID = visitorID;
+    }
+    
+    public String getVisitorID()
+    {
+    	return visitorID;
+    }
 
     @Override
     public String toString() {
-        return "BookingDetails [visitType=" + visitType + ", time=" + time + ", parkName=" + parkName
+        return "BookingDetails [visitType=" + visitType + ", visitorID=" + visitorID + ", parkName=" + parkName
                 + ", numOfVisitors=" + numOfVisitors + ", telephone=" + telephone + ", email=" + email
                 + ", visitDate=" + Date + "]";
     }

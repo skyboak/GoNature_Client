@@ -1,5 +1,5 @@
 package enums;
-
+//Client
 public enum Commands {
 
 	CheckWorkerLogin,CheckVisitorLogin,
@@ -14,7 +14,8 @@ public enum Commands {
 	
 	
 	ChangeParkCapacity,ChangeOnlineBookingCapacity,ChangeAverageParkStayTime,
-	AverageParkStayTimeCheck, OnlineBookingCapacityCheck, ParkCapacityCheck
+	AverageParkStayTimeCheck, OnlineBookingCapacityCheck, ParkCapacityCheck, 
+	newBookingToDB
 	;
 }
 

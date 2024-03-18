@@ -4,7 +4,10 @@ package screenController;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import client.Client;
 import client.ClientController;
+import client.ClientUI;
+import controller.BookingController;
 import enums.Commands;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -97,14 +100,35 @@ public class NewBookingController extends VisitorScreenController {
         });
     }
 	
+	//check park capacity{}
+	//check timeslot by maxstaytime
+	
 	public void nextBtn(ActionEvent event) throws Exception {
-		if (validateInputs()) {
 			BookingDetail details = new BookingDetail();
             details.setTime(timeCombo.getValue());
             details.setParkName(parkNameCombo.getValue());
             details.setNumOfVisitors(numOfVisitorsCombo.getValue());
             details.setTelephone(telephoneT.getText());
             details.setEmail(emailT.getText());
+            details.setVisitorID(ClientController.client.bookingController.getID());
+			if(guide.isSelected())
+			{
+				details.setVisitType("Guided Group");
+				details.setNumOfVisitorsG(numOfVisitorsGCombo.getValue());
+				
+			}
+			else
+			{
+				if (Integer.valueOf(numOfVisitorsCombo.getValue())>1)
+				{
+					details.setVisitType("Group");					
+				}
+				else
+					details.setVisitType("Solo");				
+			}
+			
+    		if (validateInputs()) {
+
             
             // Combine date and time into LocalDateTime object
             LocalDateTime dateTime = dateCombo.getValue().atTime(LocalTime.parse(details.getTime()));
@@ -113,9 +137,17 @@ public class NewBookingController extends VisitorScreenController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
             String formattedDateTime = dateTime.format(formatter);
             details.setDate(formattedDateTime);
+            /*
+            //create message to server + command to server
+            Message newbooking = new Message(details, Commands.newBookingToDB);
             
+            //send message to server
+            ClientController.client.sendToServer(newbooking);
+            */
             // Print formatted date and time
-            System.out.println(formattedDateTime);
+            System.out.println(guide.isSelected());
+            System.out.println(details.toString());
+            //System.out.println(formattedDateTime);
             //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
             //else waitinglist
   
@@ -229,10 +261,12 @@ public class NewBookingController extends VisitorScreenController {
 		for(int i=1; i < 6 ; i++) {
 			NumOfVisitors.add(String.valueOf(i));
 		}
-		for(int i=2; i < 16 ; i++) {
+		for(int i=1; i < 16 ; i++) {
 			NumOfVisitorsG.add(String.valueOf(i));
 		}
 		//last time is closing time-visit length time
+		//last book is closingtime - maxstaytime
+		//isntead of i=8 i=hour time
 		for(int i=8;i<=16;i++)
 		{
 			if(i<10)
@@ -250,7 +284,7 @@ public class NewBookingController extends VisitorScreenController {
 		ObservableList<String> list4 = FXCollections.observableArrayList(NumOfVisitorsG);
 		numOfVisitorsGCombo.setItems(list4);
 		numOfVisitorsCombo.getSelectionModel().select("1");
-		numOfVisitorsGCombo.getSelectionModel().select("2");//check if guide get enter alone?
+		numOfVisitorsGCombo.getSelectionModel().select("1");//check if guide get enter alone?
 	}
 	
 
