@@ -90,21 +90,27 @@ public class Client extends AbstractClient
 	      		bookingController.setCancelBooking(cancelBookingResult);
 	      		break;
 
-	      		
-	      		
-
 	      	case AverageParkStayTimeCheck:
 	      		Boolean averageParkStayTimeResult =  (Boolean)m.getObj();
 	      		workerController.setAverageParkStayTime(averageParkStayTimeResult);
 	      		break;
+	      		
 	      	case OnlineBookingCapacityCheck:
 	      		Boolean OnlineBookingCapacityResult =  (Boolean)m.getObj();
 	      		workerController.setOnlineBookingCapacity(OnlineBookingCapacityResult);
 	      		break;
+	      		
 	      	case ParkCapacityCheck:
 	      		Boolean ParkCapacityResult =  (Boolean)m.getObj();
 	      		workerController.setParkCapacity(ParkCapacityResult);
 	      		break;
+	      		
+	      	case checkIfExist:
+	      		boolean checkexistig = (Boolean)m.getObj();
+	      		bookingController.setCheckIfExistBooking(checkexistig);
+	      		break;
+	      		
+	      		
 		default:
 			break;
 	      		
