@@ -84,21 +84,24 @@ public class NewBookingController extends VisitorScreenController {
 	}
 	
 	private void configureDatePicker() {
-        // Set the date picker to show only future dates
-        dateCombo.setDayCellFactory(new Callback<DatePicker, DateCell>() {
-            @Override
-            public DateCell call(DatePicker param) {
-                return new DateCell() {
-                    @Override
-                    public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-                        // Disable selection of past dates
-                        setDisable(item.isBefore(LocalDate.now()));
-                    }
-                };
-            }
-        });
-    }
+	    // Set the date picker to show only dates that are at least 24 hours ahead
+	    dateCombo.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+	        @Override
+	        public DateCell call(DatePicker param) {
+	            return new DateCell() {
+	                @Override
+	                public void updateItem(LocalDate item, boolean empty) {
+	                    super.updateItem(item, empty);
+	                    // Disable selection of dates less than 24 hours ahead
+	                    LocalDateTime minimumDateTime = LocalDateTime.now().plusHours(24);
+	                    LocalDate minimumDate = minimumDateTime.toLocalDate();
+	                    setDisable(item.isBefore(minimumDate));
+	                }
+	            };
+	        }
+	    });
+	}
+
 	
 	//check park capacity{}
 	//check timeslot by maxstaytime
@@ -108,9 +111,14 @@ public class NewBookingController extends VisitorScreenController {
             details.setTime(timeCombo.getValue());
             details.setParkName(parkNameCombo.getValue());
             details.setNumOfVisitors(numOfVisitorsCombo.getValue());
-            details.setTelephone(telephoneT.getText());
             details.setEmail(emailT.getText());
             details.setVisitorID(ClientController.client.bookingController.getID());
+ 
+            // Format the phone number into "xxx-xxx-xxxx" format
+            String phoneNumber = telephoneT.getText().replaceAll("[^\\d]", ""); // Remove non-numeric characters
+            String formattedPhoneNumber = String.format("%s-%s-%s",phoneNumber.substring(0, 3),phoneNumber.substring(3, 6),phoneNumber.substring(6));
+            details.setTelephone(formattedPhoneNumber);
+
 			if(guide.isSelected())
 			{
 				details.setVisitType("Guided Group");
@@ -126,7 +134,7 @@ public class NewBookingController extends VisitorScreenController {
 				else
 					details.setVisitType("Solo");				
 			}
-			
+			//
     		if (validateInputs() && checkCurrentTime()) 
     		{
 
@@ -138,15 +146,32 @@ public class NewBookingController extends VisitorScreenController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
             String formattedDateTime = dateTime.format(formatter);
             details.setDate(formattedDateTime);
-            /*
+            
+            
             //create message to server + command to server
             Message newbooking = new Message(details, Commands.newBookingToDB);
             
             //send message to server
             ClientController.client.sendToServer(newbooking);
-            */
-            // Print formatted date and time
-            System.out.println(guide.isSelected());
+            boolean awaitResponse = false;
+    		while (!awaitResponse) {
+    			try {
+    				Thread.sleep(100);
+    				awaitResponse = ClientController.client.bookingController.isGotResponse();
+    			} catch (InterruptedException e) {
+    				e.printStackTrace();
+    			}
+    		}
+    		ClientController.client.bookingController.setGotResponse();
+            if(!ClientController.client.bookingController.getCheckIfExistBooking())
+            {
+            	System.out.println("This booking already exists in the database.");
+            }
+            else 
+            {
+            	System.out.println("This booking registerd in db.");
+            }
+            
             System.out.println(details.toString());
             //System.out.println(formattedDateTime);
             //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
@@ -182,14 +207,27 @@ public class NewBookingController extends VisitorScreenController {
 	    if (telephoneT.getText().isEmpty()) {
 	        errorMessage.append("Telephone number is required.\n");
 	    }
+	    else if (telephoneT.getText().length() != 10) {
+	        errorMessage.append("Phone number must be 10 digits long.\n");
+	    }
 	    if (emailT.getText().isEmpty()) {
 	        errorMessage.append("Email is required.\n");
 	    }
+	    else {
+	        // Validate email format using regular expression
+	        String emailPattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
+	        if (!emailT.getText().matches(emailPattern)) {
+	            errorMessage.append("Email is not in a valid format.\n");
+	        }
+	    }
+	    
 	    if (dateCombo.getValue() == null) {
 	        errorMessage.append("Visit date is required.\n");
 	    }
 	    return errorMessage.length() == 0 ? true : false;
 	}
+	
+	
 	public boolean checkCurrentTime() {
 	    LocalDate date = dateCombo.getValue();
 	    String hour = timeCombo.getValue();
@@ -305,6 +343,7 @@ public class NewBookingController extends VisitorScreenController {
 			else
 				Time.add(String.valueOf(i)+":00");
 		}
+		
 		
 		ObservableList<String> list1 = FXCollections.observableArrayList(parkNames);
 		parkNameCombo.setItems(list1);

@@ -9,7 +9,9 @@ public class BookingController {
 	private String ID;
 	private ArrayList<BookingDetail> myBookingList;
 	private boolean isGotResponse = false;
-	private boolean isCanceled = false;;
+	private boolean isCanceled = false;
+	private boolean existOrder = false;
+	
 
 	public boolean isAvailable() {
 		return isAvailable;
@@ -51,6 +53,15 @@ public class BookingController {
 
 	public boolean isGotResponse() {
 		return isGotResponse;
+	}
+	
+	public boolean getCheckIfExistBooking() {
+		return existOrder;	
+	}
+	
+	public void setCheckIfExistBooking(boolean result) {
+		existOrder = result;
+		this.isGotResponse = true;
 	}
 	
 	/*public void CreateNewBooking(String vistorID   ) {
