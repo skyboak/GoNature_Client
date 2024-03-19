@@ -169,7 +169,7 @@ public class NewBookingController extends VisitorScreenController {
             }
             else 
             {
-            	System.out.println("This booking registerd in db.");
+            	System.out.println("The booking has added to db.");
             }
             
             System.out.println(details.toString());
