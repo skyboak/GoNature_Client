@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import ocsf.client.AbstractClient;
 import logic.BookingDetail;
 import logic.Message;
+
 public class Client extends AbstractClient
 {
 	  //Instance variables **********************************************

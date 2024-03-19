@@ -69,13 +69,13 @@
          <children>
             <Pane layoutX="-95.0">
                <children>
-                  <TextField alignment="CENTER" layoutX="170.0" />
+                  <TextField fx:id="ParkCapacityT" alignment="CENTER" layoutX="170.0" />
                   <Button fx:id="setParkCapacity" mnemonicParsing="false" onAction="#setParkCapacityBtn" prefHeight="25.0" prefWidth="163.0" text="Set Park Capacity" />
                </children>
             </Pane>
             <Pane layoutX="-95.0" layoutY="50.0">
                <children>
-                  <TextField alignment="CENTER" layoutX="170.0" />
+                  <TextField fx:id="OnlineBookingCapacityT" alignment="CENTER" layoutX="170.0" />
                   <Button fx:id="setOnlineBookingCapacity" mnemonicParsing="false" onAction="#setOnlineBookingCapacityBtn" prefHeight="25.0" prefWidth="163.0" text="Set Online Booking Capacity">
                      <font>
                         <Font size="11.0" />
@@ -85,7 +85,7 @@
             </Pane>
             <Pane layoutX="-95.0" layoutY="100.0">
                <children>
-                  <TextField alignment="CENTER" layoutX="170.0" />
+                  <TextField fx:id="AverageParkStayTimeT" alignment="CENTER" layoutX="170.0" />
                   <Button fx:id="setAverageParkStayTime" mnemonicParsing="false" onAction="#setAverageParkStayTimeBtn" prefHeight="25.0" prefWidth="163.0" text="Set Average Park Stay Time" />
                </children>
             </Pane>
