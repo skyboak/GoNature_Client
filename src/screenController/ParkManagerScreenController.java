@@ -3,9 +3,13 @@ package screenController;
 import client.ClientController;
 import enums.Commands;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import logic.Message;
-public class ParkWorkerScreenController extends WorkerScreenController{
+public class ParkManagerScreenController extends WorkerScreenController{
 	
 	
 	private TextField ParkCapacityT;
@@ -79,4 +83,16 @@ public class ParkWorkerScreenController extends WorkerScreenController{
 			System.out.println("Set complete");
 		}else {System.out.println("Set failed");}
 	}
+	
+	public void start(Stage primaryStage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/WorkerScreens/ParkManagerScreen.fxml"));
+    	loader.setController(this); // Set the controller
+    	Parent root = loader.load();
+    	Scene scene = new Scene(root);
+    	primaryStage.setTitle("GoNature Dashboard");
+    	primaryStage.setScene(scene);
+    	RemoveTopBar(primaryStage,root);
+    	primaryStage.show();
+	}
+	
 }
