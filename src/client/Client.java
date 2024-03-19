@@ -1,9 +1,11 @@
 package client;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import controller.*;
 import java.util.ArrayList;
-
+import java.util.Map;
 
 import ocsf.client.AbstractClient;
 import logic.BookingDetail;
@@ -33,6 +35,7 @@ public class Client extends AbstractClient
 	  static public WorkerController workerController;
 	  static public MainScreenController mainScreenController;
 	  static public BookingController bookingController;
+	  static public ReportController reportController;
 	  
 	  public Client(String host, int port, ClientController clientUI) 
 	    throws IOException 
@@ -47,6 +50,7 @@ public class Client extends AbstractClient
 	    bookingController = new BookingController();
 	    mainScreenController = new MainScreenController();
 	    workerController = new WorkerController();
+	    reportController = new ReportController();
 	    //to be continued if needed
 	  }
 
@@ -109,6 +113,10 @@ public class Client extends AbstractClient
 	      		boolean checkexistig = (Boolean)m.getObj();
 	      		bookingController.setCheckIfExistBooking(checkexistig);
 	      		break;
+	      		
+	      	case visitorStatisticData:
+	      		Map<LocalDate, int[]> visitorStatisticData = (Map<LocalDate, int[]>)m.getObj();
+	      		reportController.setvisitorStatisticData(visitorStatisticData);
 	      		
 	      		
 		default:
