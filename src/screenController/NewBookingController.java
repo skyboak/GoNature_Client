@@ -127,7 +127,8 @@ public class NewBookingController extends VisitorScreenController {
 					details.setVisitType("Solo");				
 			}
 			
-    		if (validateInputs()) {
+    		if (validateInputs() && checkCurrentTime()) 
+    		{
 
             
             // Combine date and time into LocalDateTime object
@@ -189,7 +190,37 @@ public class NewBookingController extends VisitorScreenController {
 	    }
 	    return errorMessage.length() == 0 ? true : false;
 	}
-	
+	public boolean checkCurrentTime() {
+	    LocalDate date = dateCombo.getValue();
+	    String hour = timeCombo.getValue();
+
+	    // Splitting the hour string to extract hours and minutes
+	    String[] timeParts = hour.split(":");
+	    int selectedHour = Integer.parseInt(timeParts[0]);
+	    int selectedMinute = Integer.parseInt(timeParts[1]);
+
+	    // Creating a LocalTime object for the selected time
+	    LocalTime arrivalTime = LocalTime.of(selectedHour, selectedMinute);
+
+	    // Getting the current date and time
+	    LocalDate currentDate = LocalDate.now();
+	    LocalTime currentTime = LocalTime.now();
+
+	    // Combine date and time into LocalDateTime object
+	    LocalDateTime bookingDateTime = date.atTime(arrivalTime);
+
+	    // Calculate the minimum allowed booking time (24 hours from now)
+	    LocalDateTime minimumBookingTime = LocalDateTime.now().plusHours(24);
+
+	    // Comparing the selected date and time with the minimum allowed booking time
+	    if (bookingDateTime.isBefore(minimumBookingTime)) {
+	        errorMessage.append("You can only book 24 hours or more in advance. Please select a future time.\n");
+	        return false;
+	    }
+	    return true;
+	}
+
+
 	
 	public boolean checkGuide() {
 		LoginDetail loginDetail = new LoginDetail(ClientController.client.bookingController.getID());
