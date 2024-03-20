@@ -22,7 +22,7 @@ public enum Commands {
 
 	AverageParkStayTimeCheck, OnlineBookingCapacityCheck, ParkCapacityCheck, 
 	checkIfExist,
-	visitorStatisticData
+	visitorStatisticData, CheckParkCapacity
 
 	;
 }

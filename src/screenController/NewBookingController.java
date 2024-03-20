@@ -163,7 +163,7 @@ public class NewBookingController extends VisitorScreenController {
             
             
             //create message to server + command to server
-            Message newbooking = new Message(details, Commands.newBookingToDB);
+            Message newbooking = new Message(details, Commands.CheckParkCapacity);
             
             //send message to server
             ClientController.client.sendToServer(newbooking);
@@ -177,16 +177,17 @@ public class NewBookingController extends VisitorScreenController {
     			}
     		}
     		ClientController.client.bookingController.setGotResponse();
-            if(!ClientController.client.bookingController.getCheckIfExistBooking())
+            if(ClientController.client.bookingController.getCheckIfBookingAvailable())
             {
-            	//System.out.println("The id:"+ ClientController.client.bookingController.getID()+" is already booked at:"+formattedDateTime+" in the database.");
-            	errorscreen("The id: "+ ClientController.client.bookingController.getID()+" is already booked at: "+formattedDateTime);
-            	// add cho
+            	System.out.println("The booking is available in db.");            	
             	
             }
             else 
             {
-            	System.out.println("The booking has added to db.");
+            	
+            	//System.out.println("The id:"+ ClientController.client.bookingController.getID()+" is already booked at:"+formattedDateTime+" in the database.");
+            	errorscreen("The id: "+ ClientController.client.bookingController.getID()+" is already booked at: "+formattedDateTime);
+            	// add cho
             }
             
             System.out.println(details.toString());
@@ -194,19 +195,19 @@ public class NewBookingController extends VisitorScreenController {
             //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
             //else waitinglist
   
-		}
-		else
-		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/NotValidInputErrorScreen.fxml"));
-			loader.setController(this); // Set the controller
-			Parent root = loader.load();
-	    	Scene scene = new Scene(root);
-	    	Stage primaryStage = new Stage();
-	    	primaryStage.setScene(scene);
-	    	RemoveTopBar(primaryStage,root);
-	    	primaryStage.show();
-	    	errorT.setText(errorMessage.toString());
-		}
+    		}
+			else
+			{
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/NotValidInputErrorScreen.fxml"));
+				loader.setController(this); // Set the controller
+				Parent root = loader.load();
+		    	Scene scene = new Scene(root);
+		    	Stage primaryStage = new Stage();
+		    	primaryStage.setScene(scene);
+		    	RemoveTopBar(primaryStage,root);
+		    	primaryStage.show();
+		    	errorT.setText(errorMessage.toString());
+			}
 	}
 	
 	private boolean validateInputs() {

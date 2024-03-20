@@ -109,6 +109,11 @@ public class Client extends AbstractClient
 	      		workerController.setParkCapacity(ParkCapacityResult);
 	      		break;
 	      		
+	      	case CheckParkCapacity:
+	      		boolean bookingAvailable = (Boolean)m.getObj();
+	      		bookingController.setCheckIfBookingAvailable(bookingAvailable);
+	      		break;
+	      	
 	      	case checkIfExist:
 	      		boolean checkexistig = (Boolean)m.getObj();
 	      		bookingController.setCheckIfExistBooking(checkexistig);

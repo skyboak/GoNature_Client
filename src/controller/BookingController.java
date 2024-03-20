@@ -11,6 +11,7 @@ public class BookingController {
 	private boolean isGotResponse = false;
 	private boolean isCanceled = false;
 	private boolean existOrder = false;
+	private boolean bookingAvailable = false;
 	
 
 	public boolean isAvailable() {
@@ -61,6 +62,15 @@ public class BookingController {
 	
 	public void setCheckIfExistBooking(boolean result) {
 		existOrder = result;
+		this.isGotResponse = true;
+	}
+	
+	public boolean getCheckIfBookingAvailable() {
+		return bookingAvailable;	
+	}
+	
+	public void setCheckIfBookingAvailable(boolean result) {
+		bookingAvailable = result;
 		this.isGotResponse = true;
 	}
 	
