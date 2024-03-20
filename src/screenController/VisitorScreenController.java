@@ -12,7 +12,9 @@ public class VisitorScreenController extends ScreenController {
 
 
 	public void pricesBtn(ActionEvent event) throws Exception {
-		
+		((Node)event.getSource()).getScene().getWindow().hide();
+		PricesScreenController newScreen = new PricesScreenController();
+		newScreen.start(new Stage());
 	}
 	
 	public void newBookingBtn(ActionEvent event) throws Exception {
