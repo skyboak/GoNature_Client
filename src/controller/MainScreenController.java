@@ -1,14 +1,16 @@
 package controller;
 
+import logic.WorkerDetail;
+
 public class MainScreenController {
 	
-	private boolean workerLoginValid;
+	private WorkerDetail workerLoginValid;
 	private boolean visitorLoginValid;
 	private boolean GroupGuideLoginValid;
 	private boolean gotResponse = true;
 	
 	
-	public boolean isWorkerLoginValid() {
+	public WorkerDetail getWorkerLoginValid() {
 		return workerLoginValid;
 	}
 
@@ -16,7 +18,7 @@ public class MainScreenController {
 		return gotResponse;
 	}
 
-	public void setWorkerLoginValid(boolean workerLoginValid) {
+	public void setWorkerLoginValid(WorkerDetail workerLoginValid) {
 		this.workerLoginValid = workerLoginValid;
 		this.gotResponse  = false;
 	}
@@ -43,6 +45,7 @@ public class MainScreenController {
 	}
 	
 
+	
 	
 	
 	

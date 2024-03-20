@@ -16,22 +16,22 @@
          <children>
             <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="169.0" prefHeight="291.0" prefWidth="255.0" spacing="10.0">
                <children>
-                  <Button fx:id="parkDashboard" disable="true" mnemonicParsing="false" onAction="#parkDashboardBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Dashboard">
+                  <Button fx:id="parkDashboard" disable="true" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Dashboard">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="visitorStatisticReport" mnemonicParsing="false" onAction="#visitorStatisticReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Visitor Statistic Report">
+                  <Button fx:id="visitorStatisticReport" mnemonicParsing="false" onAction="#VisitorStatisticReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Visitor Statistic Report">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="parkAvailabilityReport" mnemonicParsing="false" onAction="#parkAvailabilityReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Availability Report">
+                  <Button fx:id="parkAvailabilityReport" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Availability Report">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="aboutUs" mnemonicParsing="false" onAction="#aboutUsBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="DELETE THE PARK">
+                  <Button fx:id="aboutUs" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="DELETE THE PARK">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
@@ -43,7 +43,7 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Text>
-            <Button fx:id="logout" layoutX="59.0" layoutY="485.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
+            <Button fx:id="logout" layoutX="59.0" layoutY="485.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

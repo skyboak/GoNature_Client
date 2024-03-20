@@ -1,9 +1,10 @@
 package logic;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public class DateDetail {
+public class DateDetail implements Serializable {
 	
 	private LocalDate start,end;
 	private String parkName;

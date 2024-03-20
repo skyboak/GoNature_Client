@@ -10,6 +10,7 @@ import java.util.Map;
 import ocsf.client.AbstractClient;
 import logic.BookingDetail;
 import logic.Message;
+import logic.WorkerDetail;
 
 public class Client extends AbstractClient
 {
@@ -70,7 +71,7 @@ public class Client extends AbstractClient
 	      switch(m.getCmd()) {
 	      
 	      	case WorkerLoginResult:
-	      		Boolean workerLoginResult =  (Boolean)m.getObj();
+	      		WorkerDetail workerLoginResult =  (WorkerDetail)m.getObj();
 	      		mainScreenController.setWorkerLoginValid(workerLoginResult);
 	      		break;
 	      		

@@ -14,27 +14,27 @@ public class WorkerScreenController extends ScreenController {
 	
 	
 	//Those Buttons Will Transition From Screen to Screen in the workers Screens
-	
-	public  void dashboardBtn() {
-		
-	}
-	
-	public void parkAvailabilityReportBtn(ActionEvent event) throws Exception{
-		
-	}
-	
-	
+//	
+//	public  void parkDashboardBtn() {
+//		
+//	}
+//	
+//	public void parkAvailabilityReportBtn(ActionEvent event) throws Exception{
+//		
+//	}
+//	
+//	
 	public void VisitorStatisticReportBtn(ActionEvent event) throws Exception{
 		
 	}
-	
-	public void VisitsReportBtn(ActionEvent event) throws Exception{
-		
-	}
-	
-	public void CancellationReportBtn(ActionEvent event) throws Exception{
-		
-	}
+//	
+//	public void VisitsReportBtn(ActionEvent event) throws Exception{
+//		
+//	}
+//	
+//	public void CancellationReportBtn(ActionEvent event) throws Exception{
+//		
+//	}
 	
 	
 	

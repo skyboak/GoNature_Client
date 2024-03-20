@@ -4,10 +4,12 @@ import client.ClientController;
 import enums.Commands;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import logic.LoginDetail;
 import logic.Message;
 public class ParkManagerScreenController extends WorkerScreenController{
 	
@@ -93,6 +95,9 @@ public class ParkManagerScreenController extends WorkerScreenController{
     	primaryStage.setScene(scene);
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
+	}
+	public void logoutBtn(ActionEvent event) throws Exception {
+		System.exit(0);
 	}
 	
 }
