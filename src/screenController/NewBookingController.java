@@ -192,7 +192,7 @@ public class NewBookingController extends VisitorScreenController {
             System.out.println(details.toString());
             //System.out.println(formattedDateTime);
             //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
-            //else waitinglist
+            //else waiting list
   
 		}
 		else
@@ -328,7 +328,7 @@ public class NewBookingController extends VisitorScreenController {
 	}
 	
 	
-	// clears error text and close the widnow
+	// clears error text and close the window
 	public void okBtn(ActionEvent event) throws Exception {
 		errorMessage.delete(0, errorMessage.length());
 		((Node)event.getSource()).getScene().getWindow().hide();
@@ -387,6 +387,6 @@ public class NewBookingController extends VisitorScreenController {
     	primaryStage.show();
     	setComboBox();
     	configureDatePicker();
-    	guide.setDisable(checkGuide());//perrmision for group guide only
+    	guide.setDisable(checkGuide());//Permission for group guide only
 	}
 }
