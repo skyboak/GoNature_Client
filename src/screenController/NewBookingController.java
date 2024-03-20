@@ -179,6 +179,9 @@ public class NewBookingController extends VisitorScreenController {
     		ClientController.client.bookingController.setGotResponse();
             if(ClientController.client.bookingController.getCheckIfBookingAvailable())
             {
+            	((Node)event.getSource()).getScene().getWindow().hide();
+                PaymentController newScreen = new PaymentController();
+                newScreen.start(new Stage(),details);
             	System.out.println("The booking is available in db.");            	
             	
             }
