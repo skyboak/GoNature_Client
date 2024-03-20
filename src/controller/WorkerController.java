@@ -1,19 +1,13 @@
 package controller;
 
+import logic.WorkerDetail;
+
 public class WorkerController {
 	
-	private String workerID;
-
 	private boolean gotResponse = false;
-	
+	private WorkerDetail workerDetail;
 
-	public String getWorkerID() {
-		return workerID;
-	}
 
-	public void setWorkerID(String workerID) {
-		this.workerID = workerID;
-	}
 	
 	private boolean AverageParkStayTime,OnlineBookingCapacity,ParkCapacity;
 
@@ -51,6 +45,16 @@ public class WorkerController {
 	public void setGotResponse(boolean gotResponse) {
 		this.gotResponse = gotResponse;
 	}
+
+	public WorkerDetail getWorkerDetail() {
+		return workerDetail;
+	}
+
+	public void setWorkerDetail(WorkerDetail workerDetail) {
+		this.workerDetail = workerDetail;
+	}
+
+
 	
 	
 	

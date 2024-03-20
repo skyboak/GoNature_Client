@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.LoginDetail;
 import logic.Message;
+import logic.WorkerDetail;
 
 public class LoginController extends ScreenController {
 
@@ -97,14 +98,18 @@ public class LoginController extends ScreenController {
 					e.printStackTrace();
 				}
 			}
-			if(!ClientController.client.mainScreenController.isWorkerLoginValid()) {
-				//error in usernameandpasssword. 
-				System.out.println("error worker");
+			WorkerDetail workerDetail = ClientController.client.mainScreenController.getWorkerLoginValid();
+			//move to workerscreen
+			System.out.println(workerDetail.getRole());
+			ClientController.client.workerController.setWorkerDetail(workerDetail);
+			if(workerDetail.getRole().equals("Park Manager")) {
+				System.out.println("entring park manager");
+			
+				((Node)event.getSource()).getScene().getWindow().hide();
+				ParkManagerScreenController newScreen = new ParkManagerScreenController();
+				newScreen.start(new Stage());
 			}
-			else {
-				//move to workerscreen
-				System.out.println("good worker");
-			}
+			
 		}
 		else
 		{
