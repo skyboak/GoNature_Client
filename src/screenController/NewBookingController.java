@@ -83,6 +83,20 @@ public class NewBookingController extends VisitorScreenController {
 		emailT.getText();
 	}
 	
+	private void errorscreen(String toshow) throws IOException
+	{
+		errorMessage.append(toshow+".\n");
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/NotValidInputErrorScreen.fxml"));
+		loader.setController(this); // Set the controller
+		Parent root = loader.load();
+    	Scene scene = new Scene(root);
+    	Stage primaryStage = new Stage();
+    	primaryStage.setScene(scene);
+    	RemoveTopBar(primaryStage,root);
+    	primaryStage.show();
+    	errorT.setText(errorMessage.toString());
+	}
+	
 	private void configureDatePicker() {
 	    // Set the date picker to show only dates that are at least 24 hours ahead
 	    dateCombo.setDayCellFactory(new Callback<DatePicker, DateCell>() {
@@ -165,7 +179,10 @@ public class NewBookingController extends VisitorScreenController {
     		ClientController.client.bookingController.setGotResponse();
             if(!ClientController.client.bookingController.getCheckIfExistBooking())
             {
-            	System.out.println("This booking already exists in the database.");
+            	//System.out.println("The id:"+ ClientController.client.bookingController.getID()+" is already booked at:"+formattedDateTime+" in the database.");
+            	errorscreen("The id: "+ ClientController.client.bookingController.getID()+" is already booked at: "+formattedDateTime);
+            	// add cho
+            	
             }
             else 
             {
