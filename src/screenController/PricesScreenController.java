@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class PricesScreenController extends VisitorScreenController {
 
     @FXML
@@ -23,14 +24,17 @@ public class PricesScreenController extends VisitorScreenController {
     private TableColumn<List<String>, String> paymentC;
     @FXML
     private TableColumn<List<String>, String> valueC;
+    
 
     public void setTable() {
         // Create sample data for each row
         ObservableList<List<String>> data = FXCollections.observableArrayList(
-            Arrays.asList("Type 1", "Payment 1", "Value 1"),
-            Arrays.asList("Type 2", "Payment 2", "Value 2"),
-            Arrays.asList("Type 3", "Payment 3", "Value 3"),
-            Arrays.asList("Type 4", "Payment 4", "Value 4")
+            Arrays.asList("Personal/family visit - \npre order", "By the number\nof visitors", "A discount of 15% off the\n price."),
+            Arrays.asList("Personal/family visit - \noccasional visit", "By the number\nof visitors", "Full price."),
+            Arrays.asList("Guided group - \npre order", "By the number\nof visitors", "25% off the full price.\nAdditional 12% Discount\r"
+            		+ "on prepayment.\nThe guide does not pay."),
+            Arrays.asList("Occasional group visit", "By the number\nof visitors", "10% off the full price.\r\n"
+            		+ "The guide pays.")
         );
 
         // Bind the data to the table columns
@@ -40,11 +44,17 @@ public class PricesScreenController extends VisitorScreenController {
              
         // Set the data to the table view
         tableView.setItems(data);
-        
-     // Lock column resizing
+                      
+        tableView.setFixedCellSize(75); // Assuming each row height is 25px
+        tableView.setMaxHeight(4 * tableView.getFixedCellSize() + 50); // Adding extra height for the header
+  
+        // Lock column resizing
         tableView.getColumns().forEach(column -> {
             column.setResizable(false);
         });
+        
+        // Remove row selection
+        tableView.setSelectionModel(null);
     }
 
     public void start(Stage primaryStage) throws Exception {

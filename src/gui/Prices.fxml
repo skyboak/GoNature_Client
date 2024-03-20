@@ -68,11 +68,11 @@
          </image>
       </ImageView>
       <ComboBox fx:id="numOfVisitorsGCombo" disable="true" layoutX="508.0" layoutY="266.0" prefHeight="31.0" prefWidth="95.0" visible="false" />
-      <TableView fx:id="tableView" layoutX="294.0" layoutY="117.0" prefHeight="361.0" prefWidth="467.0">
+      <TableView fx:id="tableView" layoutX="282.0" layoutY="117.0" prefHeight="361.0" prefWidth="492.0">
         <columns>
           <TableColumn fx:id="typeC" prefWidth="149.0" text="Type Of Service" />
-          <TableColumn fx:id="paymentC" prefWidth="147.0" text="Payment Method" />
-            <TableColumn fx:id="valueC" prefWidth="170.0" text="Value/Comments" />
+          <TableColumn fx:id="paymentC" prefWidth="167.0" text="Payment Method" />
+            <TableColumn fx:id="valueC" prefWidth="175.0" text="Value/Comments" />
         </columns>
       </TableView>
    </children>
