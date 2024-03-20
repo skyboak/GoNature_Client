@@ -286,7 +286,6 @@ public class NewBookingController extends VisitorScreenController {
 		try {
 			ClientController.client.sendToServer(loginDetailMsg);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
             // wait for response
