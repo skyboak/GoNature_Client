@@ -121,84 +121,86 @@ public class NewBookingController extends VisitorScreenController {
 	//check timeslot by maxstaytime
 	
 	public void nextBtn(ActionEvent event) throws Exception {
-			BookingDetail details = new BookingDetail();
-            details.setTime(timeCombo.getValue());
-            details.setParkName(parkNameCombo.getValue());
-            details.setNumOfVisitors(numOfVisitorsCombo.getValue());
-            details.setEmail(emailT.getText());
-            details.setVisitorID(ClientController.client.bookingController.getID());
- 
-            // Format the phone number into "xxx-xxx-xxxx" format
-            String phoneNumber = telephoneT.getText().replaceAll("[^\\d]", ""); // Remove non-numeric characters
-            String formattedPhoneNumber = String.format("%s-%s-%s",phoneNumber.substring(0, 3),phoneNumber.substring(3, 6),phoneNumber.substring(6));
-            details.setTelephone(formattedPhoneNumber);
+			if(validateInputs()) 
+			{
+				BookingDetail details = new BookingDetail();
+	            details.setTime(timeCombo.getValue());
+	            details.setParkName(parkNameCombo.getValue());
+	            details.setNumOfVisitors(numOfVisitorsCombo.getValue());
+	            details.setEmail(emailT.getText());
+	            details.setVisitorID(ClientController.client.bookingController.getID());
+	 
+	            // Format the phone number into "xxx-xxx-xxxx" format
+	            String phoneNumber = telephoneT.getText().replaceAll("[^\\d]", ""); // Remove non-numeric characters
+	            String formattedPhoneNumber = String.format("%s-%s-%s",phoneNumber.substring(0, 3),phoneNumber.substring(3, 6),phoneNumber.substring(6));
+	            details.setTelephone(formattedPhoneNumber);
 
-			if(guide.isSelected())
-			{
-				details.setVisitType("Guided Group");
-				details.setNumOfVisitorsG(numOfVisitorsGCombo.getValue());
-				
-			}
-			else
-			{
-				if (Integer.valueOf(numOfVisitorsCombo.getValue())>1)
+				if(guide.isSelected())
 				{
-					details.setVisitType("Group");					
+					details.setVisitType("Guided Group");
+					details.setNumOfVisitorsG(numOfVisitorsGCombo.getValue());
+					
 				}
 				else
-					details.setVisitType("Solo");				
-			}
-			//
-    		if (validateInputs() && checkCurrentTime()) 
-    		{
+				{
+					if (Integer.valueOf(numOfVisitorsCombo.getValue())>1)
+					{
+						details.setVisitType("Group");					
+					}
+					else
+						details.setVisitType("Solo");				
+				}
+				//
+	    		if (checkCurrentTime()) 
+	    		{
 
-            
-            // Combine date and time into LocalDateTime object
-            LocalDateTime dateTime = dateCombo.getValue().atTime(LocalTime.parse(details.getTime()));
-            
-            // Format LocalDateTime into the desired format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-            String formattedDateTime = dateTime.format(formatter);
-            details.setDate(formattedDateTime);
-            
-            
-            //create message to server + command to server
-            Message newbooking = new Message(details, Commands.CheckParkCapacity);
-            
-            //send message to server
-            ClientController.client.sendToServer(newbooking);
-            boolean awaitResponse = false;
-    		while (!awaitResponse) {
-    			try {
-    				Thread.sleep(100);
-    				awaitResponse = ClientController.client.bookingController.isGotResponse();
-    			} catch (InterruptedException e) {
-    				e.printStackTrace();
-    			}
-    		}
-    		ClientController.client.bookingController.setGotResponse();
-            if(ClientController.client.bookingController.getCheckIfBookingAvailable())
-            {
-            	((Node)event.getSource()).getScene().getWindow().hide();
-                PaymentController newScreen = new PaymentController();
-                newScreen.start(new Stage(),details);
-            	System.out.println("The booking is available in db.");            	
-            	
-            }
-            else 
-            {
-            	
-            	//System.out.println("The id:"+ ClientController.client.bookingController.getID()+" is already booked at:"+formattedDateTime+" in the database.");
-            	errorscreen("The id: "+ ClientController.client.bookingController.getID()+" is already booked at: "+formattedDateTime);
-            	// add cho
-            }
-            
-            System.out.println(details.toString());
-            //System.out.println(formattedDateTime);
-            //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
-            //else waiting list
-  
-    		}
+	            
+		            // Combine date and time into LocalDateTime object
+		            LocalDateTime dateTime = dateCombo.getValue().atTime(LocalTime.parse(details.getTime()));
+		            
+		            // Format LocalDateTime into the desired format
+		            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+		            String formattedDateTime = dateTime.format(formatter);
+		            details.setDate(formattedDateTime);
+		            
+		            
+		            //create message to server + command to server
+		            Message newbooking = new Message(details, Commands.CheckParkCapacity);
+		            
+		            //send message to server
+		            ClientController.client.sendToServer(newbooking);
+		            boolean awaitResponse = false;
+		    		while (!awaitResponse) 
+		    		{
+		    			try {
+		    				Thread.sleep(100);
+		    				awaitResponse = ClientController.client.bookingController.isGotResponse();
+		    			} catch (InterruptedException e) {
+		    				e.printStackTrace();
+		    			}
+		    		}
+		    		ClientController.client.bookingController.setGotResponse();
+		            if(ClientController.client.bookingController.getCheckIfBookingAvailable())
+		            {
+		            	((Node)event.getSource()).getScene().getWindow().hide();
+		                PaymentController newScreen = new PaymentController();
+		                newScreen.start(new Stage(),details);
+		            	System.out.println("The booking is available in db.");            	
+		            	
+		            }
+		            else 
+		            {
+		            	errorscreen("Sorry, there is no more space available");    	
+		            }
+		            
+		            System.out.println(details.toString());
+		            //System.out.println(formattedDateTime);
+		            //if(bookingcontroller.isAvailable(send details to server) == true) then save details to DB
+		            //else waiting list
+		  
+	    		}
+			}
+			
 			else
 			{
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/NotValidInputErrorScreen.fxml"));
