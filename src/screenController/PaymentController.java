@@ -56,7 +56,7 @@ public class PaymentController extends VisitorScreenController
 	    	fullpricetoshow-=100;
 	        discountPrice = (int) (fullpricetoshow * 0.75); // 25% discount
 	        // Applying second discount of 12% if payment is "Cash"
-	        if ("Visa".equals(paymentCombo.getValue()))
+	        if ("Pay now".equals(paymentCombo.getValue()))
 	        {
 	            discountPrice = (int) (discountPrice * 0.88); // 12% additional discount
 	        }
