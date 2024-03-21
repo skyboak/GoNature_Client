@@ -62,7 +62,7 @@ public class ReceiptScreenController extends VisitorScreenController {
 	    time.setText(details.getTime().toString());
 	    type.setText(details.getVisitType().toString());
 	    visitors.setText(details.getNumOfVisitors().toString());
-	    totalPrice.setText(String.valueOf(price));
+	    totalPrice.setText(String.valueOf(price)+"₪");
 	    
 	}
 	
