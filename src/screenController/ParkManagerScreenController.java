@@ -96,8 +96,14 @@ public class ParkManagerScreenController extends WorkerScreenController{
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
 	}
+	
 	public void logoutBtn(ActionEvent event) throws Exception {
 		System.exit(0);
 	}
+	
+	
+	
+	
+	
 	
 }

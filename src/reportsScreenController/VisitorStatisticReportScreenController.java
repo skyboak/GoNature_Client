@@ -1,6 +1,5 @@
 package reportsScreenController;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -16,8 +15,12 @@ import java.util.ResourceBundle;
 import client.ClientController;
 import enums.Commands;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -26,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import logic.DateDetail;
 import logic.Message;
@@ -33,95 +37,66 @@ import screenController.WorkerScreenController;
 
 public class VisitorStatisticReportScreenController extends WorkerScreenController implements Initializable {
 
-	   @FXML
-	    private Button parkDashboard;
+    @FXML
+    private Button parkDashboard;
 
-	    @FXML
-	    private Button visitorStatisticReport;
+    @FXML
+    private Button visitorStatisticReport;
 
-	    @FXML
-	    private Button parkAvailabilityReport;
+    @FXML
+    private Button parkAvailabilityReport;
 
-	    @FXML
-	    private Button aboutUs;
+    @FXML
+    private Button aboutUs;
 
-	    @FXML
-	    private Button logout;
+    @FXML
+    private Button logout;
 
-	    @FXML
-	    private BarChart<?, ?> visitorChart;
+    @FXML
+    private BarChart<?, ?> visitorChart;
+
+    @FXML
+    private CategoryAxis xAxisR;
+
+    @FXML
+    private NumberAxis yAxisR;
+
+    @FXML
+    private DatePicker FromDate;
+
+    @FXML
+    private DatePicker ToDate;
+
+    @FXML
+    private Button Show;
+
+    @FXML
+    private Label Totalvisitortxt;
+
+    @FXML
+    private Button BackBtn;
+
+ 
 	    
-		@FXML
-		private CategoryAxis xAxisR;
-		
-		@FXML
-		private NumberAxis yAxisR;
-		
-	    @FXML
-	    private Label Totalvisitortxt;
-		
-	    @FXML
-	    private DatePicker FromDate;
-
-	    @FXML
-	    private DatePicker ToDate;
-
-	    @FXML
-	    private Button btnShow;
-
-	    @FXML
-	    private Button BackBtn;
-
-	    @FXML
-	    void BackFunc(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void aboutUsBtn(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void logoutBtn(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void parkAvailabilityReportBtn(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void parkDashboardBtn(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void visitorStatisticReportBtn(ActionEvent event) {
-
-	    }
-	    
-	    
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	setDatePickerCellFactory(FromDate);
         setDatePickerCellFactory(ToDate);
+        
         // Initialize method
-        setDateDefultForVisitsReport();
+        //setDateDefultForVisitsReport();
     }
 
     // Method to handle report button action
-    public void showReportBtn() throws IOException {
+    public void showBtn(ActionEvent event) throws IOException {
         // HashMap to store visitor data
         HashMap<LocalDate, int[]> visitorData;
         // Variables to store the fromDate and toDate
         LocalDate fromDate = FromDate.getValue();
         LocalDate toDate = ToDate.getValue();
         DateDetail dateDetail = new DateDetail(fromDate, toDate);
-        // dateDetail.setParkName("Hyde Park"); // Uncomment if needed
+        dateDetail.setParkName(ClientController.client.workerController.getWorkerDetail().getParkName());
+        //dateDetail.setParkName("Hyde Park"); 
         Message msg = new Message(dateDetail, Commands.VisitorStatisticRequest);
         boolean awaitResponse = true;
 
@@ -135,6 +110,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
             }
         }
         visitorData = (HashMap<LocalDate, int[]>) ClientController.client.reportController.getVisitorStatisticData();
+        System.out.print(visitorData);
         CreateVisitorStatisticsBarChar(visitorData);
     }
 
@@ -142,15 +118,15 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     // Method to create visitor statistics bar chart
 	private void CreateVisitorStatisticsBarChar(HashMap<LocalDate, int[]> visitorData) {
         // Clear existing data from the chart
-        visitorChart.getData().clear();
-        xAxisR = new CategoryAxis();
-		yAxisR = new NumberAxis(0, 20, 2);
-		visitorChart.setAnimated(false);
-		visitorChart.setBarGap(1.0d);
-		visitorChart.setCategoryGap(10.0);
+       // visitorChart.getData().clear();
+//        xAxisR = new CategoryAxis();
+//		yAxisR = new NumberAxis(0, 20, 2);
+//		visitorChart.setAnimated(false);
+//		visitorChart.setBarGap(1.0d);
+//		visitorChart.setCategoryGap(10.0);
         // new array to hold the dates
         ArrayList<LocalDate> dates = new ArrayList<>(visitorData.keySet());
-        Label Totalvisitortxt1;
+        
         // Sort the dates in ascending order
         Collections.sort(dates);
 
@@ -196,48 +172,48 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
 
     // Method to clear the data in the graph screen
    
-	private void backbtn() {
+	 public void backBtn(ActionEvent event) {
         // Clear existing data from the chart
         visitorChart.getData().clear();
         Totalvisitortxt.setText("Total visitor number is: ");
     }
 
-    // Method to set default values for visitors report
-    private void setDateDefultForVisitsReport() {
-    	
-    	xAxisR = new CategoryAxis();
-		yAxisR = new NumberAxis(0, 20, 2);
-		visitorChart.setAnimated(false);
-		visitorChart.setBarGap(1.0d);
-		visitorChart.setCategoryGap(10.0);
-		
-		HashMap<LocalDate, int[]> defaultVisitorData = generateDefaultVisitorDataForLastWeek();
-		
-		CreateVisitorStatisticsBarChar(defaultVisitorData);
-    	
-    }
+//    // Method to set default values for visitors report
+//    private void setDateDefultForVisitsReport() {
+//    	
+////    	xAxisR = new CategoryAxis();
+////		yAxisR = new NumberAxis(0, 20, 2);
+////		//visitorChart.setAnimated(false);
+////		visitorChart.setBarGap(1.0d);
+////		visitorChart.setCategoryGap(10.0);
+////		
+//		HashMap<LocalDate, int[]> defaultVisitorData = generateDefaultVisitorDataForLastWeek();
+//		
+//		CreateVisitorStatisticsBarChar(defaultVisitorData);
+//    	
+//    }
     
-    private HashMap<LocalDate, int[]> generateDefaultVisitorDataForLastWeek() {
-        // Create a HashMap to hold visitor data
-        HashMap<LocalDate, int[]> defaultVisitorData = new HashMap<>();
-
-        // Get today's date
-        LocalDate currentDate = LocalDate.now();
-
-        // Generate data for the last week
-        for (int i = 0; i < 7; i++) {
-            // Subtract i days from the current date to get the date of each day in the last week
-            LocalDate date = currentDate.minusDays(i);
-            
-            // For demonstration purposes, let's assume some random visitor counts for each day
-            int[] visitorCounts = new int[]{10, 15, 20}; // Example counts for solo, group, and guided group visitors
-            
-            // Add the date and visitor counts to the HashMap
-            defaultVisitorData.put(date, visitorCounts);
-        }
-
-        return defaultVisitorData;
-    }
+//    private HashMap<LocalDate, int[]> generateDefaultVisitorDataForLastWeek() {
+//        // Create a HashMap to hold visitor data
+//        HashMap<LocalDate, int[]> defaultVisitorData = new HashMap<>();
+//
+//        // Get today's date
+//        LocalDate currentDate = LocalDate.now();
+//
+//        // Generate data for the last week
+//        for (int i = 0; i < 7; i++) {
+//            // Subtract i days from the current date to get the date of each day in the last week
+//            LocalDate date = currentDate.minusDays(i);
+//            
+//            // For demonstration purposes, let's assume some random visitor counts for each day
+//            int[] visitorCounts = new int[]{10, 15, 20}; // Example counts for solo, group, and guided group visitors
+//            
+//            // Add the date and visitor counts to the HashMap
+//            defaultVisitorData.put(date, visitorCounts);
+//        }
+//
+//        return defaultVisitorData;
+//    }
 
     // Method to check if the selected date is before today's date
     public boolean checkCurrentTime() {
@@ -275,6 +251,21 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         // Set the custom day cell factory to the date picker
         datePicker.setDayCellFactory(dayCellFactory);
     }
+    
+    
+	public void start(Stage primaryStage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/WorkerScreens/VisitorStatisticReportScreen.fxml"));
+    	loader.setController(this); // Set the controller
+    	Parent root = loader.load();
+    	Scene scene = new Scene(root);
+    	primaryStage.setTitle("LoginScreen");
+    	primaryStage.setScene(scene);
+    	RemoveTopBar(primaryStage,root);
+    	primaryStage.show();
+	}
+ 
+    
+    
 }
    
     
