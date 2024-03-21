@@ -376,7 +376,7 @@ public class NewBookingController extends VisitorScreenController {
 		ObservableList<String> list4 = FXCollections.observableArrayList(NumOfVisitorsG);
 		numOfVisitorsGCombo.setItems(list4);
 		numOfVisitorsCombo.getSelectionModel().select("1");
-		numOfVisitorsGCombo.getSelectionModel().select("1");//check if guide get enter alone?
+		numOfVisitorsGCombo.getSelectionModel().select("2");//check if guide get enter alone?
 	}
 	
 
