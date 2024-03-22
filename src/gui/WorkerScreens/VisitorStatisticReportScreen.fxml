@@ -54,7 +54,7 @@
             </Button>
          </children>
       </Pane>
-      <BarChart fx:id="visitorData" layoutX="303.0" layoutY="190.0" prefHeight="329.0" prefWidth="672.0">
+      <BarChart fx:id="visitorChart" layoutX="303.0" layoutY="190.0" prefHeight="329.0" prefWidth="672.0">
         <xAxis>
           <CategoryAxis label="day " prefHeight="27.0" prefWidth="378.0" side="BOTTOM" fx:id="xAxisR" />
         </xAxis>

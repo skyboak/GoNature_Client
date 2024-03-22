@@ -122,6 +122,7 @@ public class Client extends AbstractClient
 	      		
 	      	case visitorStatisticData:
 	      		Map<LocalDate, int[]> visitorStatisticData = (Map<LocalDate, int[]>)m.getObj();
+	      		System.out.println(visitorStatisticData.toString());
 	      		reportController.setvisitorStatisticData(visitorStatisticData);
 	      		break;
 	      		

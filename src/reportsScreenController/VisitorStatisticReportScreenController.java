@@ -82,7 +82,9 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     public void initialize(URL location, ResourceBundle resources) {
     	setDatePickerCellFactory(FromDate);
         setDatePickerCellFactory(ToDate);
-        
+        if (visitorChart == null) {
+            visitorChart = new BarChart<>(new CategoryAxis(), new NumberAxis());
+        }
         // Initialize method
         //setDateDefultForVisitsReport();
     }
@@ -90,17 +92,18 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     // Method to handle report button action
     public void showBtn(ActionEvent event) throws IOException {
         // HashMap to store visitor data
-        HashMap<LocalDate, int[]> visitorData;
+        Map<LocalDate, int[]> visitorData;
         // Variables to store the fromDate and toDate
         LocalDate fromDate = FromDate.getValue();
         LocalDate toDate = ToDate.getValue();
         DateDetail dateDetail = new DateDetail(fromDate, toDate);
         dateDetail.setParkName(ClientController.client.workerController.getWorkerDetail().getParkName());
         //dateDetail.setParkName("Hyde Park"); 
+        System.out.println(dateDetail.getEnd());
         Message msg = new Message(dateDetail, Commands.VisitorStatisticRequest);
+        ClientController.client.sendToServer(msg);
         boolean awaitResponse = true;
 
-        ClientController.client.sendToServer(msg);
         while (awaitResponse) {
             try {
                 Thread.sleep(100);
@@ -109,21 +112,23 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
                 e.printStackTrace();
             }
         }
-        visitorData = (HashMap<LocalDate, int[]>) ClientController.client.reportController.getVisitorStatisticData();
+        visitorData =  ClientController.client.reportController.getVisitorStatisticData();
+        System.out.println("here");
         System.out.print(visitorData);
+        System.out.println("here");
         CreateVisitorStatisticsBarChar(visitorData);
     }
 
     
     // Method to create visitor statistics bar chart
-	private void CreateVisitorStatisticsBarChar(HashMap<LocalDate, int[]> visitorData) {
+	private void CreateVisitorStatisticsBarChar(Map<LocalDate, int[]> visitorData) {
         // Clear existing data from the chart
-       // visitorChart.getData().clear();
-//        xAxisR = new CategoryAxis();
-//		yAxisR = new NumberAxis(0, 20, 2);
-//		visitorChart.setAnimated(false);
-//		visitorChart.setBarGap(1.0d);
-//		visitorChart.setCategoryGap(10.0);
+        visitorChart.getData().clear();
+        xAxisR = new CategoryAxis();
+		yAxisR = new NumberAxis(0, 20, 2);
+		visitorChart.setAnimated(false);
+		visitorChart.setBarGap(1.0d);
+		visitorChart.setCategoryGap(10.0);
         // new array to hold the dates
         ArrayList<LocalDate> dates = new ArrayList<>(visitorData.keySet());
         
@@ -153,7 +158,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         for (Map.Entry<LocalDate, int[]> entry : visitorData.entrySet()) {
             LocalDate date = entry.getKey();
             int[] visitorCounts = entry.getValue();
-
+            System.out.println(date+"3");
             // Add data points to the series
             Solo.getData().add(new XYChart.Data<>(date.toString(), visitorCounts[0]));
             visitorcounter += visitorCounts[0] ;
@@ -167,6 +172,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         
         // Add series to the chart
         visitorChart.getData().addAll(new XYChart.Series[]{Solo, Group, Guided_group});
+        
         Totalvisitortxt.setText("Total visitor number is: " + visitorcounter);
     }
 

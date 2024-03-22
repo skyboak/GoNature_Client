@@ -19,6 +19,7 @@ public class ReportController {
 
 	public void setvisitorStatisticData(Map<LocalDate, int[]> visitorStatisticData) {
 		this.visitorStatisticData = visitorStatisticData;
+		System.out.println("rpcont"+ visitorStatisticData );
 		this.gotResponse = false;
 	}
 
