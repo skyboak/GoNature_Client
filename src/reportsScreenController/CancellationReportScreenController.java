@@ -1,5 +1,7 @@
 package reportsScreenController;
 
-public class CancellationReportScreenController {
+import screenController.WorkerScreenController;
+
+public class CancellationReportScreenController extends WorkerScreenController {
 
 }

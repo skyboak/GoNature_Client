@@ -23,10 +23,13 @@ public enum Commands {
 
 	AverageParkStayTimeCheck, OnlineBookingCapacityCheck, ParkCapacityCheck, 
 	checkIfExist,
-	visitorStatisticData, 
+
 	
-	CheckParkCapacity //to check specific timeslot
+	CheckParkCapacity, //to check specific timeslot
 	
+
+	visitorStatisticData,
+	CancellationReportData, ClientConnect
 
 	;
 }

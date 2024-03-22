@@ -112,10 +112,9 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
                 e.printStackTrace();
             }
         }
+        ClientController.client.reportController.setGotResponse(true);
         visitorData =  ClientController.client.reportController.getVisitorStatisticData();
-        System.out.println("here");
-        System.out.print(visitorData);
-        System.out.println("here");
+
         CreateVisitorStatisticsBarChar(visitorData);
     }
 

@@ -1,23 +1,33 @@
 package screenController;
-
+import javafx.scene.image.Image;
 import client.ClientController;
 import enums.Commands;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.LoginDetail;
 import logic.Message;
 public class ParkManagerScreenController extends WorkerScreenController{
 	
-	
+	@FXML
 	private TextField ParkCapacityT;
+	@FXML
 	private TextField OnlineBookingCapacityT;
+	@FXML
 	private TextField AverageParkStayTimeT;
+	@FXML
+	private ImageView parkImgT;
+	@FXML
+	private Text parkNameT;
 	
+	private String parkName;
 	
 	private String getParkCapacity() {
 		return ParkCapacityT.getText();
@@ -50,7 +60,8 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	
 	public void setOnlineBookingCapacityBtn(ActionEvent event) throws Exception
 	{
-		Message msg = new Message(getOnlineBookingCapacity(),Commands.ChangeParkCapacity);
+		
+		Message msg = new Message(getOnlineBookingCapacity(),Commands.ChangeOnlineBookingCapacity);
 		ClientController.client.sendToServer(msg);
 		boolean awaitResponse = false;
         // wait for response
@@ -69,7 +80,8 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	
 	public void setAverageParkStayTimeBtn(ActionEvent event) throws Exception
 	{
-		Message msg = new Message(getAverageParkStayTime(),Commands.ChangeParkCapacity);
+		Message msg = new Message(getAverageParkStayTime(),Commands.ChangeAverageParkStayTime);
+		System.out.println("C" + getAverageParkStayTime());
 		ClientController.client.sendToServer(msg);
 		boolean awaitResponse = false;
         // wait for response
@@ -95,8 +107,20 @@ public class ParkManagerScreenController extends WorkerScreenController{
     	primaryStage.setScene(scene);
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
+    	setPark(ClientController.client.workerController.getWorkerDetail().getParkName());
+
 	}
 	
+	private void setPark(String parkName) {
+		this.parkName = parkName;
+		//getcapacity()
+		parkNameT.setText(parkName);
+		String imgS = "/images/" + parkName + ".jpeg";
+		Image img = new Image(imgS);
+		parkImgT.setImage(img);
+		
+		
+	}
 	public void logoutBtn(ActionEvent event) throws Exception {
 		System.exit(0);
 	}

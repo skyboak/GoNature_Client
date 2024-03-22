@@ -1,6 +1,8 @@
 package client;
 
 import java.io.IOException;
+import logic.Message;
+import enums.Commands;
 
 
 
@@ -28,7 +30,8 @@ public class ClientController
 	    try 
 	    {
 	      client = new Client(host, port, this);
-	      
+	      Message msg = new Message(null,Commands.ClientConnect);
+	      client.sendToServer(msg);
 	    } 
 	    catch(IOException exception) 
 	    {

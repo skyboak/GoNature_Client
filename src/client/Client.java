@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import controller.*;
+import enums.Commands;
+
 import java.util.ArrayList;
 import java.util.Map;
 
 import ocsf.client.AbstractClient;
 import logic.BookingDetail;
+import logic.CancellationDetail;
 import logic.Message;
 import logic.WorkerDetail;
 
@@ -122,10 +125,12 @@ public class Client extends AbstractClient
 	      		
 	      	case visitorStatisticData:
 	      		Map<LocalDate, int[]> visitorStatisticData = (Map<LocalDate, int[]>)m.getObj();
-	      		System.out.println(visitorStatisticData.toString());
 	      		reportController.setvisitorStatisticData(visitorStatisticData);
 	      		break;
-	      		
+	      	case CancellationReportData:
+	      		//CancellationData CancellationReportData = (CancellationData)m.getObj();
+	      		//reportController.setCancellationReportData(CancellationReportData);
+	      		break;
 		default:
 			break;
 	      		
@@ -173,6 +178,9 @@ public class Client extends AbstractClient
 	  {
 	    try
 	    {
+//	      Message msg = new Message(null,Commands.ClientConnect);
+//	      ClientController.client.sendToServer(msg);
+
 	      closeConnection();
 	    }
 	    catch(IOException e) {}
