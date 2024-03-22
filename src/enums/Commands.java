@@ -16,13 +16,17 @@ public enum Commands {
 	ChangeParkCapacity,ChangeOnlineBookingCapacity,ChangeAverageParkStayTime,
 
 
-	newBookingToDB,
+	newBookingToDB//to enter to db
+	,
 	VisitorStatisticRequest,
 
 
 	AverageParkStayTimeCheck, OnlineBookingCapacityCheck, ParkCapacityCheck, 
 	checkIfExist,
-	visitorStatisticData, CheckParkCapacity
+	visitorStatisticData, 
+	
+	CheckParkCapacity //to check specific timeslot
+	
 
 	;
 }

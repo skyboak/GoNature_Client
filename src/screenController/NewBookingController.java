@@ -165,10 +165,10 @@ public class NewBookingController extends VisitorScreenController {
 		            
 		            
 		            //create message to server + command to server
-		            Message newbooking = new Message(details, Commands.CheckParkCapacity);
-		            
+		            Message Checknewbooking = new Message(details, Commands.CheckParkCapacity);
+		            Message newBookin = new Message(details, Commands.newBookingToDB);
 		            //send message to server
-		            ClientController.client.sendToServer(newbooking);
+		            ClientController.client.sendToServer(Checknewbooking);
 		            boolean awaitResponse = false;
 		    		while (!awaitResponse) 
 		    		{
@@ -185,7 +185,28 @@ public class NewBookingController extends VisitorScreenController {
 		            	((Node)event.getSource()).getScene().getWindow().hide();
 		                PaymentController newScreen = new PaymentController();
 		                newScreen.start(new Stage(),details);
-		            	System.out.println("The booking is available in db.");            	
+		            	System.out.println("The booking is available in db.");
+		            	
+		            	ClientController.client.sendToServer(newBookin);
+			            awaitResponse = false;
+			    		while (!awaitResponse) 
+			    		{
+			    			try {
+			    				Thread.sleep(100);
+			    				awaitResponse = ClientController.client.bookingController.isGotResponse();
+			    			} catch (InterruptedException e) {
+			    				e.printStackTrace();
+			    			}
+			    		}
+			    		ClientController.client.bookingController.setGotResponse();
+			            if(ClientController.client.bookingController.getCheckIfBookingAvailable())
+			            {
+			            	System.out.println("The Booking Added to DB.");
+			            }
+			            else
+			            	System.out.println("The Booking Not Added to DB.");
+			            
+			    		
 		            	
 		            }
 		            else 
