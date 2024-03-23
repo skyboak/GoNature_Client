@@ -32,6 +32,7 @@ public class WaitinigorRescheduleController extends VisitorScreenController
 	    @FXML
 	    void enterBtn(ActionEvent event) throws Exception //enter waiting list
 	    {
+	    	details.setTableName("waitinglist");
 	    	
 	    }
 
@@ -40,6 +41,7 @@ public class WaitinigorRescheduleController extends VisitorScreenController
 	    @FXML
 	    void okBtn(ActionEvent event) throws Exception //alternative date 
 	    { 
+	    	details.setTableName("booking");
 	    	((Node)event.getSource()).getScene().getWindow().hide();
             PaymentController newScreen = new PaymentController();
             newScreen.start(new Stage(),details);

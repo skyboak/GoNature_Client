@@ -182,6 +182,8 @@ public class NewBookingController extends VisitorScreenController {
 		    		ClientController.client.bookingController.setGotResponse();
 		            if(ClientController.client.bookingController.getCheckIfBookingAvailable())
 		            {
+		            	//there is available space
+		            	details.setTableName("booking");
 		            	((Node)event.getSource()).getScene().getWindow().hide();
 		                PaymentController newScreen = new PaymentController();
 		                newScreen.start(new Stage(),details);

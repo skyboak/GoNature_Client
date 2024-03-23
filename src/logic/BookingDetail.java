@@ -14,6 +14,7 @@ public class BookingDetail implements Serializable {
     private String email;
     private String Date;
     private String visitorID;
+    private String TableName;
 
     
     public String getOrderNumber() {
@@ -96,10 +97,21 @@ public class BookingDetail implements Serializable {
     {
     	return visitorID;
     }
+    
+    public void setTableName(String TableName)
+    {
+    	this.TableName = TableName;
+    }
+    
+    public String getTableName()
+    {
+    	return TableName;
+    }
+    
 
     @Override
     public String toString() {
-        return "BookingDetails [visitType=" + visitType + ", visitorID=" + visitorID + ", parkName=" + parkName
+        return "BookingDetails [TableName="+ TableName +" visitType=" + visitType + ", visitorID=" + visitorID + ", parkName=" + parkName
                 + ", numOfVisitors=" + numOfVisitors + ", telephone=" + telephone + ", email=" + email
                 + ", visitDate=" + Date + "]";
     }
