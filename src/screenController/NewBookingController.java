@@ -211,6 +211,9 @@ public class NewBookingController extends VisitorScreenController {
 		            }
 		            else 
 		            {
+		            	((Node)event.getSource()).getScene().getWindow().hide();
+		            	WaitinigorRescheduleController newS = new WaitinigorRescheduleController();
+		                newS.start(new Stage(),details);
 		            	errorscreen("Sorry, there is no more space available");    	
 		            }
 		            

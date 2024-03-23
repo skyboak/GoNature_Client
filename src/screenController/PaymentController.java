@@ -93,7 +93,7 @@ public class PaymentController extends VisitorScreenController
     	loader.setController(this); 
     	Parent root = loader.load();
     	Scene scene = new Scene(root);
-    	primaryStage.setTitle("MyBooking");
+    	primaryStage.setTitle("Payment");
     	primaryStage.setScene(scene);
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
