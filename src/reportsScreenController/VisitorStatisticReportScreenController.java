@@ -82,11 +82,11 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     public void initialize(URL location, ResourceBundle resources) {
     	setDatePickerCellFactory(FromDate);
         setDatePickerCellFactory(ToDate);
-        if (visitorChart == null) {
-            visitorChart = new BarChart<>(new CategoryAxis(), new NumberAxis());
-        }
+//        if (visitorChart == null) {
+//            visitorChart = new BarChart<>(new CategoryAxis(), new NumberAxis());
+//        }
         // Initialize method
-        //setDateDefultForVisitsReport();
+        setDateDefultForVisitsReport();
     }
 
     // Method to handle report button action
@@ -183,43 +183,42 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         Totalvisitortxt.setText("Total visitor number is: ");
     }
 
-//    // Method to set default values for visitors report
-//    private void setDateDefultForVisitsReport() {
-//    	
-////    	xAxisR = new CategoryAxis();
-////		yAxisR = new NumberAxis(0, 20, 2);
-////		//visitorChart.setAnimated(false);
-////		visitorChart.setBarGap(1.0d);
-////		visitorChart.setCategoryGap(10.0);
-////		
-//		HashMap<LocalDate, int[]> defaultVisitorData = generateDefaultVisitorDataForLastWeek();
-//		
-//		CreateVisitorStatisticsBarChar(defaultVisitorData);
-//    	
-//    }
+    // Method to set default values for visitors report
+    private void setDateDefultForVisitsReport() {
+    	
+    	xAxisR = new CategoryAxis();
+		yAxisR = new NumberAxis(0, 20, 2);
+		//visitorChart.setAnimated(false);
+		visitorChart.setBarGap(1.0d);
+		visitorChart.setCategoryGap(10.0);
+		
+		HashMap<LocalDate, int[]> defaultVisitorData = generateDefaultVisitorDataForLastWeek();
+		
+		CreateVisitorStatisticsBarChar(defaultVisitorData);
+    	
+    }
     
-//    private HashMap<LocalDate, int[]> generateDefaultVisitorDataForLastWeek() {
-//        // Create a HashMap to hold visitor data
-//        HashMap<LocalDate, int[]> defaultVisitorData = new HashMap<>();
-//
-//        // Get today's date
-//        LocalDate currentDate = LocalDate.now();
-//
-//        // Generate data for the last week
-//        for (int i = 0; i < 7; i++) {
-//            // Subtract i days from the current date to get the date of each day in the last week
-//            LocalDate date = currentDate.minusDays(i);
-//            
-//            // For demonstration purposes, let's assume some random visitor counts for each day
-//            int[] visitorCounts = new int[]{10, 15, 20}; // Example counts for solo, group, and guided group visitors
-//            
-//            // Add the date and visitor counts to the HashMap
-//            defaultVisitorData.put(date, visitorCounts);
-//        }
-//
-//        return defaultVisitorData;
-//    }
+    private HashMap<LocalDate, int[]> generateDefaultVisitorDataForLastWeek() {
+        // Create a HashMap to hold visitor data
+        HashMap<LocalDate, int[]> defaultVisitorData = new HashMap<>();
 
+        // Get today's date
+        LocalDate currentDate = LocalDate.now();
+
+        // Generate data for the last week
+        for (int i = 0; i < 7; i++) {
+            // Subtract i days from the current date to get the date of each day in the last week
+            LocalDate date = currentDate.minusDays(i);
+            
+            // For demonstration purposes, let's assume some random visitor counts for each day
+            int[] visitorCounts = new int[]{10, 15, 20}; // Example counts for solo, group, and guided group visitors
+            
+            // Add the date and visitor counts to the HashMap
+            defaultVisitorData.put(date, visitorCounts);
+        }
+
+        return defaultVisitorData;
+    }
     // Method to check if the selected date is before today's date
     public boolean checkCurrentTime() {
         LocalDate fromdate = FromDate.getValue();

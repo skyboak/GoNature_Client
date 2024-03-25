@@ -15,83 +15,83 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1058.0" style="-fx-border-color: #311906#311906; -fx-border-width: 6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Pane layoutY="2.0" prefHeight="576.0" prefWidth="255.0" style="-fx-background-color: #1e525b; -fx-background-radius: 30 0 0 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="169.0" prefHeight="291.0" prefWidth="255.0" spacing="10.0">
-               <children>
-                  <Button fx:id="parkDashboard" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Dashboard">
-                     <font>
-                        <Font name="System Bold Italic" size="17.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="visitorStatisticReport" disable="true" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Visitor Statistic Report">
-                     <font>
-                        <Font name="System Bold Italic" size="17.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="parkAvailabilityReport" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Availability Report">
-                     <font>
-                        <Font name="System Bold Italic" size="17.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="aboutUs" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="DELETE THE PARK">
-                     <font>
-                        <Font name="System Bold Italic" size="17.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <Text fill="#dff9e8" layoutX="21.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go Nature">
-               <font>
-                  <Font name="System Bold Italic" size="45.0" />
-               </font>
-            </Text>
-            <Button fx:id="logout" layoutX="29.0" layoutY="632.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <BarChart fx:id="visitorChart" layoutX="303.0" layoutY="190.0" prefHeight="329.0" prefWidth="672.0">
-        <xAxis>
-          <CategoryAxis label="day " prefHeight="27.0" prefWidth="378.0" side="BOTTOM" fx:id="xAxisR" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis fx:id="yAxisR" label="Visits tally" side="LEFT" />
-        </yAxis>
-      </BarChart>
-      <Text fill="#1e525b" layoutX="436.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visitor numbers">
-         <font>
-            <Font name="System Bold Italic" size="44.0" />
-         </font>
-      </Text>
-      <Text layoutX="296.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from:" wrappingWidth="123.99999380111694">
-         <font>
-            <Font name="Futura Bold" size="21.0" />
-         </font>
-      </Text>
-      <Text layoutX="555.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to:" wrappingWidth="143.99999380111694">
-         <font>
-            <Font name="Futura Bold" size="21.0" />
-         </font>
-      </Text>
-      <DatePicker fx:id="FromDate" layoutX="358.0" layoutY="129.0" prefHeight="31.0" prefWidth="178.0" />
-      <DatePicker fx:id="ToDate" layoutX="583.0" layoutY="129.0" prefHeight="31.0" prefWidth="196.0" />
-      <Button fx:id="Show" layoutX="828.0" layoutY="129.0" mnemonicParsing="false" onAction="#showBtn" text="Show" />
-      <Label fx:id="Totalvisitortxt" layoutX="303.0" layoutY="532.0" prefHeight="23.0" prefWidth="166.0" text="Total visitors:">
-         <font>
-            <Font name="David Bold" size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="BackBtn" layoutX="944.0" layoutY="648.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="31.0" prefWidth="78.0" text="Back">
-         <effect>
-            <InnerShadow choke="0.15" color="#8d7d7d" height="30.0" radius="14.5" width="30.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-   </children>
+	<children>
+		<Pane layoutY="2.0" prefHeight="576.0" prefWidth="255.0" style="-fx-background-color: #1e525b; -fx-background-radius: 30 0 0 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="169.0" prefHeight="291.0" prefWidth="255.0" spacing="10.0">
+					<children>
+						<Button fx:id="parkDashboard" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Dashboard">
+							<font>
+								<Font name="System Bold Italic" size="17.0" />
+							</font>
+						</Button>
+						<Button fx:id="visitorStatisticReport" disable="true" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Visitor Statistic Report">
+							<font>
+								<Font name="System Bold Italic" size="17.0" />
+							</font>
+						</Button>
+						<Button fx:id="parkAvailabilityReport" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park Availability Report">
+							<font>
+								<Font name="System Bold Italic" size="17.0" />
+							</font>
+						</Button>
+						<Button fx:id="aboutUs" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="DELETE THE PARK">
+							<font>
+								<Font name="System Bold Italic" size="17.0" />
+							</font>
+						</Button>
+					</children>
+				</VBox>
+				<Text fill="#dff9e8" layoutX="21.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go Nature">
+					<font>
+						<Font name="System Bold Italic" size="45.0" />
+					</font>
+				</Text>
+				<Button fx:id="logout" layoutX="29.0" layoutY="632.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+			</children>
+		</Pane>
+		<BarChart fx:id="visitorChart" layoutX="303.0" layoutY="190.0" prefHeight="329.0" prefWidth="672.0">
+			<xAxis>
+				<CategoryAxis label="day " prefHeight="27.0" prefWidth="378.0" side="BOTTOM" fx:id="xAxisR" />
+			</xAxis>
+			<yAxis>
+				<NumberAxis fx:id="yAxisR" label="Visits tally" side="LEFT" />
+			</yAxis>
+		</BarChart>
+		<Text fill="#1e525b" layoutX="436.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visitor numbers">
+			<font>
+				<Font name="System Bold Italic" size="44.0" />
+			</font>
+		</Text>
+		<Text layoutX="296.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from:" wrappingWidth="123.99999380111694">
+			<font>
+				<Font name="Futura Bold" size="21.0" />
+			</font>
+		</Text>
+		<Text layoutX="555.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to:" wrappingWidth="143.99999380111694">
+			<font>
+				<Font name="Futura Bold" size="21.0" />
+			</font>
+		</Text>
+		<DatePicker fx:id="FromDate" layoutX="358.0" layoutY="129.0" prefHeight="31.0" prefWidth="178.0" />
+		<DatePicker fx:id="ToDate" layoutX="583.0" layoutY="129.0" prefHeight="31.0" prefWidth="196.0" />
+		<Button fx:id="Show" layoutX="828.0" layoutY="129.0" mnemonicParsing="false" onAction="#showBtn" text="Show" />
+		<Label fx:id="Totalvisitortxt" layoutX="303.0" layoutY="532.0" prefHeight="23.0" prefWidth="166.0" text="Total visitors:">
+			<font>
+				<Font name="David Bold" size="15.0" />
+			</font>
+		</Label>
+		<Button fx:id="BackBtn" layoutX="944.0" layoutY="648.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="31.0" prefWidth="78.0" text="Back">
+			<effect>
+				<InnerShadow choke="0.15" color="#8d7d7d" height="30.0" radius="14.5" width="30.0" />
+			</effect>
+			<cursor>
+				<Cursor fx:constant="HAND" />
+			</cursor>
+		</Button>
+	</children>
 </AnchorPane>

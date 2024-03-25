@@ -4,6 +4,7 @@ public enum Commands {
 
 	CheckWorkerLogin,CheckVisitorLogin,
 	VisitorLogOut,
+	WorkerLogOut,
 
 	VisitorMyBooking,
 	CheckIfGroupGuide,
