@@ -85,6 +85,7 @@ public class WaitinigorRescheduleController extends VisitorScreenController
 	    
 	    public void start(Stage primaryStage) throws Exception 
 		{
+	    	ArrayList<String> availableBooks[];
 	    	
 	    	this.details=ClientController.client.bookingController.getNewBooking();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Waitinglist_Reschedule.fxml"));
@@ -95,6 +96,37 @@ public class WaitinigorRescheduleController extends VisitorScreenController
 	    	primaryStage.setScene(scene);
 	    	RemoveTopBar(primaryStage,root);
 	    	primaryStage.show();
+	    	
 		}
+	    /*
+	    public void CheckavailableSlotinDB() throws IOException
+	    {
+	    	//create message to server + command to server
+            Message CheckSlot = new Message(details, Commands.CheckSixSlots);
+            
+            //send message to server
+            ClientController.client.sendToServer(CheckSlot);
+            boolean awaitResponse = false;
+    		while (!awaitResponse) 
+    		{
+    			try {
+    				Thread.sleep(100);
+    				awaitResponse = ClientController.client.bookingController.isGotResponse();
+    			} catch (InterruptedException e) {
+    				e.printStackTrace();
+    			}
+    		}
+    		ClientController.client.bookingController.setGotResponse();
+            if(ClientController.client.bookingController.getCheckIfBookingAvailable())
+            {
+		    		
+            	
+            }
+            else 
+            {
+            	   	
+            }
+	    	
+	    }*/
 
 }
