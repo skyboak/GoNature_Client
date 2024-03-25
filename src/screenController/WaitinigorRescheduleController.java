@@ -1,4 +1,10 @@
 package screenController;
+
+
+import java.io.IOException;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import client.ClientController;
 import enums.Commands;
 import javafx.event.ActionEvent;
@@ -7,33 +13,34 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.BookingDetail;
+import logic.LoginDetail;
 import logic.Message;
 
 public class WaitinigorRescheduleController extends VisitorScreenController
 {
 
 	
-	    @FXML
-	    private Button enter;
 
 	    @FXML
 	    private TableView<?> dateTime;
 
 	    @FXML
 	    private TableColumn<?, ?> pointsColumn_tableExam;
-
-	    @FXML
-	    private Button ok;
+ 
 
 		private BookingDetail details;
 
 	    @FXML
-	    void enterBtn(ActionEvent event) throws Exception //enter waiting list
+	    public void enterBtn(ActionEvent event) throws Exception //enter waiting list
 	    {
 	    	//set the apropriate table
 	    	details.setTableName("waitinglist");
@@ -51,13 +58,18 @@ public class WaitinigorRescheduleController extends VisitorScreenController
     			}
     		}
     		//pop Confirmation_Waitinglist.fxml to screen.
+           ((Node)event.getSource()).getScene().getWindow().hide();
+           PopUpWaitinglist newScreen = new PopUpWaitinglist();
+           newScreen.start(new Stage());   
+    	
 	    	
 	    }
+	    
 
 	    
 
 	    @FXML
-	    void okBtn(ActionEvent event) throws Exception //alternative date 
+	    public void okBtn(ActionEvent event) throws Exception //alternative date 
 	    { 
 	    	
 	    	details.setTableName("booking");
@@ -65,9 +77,11 @@ public class WaitinigorRescheduleController extends VisitorScreenController
             PaymentController newScreen = new PaymentController();
             newScreen.start(new Stage());
 	    }
-
-	
+	    	
 	    
+	    
+	    
+	   
 	    
 	    public void start(Stage primaryStage) throws Exception 
 		{
