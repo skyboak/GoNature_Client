@@ -12,7 +12,16 @@ public class BookingController {
 	private boolean isCanceled = false;
 	private boolean existOrder = false;
 	private boolean bookingAvailable = false;
+	private BookingDetail newBooking;
 	
+
+	public BookingDetail getNewBooking() {
+		return newBooking;
+	}
+
+	public void setNewBooking(BookingDetail newBooking) {
+		this.newBooking = newBooking;
+	}
 
 	public boolean isAvailable() {
 		return isAvailable;

@@ -85,10 +85,10 @@ public class PaymentController extends VisitorScreenController
 		
 	
 	}
-	public void start(Stage primaryStage,BookingDetail details) throws Exception 
+	public void start(Stage primaryStage) throws Exception 
 	{
 		
-		this.details=details;
+		this.details=ClientController.client.bookingController.getNewBooking();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Payment.fxml"));
     	loader.setController(this); 
     	Parent root = loader.load();

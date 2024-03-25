@@ -186,7 +186,8 @@ public class NewBookingController extends VisitorScreenController {
 		            	details.setTableName("booking");
 		            	((Node)event.getSource()).getScene().getWindow().hide();
 		                PaymentController newScreen = new PaymentController();
-		                newScreen.start(new Stage(),details);
+		                ClientController.client.bookingController.setNewBooking(details);
+		                newScreen.start(new Stage());
 		            	System.out.println("The booking is available in db.");
 		            	
 		            	ClientController.client.sendToServer(newBookin);
@@ -200,23 +201,16 @@ public class NewBookingController extends VisitorScreenController {
 			    				e.printStackTrace();
 			    			}
 			    		}
-			    		ClientController.client.bookingController.setGotResponse();
-			            if(ClientController.client.bookingController.getCheckIfBookingAvailable())
-			            {
-			            	System.out.println("The Booking Added to DB.");
-			            }
-			            else
-			            	System.out.println("The Booking Not Added to DB.");
-			            
-			    		
+			    		ClientController.client.bookingController.setGotResponse();			    		
 		            	
 		            }
 		            else 
 		            {
+		            	ClientController.client.bookingController.setNewBooking(details);
 		            	((Node)event.getSource()).getScene().getWindow().hide();
 		            	WaitinigorRescheduleController newS = new WaitinigorRescheduleController();
-		                newS.start(new Stage(),details);
-		            	errorscreen("Sorry, there is no more space available");    	
+		            	
+		                newS.start(new Stage());   	
 		            }
 		            
 		            System.out.println(details.toString());
