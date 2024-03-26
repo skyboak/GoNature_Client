@@ -1,5 +1,9 @@
-package screenController;
+package workerScreenController;
 import javafx.scene.image.Image;
+
+
+import java.io.IOException;
+
 import client.ClientController;
 import enums.Commands;
 import javafx.event.ActionEvent;
@@ -13,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.LoginDetail;
+import logic.ManagerRequestDetail;
 import logic.Message;
 public class ParkManagerScreenController extends WorkerScreenController{
 	
@@ -26,6 +31,8 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	private ImageView parkImgT;
 	@FXML
 	private Text parkNameT;
+	@FXML
+	private Text visitorAmountT;
 	
 	private String parkName;
 	
@@ -39,63 +46,42 @@ public class ParkManagerScreenController extends WorkerScreenController{
 		return AverageParkStayTimeT.getText();
 	}
 	
+	public void refreshBtn(ActionEvent event) throws Exception{
+		setVisitorAmount();
+	}
+	
 	public void setParkCapacityBtn(ActionEvent event) throws Exception
 	{
-		Message msg = new Message(getParkCapacity(),Commands.ChangeParkCapacity);
-		ClientController.client.sendToServer(msg);
-		boolean awaitResponse = false;
-            // wait for response
-		while (!awaitResponse) {
-			try {
-				Thread.sleep(100);
-				awaitResponse = ClientController.client.workerController.isGotResponse();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		if(ClientController.client.workerController.getParkCapacity()) {
-			System.out.println("Set complete");
-		}else {System.out.println("Set failed");}
+		String valueTo = getParkCapacity();
+		//Message msg = new Message(valueTo,Commands.ChangeParkCapacity);
+		ManagerRequestDetail managerRequestDetail = new ManagerRequestDetail(parkName,"Set Park Capacity of ",valueTo);
+		//ClientController.client.workerController.addRequest(managerRequestDetail);
+		
+		Message addmsg = new Message(managerRequestDetail,Commands.AddManagerRequestDetail);
+		ClientController.client.sendToServer(addmsg);
+		
 	}
 	
 	public void setOnlineBookingCapacityBtn(ActionEvent event) throws Exception
 	{
+		String valueTo = getOnlineBookingCapacity();
+		//Message msg = new Message(valueTo,Commands.ChangeOnlineBookingCapacity);
+		ManagerRequestDetail managerRequestDetail = new ManagerRequestDetail(parkName,"Set Online Booking Capacity of ",valueTo);
 		
-		Message msg = new Message(getOnlineBookingCapacity(),Commands.ChangeOnlineBookingCapacity);
-		ClientController.client.sendToServer(msg);
-		boolean awaitResponse = false;
-        // wait for response
-		while (!awaitResponse) {
-			try {
-				Thread.sleep(100);
-				awaitResponse = ClientController.client.workerController.isGotResponse();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		if(ClientController.client.workerController.getOnlineBookingCapacity()) {
-			System.out.println("Set complete");
-		}else {System.out.println("Set failed");}		
+		Message addmsg = new Message(managerRequestDetail,Commands.AddManagerRequestDetail);
+		ClientController.client.sendToServer(addmsg);
 	}
 	
 	public void setAverageParkStayTimeBtn(ActionEvent event) throws Exception
 	{
-		Message msg = new Message(getAverageParkStayTime(),Commands.ChangeAverageParkStayTime);
-		System.out.println("C" + getAverageParkStayTime());
-		ClientController.client.sendToServer(msg);
-		boolean awaitResponse = false;
-        // wait for response
-		while (!awaitResponse) {
-			try {
-				Thread.sleep(100);
-				awaitResponse = ClientController.client.workerController.isGotResponse();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		if(ClientController.client.workerController.getAverageParkStayTime()) {
-			System.out.println("Set complete");
-		}else {System.out.println("Set failed");}
+		
+		String valueTo = getAverageParkStayTime();
+		//Message msg = new Message(valueTo,Commands.ChangeAverageParkStayTime);
+		ManagerRequestDetail managerRequestDetail = new ManagerRequestDetail(parkName,"Set Park Stay Time of ",valueTo);
+
+		
+		Message addmsg = new Message(managerRequestDetail,Commands.AddManagerRequestDetail);
+		ClientController.client.sendToServer(addmsg);
 	}
 	
 	public void start(Stage primaryStage) throws Exception {
@@ -108,6 +94,7 @@ public class ParkManagerScreenController extends WorkerScreenController{
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
     	setPark(ClientController.client.workerController.getWorkerDetail().getParkName());
+    	setVisitorAmount();
 
 	}
 	
@@ -118,9 +105,27 @@ public class ParkManagerScreenController extends WorkerScreenController{
 		String imgS = "/images/" + parkName + ".jpeg";
 		Image img = new Image(imgS);
 		parkImgT.setImage(img);
-		
-		
 	}
+	
+	private void setVisitorAmount() throws Exception 
+	{
+		Message msg = new Message(parkName,Commands.getVisitorAmountInPark);
+		ClientController.client.sendToServer(msg);
+		boolean awaitResponse = false;
+        // wait for response
+		while (!awaitResponse) {
+			try {
+				Thread.sleep(100);
+				awaitResponse = ClientController.client.workerController.isGotResponse();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		ClientController.client.workerController.setGotResponse(false);
+		int VistorAmount =  ClientController.client.workerController.getVistorAmount();
+		visitorAmountT.setText(Integer.toString(VistorAmount));
+	}
+	
 	public void logoutBtn(ActionEvent event) throws Exception {
 		System.exit(0);
 	}

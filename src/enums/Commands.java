@@ -31,7 +31,12 @@ public enum Commands {
 
 	visitorStatisticData,
 	CancellationReportData, ClientConnect, 
-	CheckSixSlots, CancelNonPayedBooking
+
+	CheckSixSlots, CancelNonPayedBooking,
+
+	getVisitorAmountInPark, vistorAmountData, AddManagerRequestDetail, getRequestTable, RequestTableData,
+	removeRequest, RequestRemoved
+
 
 	;
 }

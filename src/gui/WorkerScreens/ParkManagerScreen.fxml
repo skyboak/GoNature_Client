@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -55,7 +56,11 @@
             <Font name="Futura Bold" size="21.0" />
          </font>
       </Text>
-      <ImageView fx:id="parkImgT" fitHeight="150.0" fitWidth="200.0" layoutX="320.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="parkImgT" fitHeight="150.0" fitWidth="200.0" layoutX="320.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Untitled.jpeg" />
+         </image>
+      </ImageView>
       <Text layoutX="515.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visitors Currently In Park:" wrappingWidth="240.22219371795654">
          <font>
             <Font name="Futura Bold" size="21.0" />
@@ -65,13 +70,13 @@
          <children>
             <Pane layoutX="-95.0">
                <children>
-                  <TextField fx:id="ParkCapacityT" alignment="CENTER" layoutX="170.0" text="0" />
+                  <TextField fx:id="ParkCapacityT" alignment="CENTER" layoutX="170.0" />
                   <Button fx:id="setParkCapacity" mnemonicParsing="false" onAction="#setParkCapacityBtn" prefHeight="25.0" prefWidth="163.0" text="Set Park Capacity" />
                </children>
             </Pane>
             <Pane layoutX="-95.0" layoutY="50.0">
                <children>
-                  <TextField fx:id="OnlineBookingCapacityT" alignment="CENTER" layoutX="170.0" text="0" />
+                  <TextField fx:id="OnlineBookingCapacityT" alignment="CENTER" layoutX="170.0" />
                   <Button fx:id="setOnlineBookingCapacity" mnemonicParsing="false" onAction="#setOnlineBookingCapacityBtn" prefHeight="25.0" prefWidth="163.0" text="Set Online Booking Capacity">
                      <font>
                         <Font size="11.0" />
@@ -81,17 +86,22 @@
             </Pane>
             <Pane layoutX="-95.0" layoutY="100.0">
                <children>
-                  <TextField fx:id="AverageParkStayTimeT" alignment="CENTER" layoutX="170.0" text="0" />
+                  <TextField fx:id="AverageParkStayTimeT" alignment="CENTER" layoutX="170.0" />
                   <Button fx:id="setAverageParkStayTime" mnemonicParsing="false" onAction="#setAverageParkStayTimeBtn" prefHeight="25.0" prefWidth="163.0" text="Set Average Park Stay Time" />
                </children>
             </Pane>
          </children>
       </Pane>
-      <Text layoutX="588.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="106.16662949323654">
+      <Text fx:id="visitorAmountT" layoutX="588.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="106.16662949323654">
          <font>
             <Font name="Segoe UI Emoji" size="96.0" />
          </font>
       </Text>
+      <Button layoutX="702.0" layoutY="237.0" mnemonicParsing="false" onAction="#refreshBtn" prefHeight="17.0" prefWidth="34.0" text="Refresh" textAlignment="CENTER" textFill="#416ce2" wrapText="true">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
    </children>
 =======
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"

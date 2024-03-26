@@ -33,7 +33,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import logic.DateDetail;
 import logic.Message;
-import screenController.WorkerScreenController;
+import workerScreenController.WorkerScreenController;
 
 public class VisitorStatisticReportScreenController extends WorkerScreenController implements Initializable {
 

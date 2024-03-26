@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import logic.LoginDetail;
 import logic.Message;
 import logic.WorkerDetail;
+import workerScreenController.ParkManagerScreenController;
+import workerScreenController.DepartmentManagerDashboardController;
 
 public class LoginController extends ScreenController {
 
@@ -98,15 +100,22 @@ public class LoginController extends ScreenController {
 					e.printStackTrace();
 				}
 			}
+			ClientController.client.mainScreenController.setGotResponse(true);
 			WorkerDetail workerDetail = ClientController.client.mainScreenController.getWorkerLoginValid();
 			//move to workerscreen
 			System.out.println(workerDetail.getRole());
 			ClientController.client.workerController.setWorkerDetail(workerDetail);
 			if(workerDetail.getRole().equals("Park Manager")) {
-				System.out.println("entring park manager");
-			
+				System.out.println("Entring Park Manager..");
+				System.out.println(workerDetail.getParkName());
 				((Node)event.getSource()).getScene().getWindow().hide();
 				ParkManagerScreenController newScreen = new ParkManagerScreenController();
+				newScreen.start(new Stage());
+			}
+			if(workerDetail.getRole().equals("Department Manager")) {
+				System.out.println("Entring Department Manager..");
+				((Node)event.getSource()).getScene().getWindow().hide();
+				DepartmentManagerDashboardController newScreen = new DepartmentManagerDashboardController();
 				newScreen.start(new Stage());
 			}
 			
@@ -143,10 +152,7 @@ public class LoginController extends ScreenController {
 				newScreen.start(new Stage());
 			}
 		}
-		
-		
-		
-		
+
 	}
 	
 	public void start(Stage primaryStage) throws Exception {

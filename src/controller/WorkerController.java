@@ -1,14 +1,19 @@
 package controller;
 
+import java.util.ArrayList;
+
+import logic.ManagerRequestDetail;
 import logic.WorkerDetail;
 
 public class WorkerController {
 	
 	private boolean gotResponse = false;
 	private WorkerDetail workerDetail;
-
-
+	private int vistorAmount;
+	private ArrayList<ManagerRequestDetail> requestList;
 	
+	
+
 	private boolean AverageParkStayTime,OnlineBookingCapacity,ParkCapacity;
 
 	public boolean getAverageParkStayTime() {
@@ -53,6 +58,39 @@ public class WorkerController {
 	public void setWorkerDetail(WorkerDetail workerDetail) {
 		this.workerDetail = workerDetail;
 	}
+
+
+	public void setVistorAmountData(int vistorAmountData) {
+		this.vistorAmount = vistorAmountData;
+		this.gotResponse = true;
+		
+	}
+	
+	
+	public int getVistorAmount() {
+		return vistorAmount;
+	}
+
+	public ArrayList<ManagerRequestDetail> getRequestList() {
+		return requestList;
+	}
+	
+
+	public void setRequestList(ArrayList<ManagerRequestDetail> requestList) {
+		System.out.println("shiniti at");
+        System.out.println("Contents of the ArrayList in workerController:");
+        for (ManagerRequestDetail element : requestList) {
+            System.out.println(element.getChanges());
+        }
+  		this.requestList = null;
+		this.requestList = requestList;
+		this.gotResponse = true;
+	}
+
+	public WorkerController() {
+		
+	}
+
 
 
 	

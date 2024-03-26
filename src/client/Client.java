@@ -12,6 +12,7 @@ import java.util.Map;
 import ocsf.client.AbstractClient;
 import logic.BookingDetail;
 import logic.CancellationDetail;
+import logic.ManagerRequestDetail;
 import logic.Message;
 import logic.WorkerDetail;
 
@@ -142,8 +143,22 @@ public class Client extends AbstractClient
 	      		bookingController.setCancelNonPayedBook();
 	      		break;
 	      		
-		default:
-			break;
+
+	      	case vistorAmountData:
+	      		int vistorAmountData = (int)m.getObj();
+	      		workerController.setVistorAmountData(vistorAmountData);
+	      		break;
+	      	case RequestTableData:
+	      		ArrayList<ManagerRequestDetail> requestList = (ArrayList<ManagerRequestDetail>)m.getObj();
+	      		workerController.setRequestList(requestList);
+	      		System.out.println(requestList.size() + "client");
+	      		break;
+	      	case RequestRemoved:
+	      		workerController.setGotResponse(true);
+	      		
+	      	default:
+	      		break;
+
 	      		
 	      
 	      }

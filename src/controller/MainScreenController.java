@@ -4,11 +4,15 @@ import logic.WorkerDetail;
 
 public class MainScreenController {
 	
+
 	private WorkerDetail workerLoginValid;
 	private boolean visitorLoginValid;
 	private boolean GroupGuideLoginValid;
 	private boolean gotResponse = true;
 	
+	public void setGotResponse(boolean gotResponse) {
+		this.gotResponse = gotResponse;
+	}
 	
 	public WorkerDetail getWorkerLoginValid() {
 		return workerLoginValid;
