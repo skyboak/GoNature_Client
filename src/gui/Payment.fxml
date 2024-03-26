@@ -24,17 +24,17 @@
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="myBooking" mnemonicParsing="false" onAction="#myBookingBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="My Bookings">
+                  <Button fx:id="myBooking" disable="true" mnemonicParsing="false" onAction="#myBookingBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="My Bookings">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="prices" mnemonicParsing="false" onAction="#pricesBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Prices">
+                  <Button fx:id="prices" disable="true" mnemonicParsing="false" onAction="#pricesBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Prices">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="aboutUs" mnemonicParsing="false" onAction="#aboutUsBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="About Us">
+                  <Button fx:id="aboutUs" disable="true" mnemonicParsing="false" onAction="#aboutUsBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="About Us">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
@@ -46,7 +46,7 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Text>
-            <Button fx:id="logout" layoutX="59.0" layoutY="485.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
+            <Button fx:id="logout" disable="true" layoutX="59.0" layoutY="485.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -105,7 +105,7 @@
       </Text>
       <Line endX="-12.0" endY="-25.0" layoutX="740.0" layoutY="288.0" startX="-25.0" startY="-0.9999961853027344" stroke="#1e525b" strokeWidth="2.0" />
       <Line disable="true" endX="120.0" layoutX="518.0" layoutY="321.0" startX="-175.0" stroke="#d9d9d9" strokeWidth="0.7" />
-      <Button id="sale" fx:id="finish" layoutX="643.0" layoutY="459.0" mnemonicParsing="false" onAction="#finishBtn" prefHeight="36.0" prefWidth="108.0" stylesheets="@../images/LoginButton.css" text="finish">
+      <Button id="sale" fx:id="finish" layoutX="643.0" layoutY="459.0" mnemonicParsing="false" onAction="#finishBtn" prefHeight="36.0" prefWidth="108.0" stylesheets="@../images/LoginButton.css" text="Finish">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -116,10 +116,11 @@
             <Image url="@../images/visa.png" />
          </image>
       </ImageView>
-      <Text fx:id="errorT" fill="RED" layoutX="302.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="**please choose a payment method" visible="false" wrappingWidth="236.2124080657959">
+      <Text fx:id="errorT" fill="RED" layoutX="410.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="**please choose a payment method" visible="false" wrappingWidth="236.2124080657959">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
+      <Button id="Cancel" fx:id="cancel" layoutX="350.0" layoutY="459.0" mnemonicParsing="false" onAction="#cancelBtn" stylesheets="@../images/CancelButton.css" text="Cancel" />
    </children>
 </AnchorPane>

@@ -127,6 +127,7 @@ public class Client extends AbstractClient
 	      		Map<LocalDate, int[]> visitorStatisticData = (Map<LocalDate, int[]>)m.getObj();
 	      		reportController.setvisitorStatisticData(visitorStatisticData);
 	      		break;
+	      		
 	      	case CancellationReportData:
 	      		//CancellationData CancellationReportData = (CancellationData)m.getObj();
 	      		//reportController.setCancellationReportData(CancellationReportData);
@@ -135,6 +136,10 @@ public class Client extends AbstractClient
 	      	case CheckSixSlots:
 	      		ArrayList<String> SixSlotsFromDB = (ArrayList<String>)m.getObj();
 	      		bookingController.setSixSlots(SixSlotsFromDB);
+	      		break;
+	      		
+	      	case CancelNonPayedBooking:
+	      		bookingController.setCancelNonPayedBook();
 	      		break;
 	      		
 		default:

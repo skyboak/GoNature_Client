@@ -48,7 +48,7 @@ public class ReceiptScreenController extends VisitorScreenController {
 	
 	public void okBtn(ActionEvent event) throws Exception{
 		((Node)event.getSource()).getScene().getWindow().hide();
-		NewBookingController newScreen = new NewBookingController();
+		MyBookingController newScreen = new MyBookingController();
 		newScreen.start(new Stage());
 	}
 	

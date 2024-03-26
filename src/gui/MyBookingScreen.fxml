@@ -70,11 +70,6 @@
       </ImageView>
       <Pane layoutX="281.0" layoutY="129.0">
          <children>
-            <Button fx:id="cancel" disable="true" layoutX="348.0" layoutY="363.0" mnemonicParsing="false" onAction="#cancelBtn" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: e71111; -fx-background-radius: 10 10 10 10;" text="Cancel Booking">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
             <TableView fx:id="tableView" layoutY="18.0" prefHeight="234.0" prefWidth="492.0">
               <columns>
                 <TableColumn fx:id="orderNumberC" prefWidth="119.0" text="Order Number" />
@@ -98,6 +93,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
+            <Button id="Cancel" fx:id="cancel" disable="true" layoutX="351.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelBtn" stylesheets="@../images/CancelButton.css" text="Cancel Booking" />
          </children>
       </Pane>
    </children>

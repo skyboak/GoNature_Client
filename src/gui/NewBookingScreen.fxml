@@ -49,7 +49,7 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Text>
-            <Button fx:id="logout" layoutX="59.0" layoutY="485.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
+            <Button id="Logout" fx:id="logout" layoutX="59.0" layoutY="515.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="36.0" prefWidth="136.0" stylesheets="@../images/LogOutButton.css" text="Logout">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -125,7 +125,7 @@
          <font>
             <Font size="21.0" />
          </font></Text>
-      <Button fx:id="next" layoutX="665.0" layoutY="515.0" mnemonicParsing="false" onAction="#nextBtn" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: #7FFF00 #7FFF00; -fx-background-radius: 10 10 10 10;" text="next">
+      <Button id="sale" fx:id="next" layoutX="665.0" layoutY="515.0" mnemonicParsing="false" onAction="#nextBtn" prefHeight="36.0" prefWidth="108.0" stylesheets="@../images/LoginButton.css" text="next">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

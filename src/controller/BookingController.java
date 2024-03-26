@@ -92,6 +92,9 @@ public class BookingController {
 		this.isGotResponse = true;
 		SixSlots = sixSlots;
 	}
+	public void setCancelNonPayedBook(){
+		this.isGotResponse = true;
+	}
 	
 	/*public void CreateNewBooking(String vistorID   ) {
 		

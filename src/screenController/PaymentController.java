@@ -34,6 +34,9 @@ public class PaymentController extends VisitorScreenController
 	private Text errorT;
 	@FXML
 	private ComboBox<String> paymentCombo;
+	@FXML
+	private Button cancel;
+
 
 	private BookingDetail details;
 	
@@ -80,14 +83,33 @@ public class PaymentController extends VisitorScreenController
 			newScreen.start(new Stage(),details,discountPrice);
 			//TODO add the booking to sql.
 		}
-			
-		
-		
-	
 	}
+	
+	public void cancelBtn(ActionEvent event) throws Exception
+	{
+		Message CancelNonPayed = new Message(details,Commands.CancelNonPayedBooking);
+		ClientController.client.sendToServer(CancelNonPayed);
+		boolean awaitResponse = false;
+		while (!awaitResponse) 
+		{
+			try {
+				Thread.sleep(100);
+				awaitResponse = ClientController.client.bookingController.isGotResponse();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		ClientController.client.bookingController.setGotResponse();
+		((Node)event.getSource()).getScene().getWindow().hide();
+		NewBookingController newScreen = new NewBookingController();
+		newScreen.start(new Stage());
+		
+	}
+	
+	
 	public void start(Stage primaryStage) throws Exception 
 	{
-		
+
 		this.details=ClientController.client.bookingController.getNewBooking();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Payment.fxml"));
     	loader.setController(this); 
@@ -112,21 +134,6 @@ public class PaymentController extends VisitorScreenController
     	    });
     	
     	
-    	
-//    	paymentCombo.setOnMouseClicked(event -> {
-//    	if (paymentCombo.getSelectionModel().isSelected(1)) 
-//    		System.out.println("cash");
-//    	
-//    	if (paymentCombo.getSelectionModel().isSelected(0)) 
-//    		System.out.println("visa");
-//    	});
-    	//price();
-    }
+    } 
 
-//    	scene.setOnMousePressed(event -> {
-//        if (!tableView.getBoundsInParent().contains(event.getX(), event.getY())) {
-//            tableView.getSelectionModel().clearSelection();
-//            cancel.setDisable(true);
- 
-
-	}
+}

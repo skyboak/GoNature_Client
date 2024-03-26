@@ -31,7 +31,7 @@ public enum Commands {
 
 	visitorStatisticData,
 	CancellationReportData, ClientConnect, 
-	CheckSixSlots
+	CheckSixSlots, CancelNonPayedBooking
 
 	;
 }
