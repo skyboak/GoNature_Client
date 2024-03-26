@@ -131,6 +131,12 @@ public class Client extends AbstractClient
 	      		//CancellationData CancellationReportData = (CancellationData)m.getObj();
 	      		//reportController.setCancellationReportData(CancellationReportData);
 	      		break;
+	      		
+	      	case CheckSixSlots:
+	      		ArrayList<String> SixSlotsFromDB = (ArrayList<String>)m.getObj();
+	      		bookingController.setSixSlots(SixSlotsFromDB);
+	      		break;
+	      		
 		default:
 			break;
 	      		

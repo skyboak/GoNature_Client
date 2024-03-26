@@ -132,8 +132,13 @@ public class MyBookingController extends VisitorScreenController {
     	setTable();    	
     	//enables cancel button and saves orderID
     	tableView.setOnMouseClicked(event -> {
-    		cancel.setDisable(false);
-    		orderID = tableView.getSelectionModel().getSelectedItem().getOrderNumber();
+    		if (tableView.getSelectionModel().getSelectedItem() != null) {
+    	        cancel.setDisable(false);
+    	        orderID = tableView.getSelectionModel().getSelectedItem().getOrderNumber();
+    	    } else {
+    	        // If no row is selected, disable the cancel button
+    	        cancel.setDisable(true);
+    	        }
     		});
     	//if pressed outside of the tableview, the selection is cleared and cancel button is disabled
     	scene.setOnMousePressed(event -> {

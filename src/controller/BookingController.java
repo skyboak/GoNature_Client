@@ -13,6 +13,7 @@ public class BookingController {
 	private boolean existOrder = false;
 	private boolean bookingAvailable = false;
 	private BookingDetail newBooking;
+	private ArrayList<String> SixSlots;
 	
 
 	public BookingDetail getNewBooking() {
@@ -81,6 +82,15 @@ public class BookingController {
 	public void setCheckIfBookingAvailable(boolean result) {
 		bookingAvailable = result;
 		this.isGotResponse = true;
+	}
+
+	public ArrayList<String> getSixSlots() {
+		return SixSlots;
+	}
+
+	public void setSixSlots(ArrayList<String> sixSlots) {
+		this.isGotResponse = true;
+		SixSlots = sixSlots;
 	}
 	
 	/*public void CreateNewBooking(String vistorID   ) {

@@ -30,7 +30,8 @@ public enum Commands {
 	
 
 	visitorStatisticData,
-	CancellationReportData, ClientConnect
+	CancellationReportData, ClientConnect, 
+	CheckSixSlots
 
 	;
 }
