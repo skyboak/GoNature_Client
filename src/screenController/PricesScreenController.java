@@ -29,11 +29,11 @@ public class PricesScreenController extends VisitorScreenController {
     public void setTable() {
         // Create sample data for each row
         ObservableList<List<String>> data = FXCollections.observableArrayList(
-            Arrays.asList("Personal/family visit - \npre order", "By the number\nof visitors", "A discount of 15% off the\n price."),
-            Arrays.asList("Personal/family visit - \noccasional visit", "By the number\nof visitors", "Full price."),
-            Arrays.asList("Guided group - \npre order", "By the number\nof visitors", "25% off the full price.\nAdditional 12% Discount\r"
+            Arrays.asList("Personal/family visit - \npre order.", "By the number\nof visitors.", "A discount of 15% off the\n price."),
+            Arrays.asList("Personal/family visit - \noccasional visit.", "By the number\nof visitors.", "Full price."),
+            Arrays.asList("Guided group - \npre order.", "By the number\nof visitors.", "25% off the full price.\nAdditional 12% Discount\r"
             		+ "on prepayment.\nThe guide does not pay."),
-            Arrays.asList("Occasional group visit", "By the number\nof visitors", "10% off the full price.\r\n"
+            Arrays.asList("Occasional group visit.", "By the number\nof visitors.", "10% off the full price.\r\n"
             		+ "The guide pays.")
         );
 

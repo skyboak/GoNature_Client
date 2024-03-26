@@ -63,6 +63,7 @@ public class MyBookingController extends VisitorScreenController {
 				e.printStackTrace();
 			}
 		}
+		ClientController.client.bookingController.setGotResponse();
 		ArrayList<BookingDetail> myList = ClientController.client.bookingController.getMyBookingList();
 		for (BookingDetail i : myList) 
 			tableView.getItems().add(i);
