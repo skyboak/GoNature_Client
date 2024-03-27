@@ -47,7 +47,7 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Text>
-            <Button fx:id="logout" layoutX="29.0" layoutY="632.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
+            <Button fx:id="logout" layoutX="29.0" layoutY="632.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Logout">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

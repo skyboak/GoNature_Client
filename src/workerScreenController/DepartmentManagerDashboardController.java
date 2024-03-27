@@ -76,22 +76,27 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     private void confirm() throws Exception {
 
     	Message msg = null;
-    	System.out.println(requestSelected.getChangeTo());
+    	System.out.println("."+requestSelected.getChangeTo()+".");
     	switch (requestSelected.getChangeTo()) {
     	
     	case "Set Park Capacity of ":
     		msg = new Message(requestSelected,Commands.ChangeParkCapacity);
+    		ClientController.client.sendToServer(msg);
+    		break;
     	case "Set Online Booking Capacity of ":
     		msg = new Message(requestSelected,Commands.ChangeOnlineBookingCapacity);
+    		ClientController.client.sendToServer(msg);
+    		break;
     	case "Set Park Stay Time of ":
     		msg = new Message(requestSelected,Commands.ChangeAverageParkStayTime);
+    		ClientController.client.sendToServer(msg);
+    		break;
     	default:
 	  		System.out.println("Shouldn't have gotten here?!?!?!");
 	  		break;  
     			
     	}    	
     	
-		ClientController.client.sendToServer(msg);
 		boolean awaitResponse = false;
             // wait for response
 		while (!awaitResponse) {

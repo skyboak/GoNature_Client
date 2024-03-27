@@ -125,10 +125,7 @@ public class ParkManagerScreenController extends WorkerScreenController{
 		int VistorAmount =  ClientController.client.workerController.getVistorAmount();
 		visitorAmountT.setText(Integer.toString(VistorAmount));
 	}
-	
-	public void logoutBtn(ActionEvent event) throws Exception {
-		System.exit(0);
-	}
+
 	
 	
 	
