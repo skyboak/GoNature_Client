@@ -17,6 +17,7 @@ import logic.BookingDetail;
 import logic.LoginDetail;
 import logic.Message;
 import logic.WorkerDetail;
+import workerScreenController.WorkerScreenController;
 
 public class WorkerParkDashboardController extends WorkerScreenController {
 	
