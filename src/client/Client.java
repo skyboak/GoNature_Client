@@ -139,6 +139,7 @@ public class Client extends AbstractClient
 	      		bookingController.setSixSlots(SixSlotsFromDB);
 	      		break;
 	      		
+
 	      	case CancelNonPayedBooking:
 	      		bookingController.setCancelNonPayedBook();
 	      		break;
@@ -155,10 +156,24 @@ public class Client extends AbstractClient
 	      		break;
 	      	case RequestRemoved:
 	      		workerController.setGotResponse(true);
-	      		
-	      	default:
+	      			      
+	      	case CurrentOccupancy:
+	      		String CurrOcc = (String)m.getObj();
+	      		workerController.setCurrentOccupancy(CurrOcc);
 	      		break;
-
+	  		  
+	  	  case MaxOccupancy:
+	  		  	String MaxOcc = (String)m.getObj();
+	  		  	workerController.setMaxOccupancy(MaxOcc);
+	      		break;
+	      		
+	  	  case BookingDetails:
+	  		  	BookingDetail bd = (BookingDetail)m.getObj();
+	  		  	bookingController.setBookingDetails(bd);
+	  		  	break;
+	      		
+		default:
+			break;
 	      		
 	      
 	      }

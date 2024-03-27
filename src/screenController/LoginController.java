@@ -112,6 +112,7 @@ public class LoginController extends ScreenController {
 				ParkManagerScreenController newScreen = new ParkManagerScreenController();
 				newScreen.start(new Stage());
 			}
+
 			if(workerDetail.getRole().equals("Department Manager")) {
 				System.out.println("Entring Department Manager..");
 				((Node)event.getSource()).getScene().getWindow().hide();
@@ -119,11 +120,18 @@ public class LoginController extends ScreenController {
 				newScreen.start(new Stage());
 			}
 			
+
+			if(workerDetail.getRole().equals("Park Worker")) {
+				((Node)event.getSource()).getScene().getWindow().hide();
+				WorkerParkDashboardController newScreen = new WorkerParkDashboardController();
+				newScreen.start(new Stage());
+			}
+
 		}
 		else
 		{
 			if(getID().length() != 9 ) {
-				errorT.setText("**ID is too short, enter 9 digits");
+				errorT.setText("**ID must be 9 digits");
 				errorT.setVisible(true);
 				return;
 			}

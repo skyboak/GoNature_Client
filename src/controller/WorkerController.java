@@ -9,8 +9,15 @@ public class WorkerController {
 	
 	private boolean gotResponse = false;
 	private WorkerDetail workerDetail;
+
 	private int vistorAmount;
 	private ArrayList<ManagerRequestDetail> requestList;
+
+	private String CurrentOccupancy;
+	private String MaxOccupancy;
+
+
+
 	
 	
 
@@ -59,6 +66,11 @@ public class WorkerController {
 		this.workerDetail = workerDetail;
 	}
 
+	public void setCurrentOccupancy(String currOcc) {
+		CurrentOccupancy = currOcc;
+		this.gotResponse = true;
+	}
+
 
 	public void setVistorAmountData(int vistorAmountData) {
 		this.vistorAmount = vistorAmountData;
@@ -93,8 +105,18 @@ public class WorkerController {
 
 
 
+
+	public void setMaxOccupancy(String MaxOcc) {
+		MaxOccupancy = MaxOcc;
+		this.gotResponse = true;
+	}
+
 	
-	
-	
-	
+	public String getCurrentOccupancy() {
+		return CurrentOccupancy;
+	}
+
+	public String getMaxOccupancy() {
+		return MaxOccupancy;
+	}
 }
