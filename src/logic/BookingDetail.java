@@ -111,7 +111,7 @@ public class BookingDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "BookingDetails [TableName="+ TableName +" visitType=" + visitType + ", visitorID=" + visitorID + ", parkName=" + parkName
+        return "BookingDetails [OrderNumber=" + orderNumber + " TableName="+ TableName +" visitType=" + visitType + ", visitorID=" + visitorID + ", parkName=" + parkName
                 + ", numOfVisitors=" + numOfVisitors + ", telephone=" + telephone + ", email=" + email
                 + ", visitDate=" + Date + "]";
     }

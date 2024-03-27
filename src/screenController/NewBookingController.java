@@ -121,6 +121,7 @@ public class NewBookingController extends VisitorScreenController {
 	//check timeslot by maxstaytime
 	
 	public void nextBtn(ActionEvent event) throws Exception {
+		String Ordernumberstr;
 			if(validateInputs()) 
 			{
 				BookingDetail details = new BookingDetail();
@@ -180,12 +181,16 @@ public class NewBookingController extends VisitorScreenController {
 		    			}
 		    		}
 		    		ClientController.client.bookingController.setGotResponse();
+		    		
+		    		//check for capacity
 		            if(ClientController.client.bookingController.getCheckIfBookingAvailable())
 		            {
 		            	//there is available space
 		            	details.setTableName("booking");
 		            	((Node)event.getSource()).getScene().getWindow().hide();
 		                PaymentController newScreen = new PaymentController();
+		                
+		                //set details for all screens to know details
 		                ClientController.client.bookingController.setNewBooking(details);
 		                newScreen.start(new Stage());
 		            	System.out.println("The booking is available in db.");
@@ -201,8 +206,12 @@ public class NewBookingController extends VisitorScreenController {
 			    				e.printStackTrace();
 			    			}
 			    		}
-			    		ClientController.client.bookingController.setGotResponse();			    		
-		            	
+			    		ClientController.client.bookingController.setGotResponse();	
+			    		
+			    		//get the values from the server
+			    		Ordernumberstr = ClientController.client.bookingController.getCheckIfExistBooking();
+			    		details.setOrderNumber(Ordernumberstr);
+			    		ClientController.client.bookingController.setNewBooking(details);
 		            }
 		            else 
 		            {

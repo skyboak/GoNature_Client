@@ -87,7 +87,7 @@ public class PaymentController extends VisitorScreenController
 	
 	public void cancelBtn(ActionEvent event) throws Exception
 	{
-		Message CancelNonPayed = new Message(details,Commands.CancelNonPayedBooking);
+		Message CancelNonPayed = new Message(details.getOrderNumber(),Commands.CancelNonPayedBooking);
 		ClientController.client.sendToServer(CancelNonPayed);
 		boolean awaitResponse = false;
 		while (!awaitResponse) 

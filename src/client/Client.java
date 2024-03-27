@@ -120,7 +120,7 @@ public class Client extends AbstractClient
 	      		break;
 	      	
 	      	case checkIfExist:
-	      		boolean checkexistig = (Boolean)m.getObj();
+	      		String checkexistig = (String)m.getObj();
 	      		bookingController.setCheckIfExistBooking(checkexistig);
 	      		break;
 	      		

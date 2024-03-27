@@ -10,7 +10,7 @@ public class BookingController {
 	private ArrayList<BookingDetail> myBookingList;
 	private boolean isGotResponse = false;
 	private boolean isCanceled = false;
-	private boolean existOrder = false;
+	private String existOrder;
 	private boolean bookingAvailable = false;
 	private BookingDetail newBooking;
 	private ArrayList<String> SixSlots;
@@ -66,11 +66,11 @@ public class BookingController {
 		return isGotResponse;
 	}
 	
-	public boolean getCheckIfExistBooking() {
+	public String getCheckIfExistBooking() {
 		return existOrder;	
 	}
 	
-	public void setCheckIfExistBooking(boolean result) {
+	public void setCheckIfExistBooking(String result) {
 		existOrder = result;
 		this.isGotResponse = true;
 	}
