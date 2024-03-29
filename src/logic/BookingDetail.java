@@ -15,9 +15,18 @@ public class BookingDetail implements Serializable {
     private String Date;
     private String visitorID;
     private String TableName;
+    private int VisitDuration;
 
     
-    public String getOrderNumber() {
+    public int getVisitDuration() {
+		return VisitDuration;
+	}
+
+	public void setVisitDuration(int visitDuration) {
+		this.VisitDuration = visitDuration;
+	}
+
+	public String getOrderNumber() {
 		return orderNumber;
 	}
 
@@ -111,7 +120,7 @@ public class BookingDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "BookingDetails [OrderNumber=" + orderNumber + " TableName="+ TableName +" visitType=" + visitType + ", visitorID=" + visitorID + ", parkName=" + parkName
+        return "BookingDetails [TableName="+ TableName +" visitType=" + visitType + ", visitorID=" + visitorID + ", parkName=" + parkName
                 + ", numOfVisitors=" + numOfVisitors + ", telephone=" + telephone + ", email=" + email
                 + ", visitDate=" + Date + "]";
     }
