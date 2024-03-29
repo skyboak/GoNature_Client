@@ -54,7 +54,7 @@
          </children>
       </Pane>
       <Separator layoutX="261.0" layoutY="99.0" opacity="0.5" prefHeight="5.0" prefWidth="385.0" style="-fx-background-color: #242633;" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="0.0" />
-      <Text fill="#1e525b" layoutX="390.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Booking">
+      <Text fill="#1e525b" layoutX="320.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Method">
          <font>
             <Font name="System Bold Italic" size="44.0" />
          </font>
@@ -93,12 +93,12 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <Text fx:id="priceBeforeDiscount" layoutX="575.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="135.99998950958252">
+      <Text fx:id="priceBeforeDiscount" layoutX="575.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99998950958252">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="totalPrice" layoutX="577.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="135.99998950958252">
+      <Text fx:id="totalPrice" layoutX="577.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99998950958252">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>

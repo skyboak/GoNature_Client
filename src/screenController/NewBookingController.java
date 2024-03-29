@@ -422,5 +422,7 @@ public class NewBookingController extends VisitorScreenController {
     	setComboBox();
     	configureDatePicker();
     	guide.setDisable(checkGuide());//Permission for group guide only
+    	//add a method to check if this client is in the 24 hour pending table
+    	
 	}
 }
