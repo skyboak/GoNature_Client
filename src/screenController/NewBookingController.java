@@ -138,7 +138,7 @@ public class NewBookingController extends VisitorScreenController {
 
 				if(guide.isSelected())
 				{
-					details.setVisitType("Guided Group");
+					details.setVisitType("Guided");
 					details.setNumOfVisitorsG(numOfVisitorsGCombo.getValue());
 					
 				}
@@ -146,7 +146,7 @@ public class NewBookingController extends VisitorScreenController {
 				{
 					if (Integer.valueOf(numOfVisitorsCombo.getValue())>1)
 					{
-						details.setVisitType("Group");					
+						details.setVisitType("Family");					
 					}
 					else
 						details.setVisitType("Solo");				
@@ -405,7 +405,7 @@ public class NewBookingController extends VisitorScreenController {
 		ObservableList<String> list4 = FXCollections.observableArrayList(NumOfVisitorsG);
 		numOfVisitorsGCombo.setItems(list4);
 		numOfVisitorsCombo.getSelectionModel().select("1");
-		numOfVisitorsGCombo.getSelectionModel().select("2");//check if guide get enter alone?
+		numOfVisitorsGCombo.getSelectionModel().select("1");//check if guide get enter alone?
 	}
 	
 
@@ -422,7 +422,7 @@ public class NewBookingController extends VisitorScreenController {
     	setComboBox();
     	configureDatePicker();
     	guide.setDisable(checkGuide());//Permission for group guide only
-    	//add a method to check if this client is in the 24 hour pending table
+    	//add a method to check if this client is in the 24 hour pending table (commingbooks)
     	
 	}
 }
