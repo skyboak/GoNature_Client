@@ -16,8 +16,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.BookingDetail;
 import logic.LoginDetail;
 import logic.Message;
@@ -75,14 +78,30 @@ public class PaymentController extends VisitorScreenController
 
 	public void finishBtn(ActionEvent event) throws Exception 
 	{
-		if(paymentCombo.getValue()==null)
-			errorT.setVisible(true);
-		else {
-			((Node)event.getSource()).getScene().getWindow().hide();
-			ReceiptScreenController newScreen = new ReceiptScreenController();
-			newScreen.start(new Stage(),details,discountPrice);
-			//TODO add the booking to sql.
-		}
+		 if(paymentCombo.getValue() == null) {
+		        errorT.setVisible(true);
+		    } 
+		 else if(paymentCombo.getValue().equals("Pay at visit")) {
+		    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/payatparkconfirm.fxml"));
+				loader.setController(this); // Set the controller
+		    	Parent root = loader.load();
+		    	Scene scene = new Scene(root);
+		    	Stage primaryStage = new Stage();
+		    	primaryStage.setTitle("ConfimMsg");
+		    	primaryStage.setScene(scene);
+		    	primaryStage.initModality(Modality.APPLICATION_MODAL); //blocks all actions until user presses yes/no
+		    	primaryStage.initStyle(StageStyle.UNDECORATED); // removes top bar
+		    	primaryStage.show();
+		        ((Node)event.getSource()).getScene().getWindow().hide();
+		    } else {
+		        ((Node)event.getSource()).getScene().getWindow().hide();
+		        ReceiptScreenController newScreen = new ReceiptScreenController();
+		        newScreen.start(new Stage(), details, discountPrice);
+		        //TODO add the booking to sql.
+		    }
+	}
+	public void okBtn(ActionEvent event) throws Exception {
+		((Node)event.getSource()).getScene().getWindow().hide();
 	}
 	
 	public void cancelBtn(ActionEvent event) throws Exception
