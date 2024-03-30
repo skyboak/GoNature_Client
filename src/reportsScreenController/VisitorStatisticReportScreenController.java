@@ -1,6 +1,9 @@
 package reportsScreenController;
 
 import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import javafx.stage.DirectoryChooser;
+import javafx.scene.control.TextField;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,15 +15,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
+import logic.ReportDetail;
 import client.ClientController;
+import client.ClientUI;
 import enums.Commands;
 import javafx.collections.FXCollections;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -29,15 +37,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.WritableImage;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import logic.DateDetail;
 import logic.Message;
 import workerScreenController.WorkerScreenController;
 
-public class VisitorStatisticReportScreenController extends WorkerScreenController implements Initializable 
-{
 
+import java.io.File; 
+public class VisitorStatisticReportScreenController extends WorkerScreenController implements Initializable {
+	@FXML
+	private TextField directoryTextField;
+
+	private DirectoryChooser directoryChooser;
+	
     @FXML
     private Button parkDashboard;
 
@@ -76,9 +91,52 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
 
     @FXML
     private Button BackBtn;
+    
+    @FXML
+    private Text msgToUser;
+    @FXML
+    private Button sendReportToSystem;
+    @FXML
+    private DateDetail dateDetail;
+    
+    @FXML
+    public void sendReportToSystemBtn(ActionEvent event) throws IOException {
+        WritableImage image = visitorChart.snapshot(new SnapshotParameters(), null);
 
- 
-	    
+        // Get the directory path from the text field
+        String directoryPath = directoryTextField.getText();
+
+        // Create a File object with the directory path and image file name
+        File outputFile = new File(directoryPath, "VisitorStatistic.png");
+
+        // Save the WritableImage to the file
+        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", outputFile);
+        
+        // Create the ReportDetail object with the image byte array
+        ReportDetail report = new ReportDetail(dateDetail.getParkName(), dateDetail.getStart(), dateDetail.getEnd(), "Visitor Statistic Report", outputFile.getAbsolutePath(), directoryTextField.getText());
+        System.out.println("gina");
+        Message msg = new Message(report, Commands.AddReport);
+        ClientController.client.sendToServer(msg);
+        System.out.println("chloe");
+        boolean awaitResponse = true;
+        while (awaitResponse) {
+            try {
+                Thread.sleep(100);
+                awaitResponse = ClientController.client.reportController.isGotResponse();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        ClientController.client.reportController.setGotResponse(true);
+        if (ClientController.client.reportController.isReportCheck())
+            msgToUser.setText("Report Created And Saved To Server Successfully");
+        else {
+            msgToUser.setText("Error Creating Report");
+        }
+        sendReportToSystem.setDisable(true);
+    }
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	setDatePickerCellFactory(FromDate);
@@ -88,6 +146,8 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
 //        }
         // Initialize method
         setDateDefultForVisitsReport();
+	    // Initialize the DirectoryChooser
+	    directoryChooser = new DirectoryChooser();
     }
 
     // Method to handle report button action
@@ -97,7 +157,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         // Variables to store the fromDate and toDate
         LocalDate fromDate = FromDate.getValue();
         LocalDate toDate = ToDate.getValue();
-        DateDetail dateDetail = new DateDetail(fromDate, toDate);
+        dateDetail = new DateDetail(fromDate, toDate);
         dateDetail.setParkName(ClientController.client.workerController.getWorkerDetail().getParkName());
         //dateDetail.setParkName("Hyde Park"); 
         System.out.println(dateDetail.getEnd());
@@ -115,7 +175,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         }
         ClientController.client.reportController.setGotResponse(true);
         visitorData =  ClientController.client.reportController.getVisitorStatisticData();
-
+        sendReportToSystem.setDisable(false);
         CreateVisitorStatisticsBarChar(visitorData);
     }
 
@@ -172,6 +232,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         
         // Add series to the chart
         visitorChart.getData().addAll(new XYChart.Series[]{Solo, Group, Guided_group});
+        
         
         Totalvisitortxt.setText("Total visitor number is: " + visitorcounter);
     }
@@ -268,7 +329,17 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
 	}
- 
+
+	@FXML
+	private void handleChooseDirectory(ActionEvent event) {
+	    // Show the directory chooser dialog
+	    File selectedDirectory = directoryChooser.showDialog(null);
+
+	    if (selectedDirectory != null) {
+	        // Update the text field with the selected directory path
+	        directoryTextField.setText(selectedDirectory.getAbsolutePath());
+	    }
+	}
     
     
 }

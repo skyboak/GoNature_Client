@@ -1,13 +1,21 @@
 package workerScreenController;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import client.ClientController;
 import enums.Commands;
@@ -16,20 +24,24 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import logic.ManagerRequestDetail;
 import logic.Message;
+import logic.ReportDetail;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class DepartmentManagerDashboardController extends WorkerScreenController {
+public class DepartmentManagerDashboardController extends WorkerScreenController implements Initializable{
 
 	
     @FXML
@@ -41,6 +53,28 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     @FXML
     private Button cancellationReport;
 
+
+    @FXML
+    private TableView<ReportDetail> reportTable;
+
+    @FXML
+    private TableColumn<ReportDetail, Integer> reportId;
+
+    @FXML
+    private TableColumn<ReportDetail, String> parkName;
+
+    @FXML
+    private TableColumn<ReportDetail, LocalDate> fromC;
+
+    @FXML
+    private TableColumn<ReportDetail, LocalDate> toC;
+
+    @FXML
+    private Button downloadReport;
+
+    @FXML
+    private ComboBox<String> reportComboBox;
+    
     @FXML
     private Button aboutUs;
 
@@ -57,22 +91,50 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     private TableColumn<ManagerRequestDetail, String> changes;
 
     private ManagerRequestDetail requestSelected;
+    
+    private ReportDetail reportSelected;
 
     @FXML
     private Button confirmChanges;
+	@FXML
+	private TextField directoryTextField;
+
+	private DirectoryChooser directoryChooser;
 
     private ArrayList<ManagerRequestDetail> requestList;
+
+	private ArrayList<ReportDetail> reportList;
     
-    
-    
-    
-    
+
+	
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+	    directoryChooser = new DirectoryChooser();
+    }
+	
+   
+
 
     @FXML
     void confirmChangesBtn(ActionEvent event) throws Exception {
     	confirm();
     }
+    @FXML
+    void reportComboBoxChange(ActionEvent event) throws Exception {
+    	reportRefresh();
+    }
     
+	@FXML
+	private void handleChooseDirectory(ActionEvent event) {
+	    // Show the directory chooser dialog
+	    File selectedDirectory = directoryChooser.showDialog(null);
+
+	    if (selectedDirectory != null) {
+	        // Update the text field with the selected directory path
+	        directoryTextField.setText(selectedDirectory.getAbsolutePath());
+	        downloadReport.setDisable(false);
+	    }
+	}
     private void confirm() throws Exception {
 
     	Message msg = null;
@@ -137,6 +199,32 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     	requestTable.getItems().clear();
     	refresh();
     }
+    @FXML
+    void downloadReportBtn(ActionEvent event) throws Exception {
+    	
+    	
+        // Get the directory path from the text field
+        String directoryPath = directoryTextField.getText();
+        String fileName = "/Report #"+  reportSelected.getReportId()+".pdf";
+        OutputStream out = new FileOutputStream(directoryPath+fileName);
+        out.write(reportSelected.getFile());
+        out.close();
+    	
+    }
+    
+	private void setComboBox() 
+	{
+		ArrayList<String> parkNames = new ArrayList<String>();
+		parkNames.add("Visitor Statistic Report");
+		parkNames.add("Pay now");
+		ObservableList<String> list1 = FXCollections.observableArrayList(parkNames);
+		reportComboBox.setItems(list1);
+		reportComboBox.getSelectionModel().selectFirst();
+
+
+
+
+	}
     
     private void refresh() throws Exception {
     	requestTable.getItems().clear();
@@ -161,7 +249,7 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 
 		System.out.println(requestList.size());
     	requestTable.getItems().clear();
-    	int counter = 1;
+
         for (ManagerRequestDetail RequestData : requestList) {
         	requestTable.getItems().add(RequestData);}
     	requestTable.refresh();
@@ -171,18 +259,50 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     {
         requestNumber.setCellValueFactory(new PropertyValueFactory<>("requestNumber"));
         changes.setCellValueFactory(new PropertyValueFactory<>("changes"));
-        // Add a TextFieldTableCell for the changes column
         changes.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        // Add a CheckBoxTableCell for the checkBox column
-        //checkBox.setCellFactory(CheckBoxTableCell.forTableColumn(checkBox));
-     
-
-        
         refresh();
-        
     }
     
+    private void startReportTable() throws Exception 
+    {
+
+    	reportId.setCellValueFactory(new PropertyValueFactory<>("reportId"));
+    	parkName.setCellValueFactory(new PropertyValueFactory<>("parkName"));
+    	fromC.setCellValueFactory(new PropertyValueFactory<>("dateFrom"));
+    	toC.setCellValueFactory(new PropertyValueFactory<>("dateTo"));
+    	reportRefresh();
+    }
+	public String getReportType() {
+		return reportComboBox.getValue();
+	}
+    private void reportRefresh() throws Exception {
+    	reportTable.getItems().clear();
+    	reportList = null;
+    	System.out.println("got refreshed");
+
+		Message msg = new Message(getReportType(),Commands.getReportTable);
+		ClientController.client.sendToServer(msg);
+		boolean awaitResponse = true;
+        // wait for response
+		while (awaitResponse) {
+			try {
+				Thread.sleep(100);
+				awaitResponse = ClientController.client.reportController.isGotResponse();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		ClientController.client.reportController.setGotResponse(true);
+		reportList =  ClientController.client.reportController.getReportList();
+		
+        for (ReportDetail reportData : reportList) {
+        	reportTable.getItems().add(reportData);}
+        reportTable.getSelectionModel().selectFirst();
+        reportSelected =  reportTable.getSelectionModel().getSelectedItem();
+        reportTable.refresh();
+		
+    }
     
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/WorkerScreens/DepartmentManagerScreen.fxml"));
@@ -193,8 +313,9 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     	primaryStage.setScene(scene);
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
+    	setComboBox();
     	startRequestTable();
-    	//enables cancel button and saves orderID
+    	startReportTable();
     	requestTable.setOnMouseClicked(event -> {
     		confirmChanges.setDisable(false);
     		requestSelected = requestTable.getSelectionModel().getSelectedItem();
@@ -206,6 +327,14 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
             	confirmChanges.setDisable(true);
             }
         });
+    	
+    	reportTable.setOnMouseClicked(event -> {
+    		confirmChanges.setDisable(false);
+    		reportSelected = reportTable.getSelectionModel().getSelectedItem();
+    		});
+
+
+    	
 
 	}
 }

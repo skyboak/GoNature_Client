@@ -9,7 +9,6 @@ public class WorkerController {
 	
 	private boolean gotResponse = false;
 	private WorkerDetail workerDetail;
-
 	private int vistorAmount;
 	private ArrayList<ManagerRequestDetail> requestList;
 
@@ -89,11 +88,7 @@ public class WorkerController {
 	
 
 	public void setRequestList(ArrayList<ManagerRequestDetail> requestList) {
-		System.out.println("shiniti at");
-        System.out.println("Contents of the ArrayList in workerController:");
-        for (ManagerRequestDetail element : requestList) {
-            System.out.println(element.getChanges());
-        }
+
   		this.requestList = null;
 		this.requestList = requestList;
 		this.gotResponse = true;
@@ -119,4 +114,6 @@ public class WorkerController {
 	public String getMaxOccupancy() {
 		return MaxOccupancy;
 	}
+
+
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import logic.CancellationData;
 import logic.CancellationDetail;
+import logic.ReportDetail;
 
 public class ReportController {
 	private boolean gotResponse = true;
@@ -37,6 +38,12 @@ public class ReportController {
 
 
 
+
+	private boolean reportCheck;
+	private ArrayList<ReportDetail> reportList;
+	
+	
+
 	public boolean isGotResponse() {
 		return gotResponse;
 	}
@@ -66,6 +73,7 @@ public class ReportController {
 		this.gotResponse = false;
 		
 	}
+
 	
 	public ArrayList<CancellationDetail> getCancellationReportData() {
 		return cancellationReportData;
@@ -83,5 +91,28 @@ public class ReportController {
 
 
 	
+
+	public void setAddReportCheck(boolean reportCheck) {
+		this.reportCheck = reportCheck;
+		this.gotResponse = false;
+	}
+
+	public boolean isReportCheck() {
+		return reportCheck;
+	}
+
+
+
+	public void setReportList(ArrayList<ReportDetail> reportList) {
+		this.reportList = reportList;
+		this.gotResponse = false;
+	}
+
+
+
+	public ArrayList<ReportDetail> getReportList() {
+		return reportList;
+	}
+
 
 }
