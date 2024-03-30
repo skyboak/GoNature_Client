@@ -35,7 +35,8 @@ import logic.DateDetail;
 import logic.Message;
 import workerScreenController.WorkerScreenController;
 
-public class VisitorStatisticReportScreenController extends WorkerScreenController implements Initializable {
+public class VisitorStatisticReportScreenController extends WorkerScreenController implements Initializable 
+{
 
     @FXML
     private Button parkDashboard;

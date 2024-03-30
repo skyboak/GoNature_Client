@@ -6,6 +6,9 @@ import enums.Commands;
 
 public class Message implements Serializable{
 	
+	/**
+	 * 
+	 */
 	
 	
 	private Object obj;
@@ -14,6 +17,7 @@ public class Message implements Serializable{
 		this.obj = obj;
 		this.cmd = cmd;
 	}
+	
 	public Object getObj() {
 		return obj;
 	}

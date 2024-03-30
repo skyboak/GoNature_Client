@@ -9,7 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import reportsScreenController.CancellationReportScreenController;
 import reportsScreenController.VisitorStatisticReportScreenController;
+import reportsScreenController.VisitsReportScreenController;
 import screenController.ScreenController;
 import logic.LoginDetail;
 import logic.Message;
@@ -23,9 +25,9 @@ public class WorkerScreenController extends ScreenController {
 	
 	//Those Buttons Will Transition From Screen to Screen in the workers Screens
 //	
-//	public  void parkDashboardBtn(ActionEvent event) throws Exception{
-//		
-//	}
+	public  void DashboardBtn(ActionEvent event) throws Exception{
+		System.out.println("DUMB FUCK");
+	}
 //	
 //	public void parkAvailabilityReportBtn(ActionEvent event) throws Exception{
 //		
@@ -41,13 +43,18 @@ public class WorkerScreenController extends ScreenController {
 //	
 	
 	
-//	public void VisitsReportBtn(ActionEvent event) throws Exception{
-//		
-//	}
-//	
-//	public void CancellationReportBtn(ActionEvent event) throws Exception{
-//		
-//	}
+	public void VisitsReportBtn(ActionEvent event) throws Exception{
+		((Node)event.getSource()).getScene().getWindow().hide();
+		VisitsReportScreenController newScreen = new VisitsReportScreenController();
+		newScreen.start(new Stage());
+	}
+	
+	
+	public void cancellationReportBtn(ActionEvent event) throws Exception{
+		((Node)event.getSource()).getScene().getWindow().hide();
+		CancellationReportScreenController newScreen = new CancellationReportScreenController();
+		newScreen.start(new Stage());
+	}
 	
 	
 	public void logoutBtn(ActionEvent event) throws Exception {
@@ -60,7 +67,13 @@ public class WorkerScreenController extends ScreenController {
 	}
 	
 	
-	
+
+    
+   
+    
+    void parksVisitsReportBtn(ActionEvent event) {
+    	System.out.println("DUMB FUCK");
+    }
 	
 	
 	

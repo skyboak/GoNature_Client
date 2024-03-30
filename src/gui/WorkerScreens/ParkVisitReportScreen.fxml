@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -27,12 +24,12 @@
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="visitorStatisticReport" mnemonicParsing="false" onAction="#VisitorStatisticReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park's Visits Report">
+                  <Button fx:id="visitorStatisticReport" disable="true" mnemonicParsing="false" onAction="#VisitsReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park's Visits Report">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cancellationReport" disable="true" mnemonicParsing="false" onAction="#cancellationReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Cancellation Report">
+                  <Button fx:id="parkAvailabilityReport" mnemonicParsing="false" onAction="#cancellationReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Cancellation Report">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
@@ -64,38 +61,40 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="#1e525b" layoutX="294.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancellation by week by day  " textAlignment="CENTER" wrappingWidth="462.3333201408386">
+      <Text fill="#1e525b" layoutX="316.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Park Visit Reports " textAlignment="CENTER" wrappingWidth="462.3333201408386">
          <font>
             <Font name="System Bold Italic" size="29.0" />
          </font>
       </Text>
-      <Text layoutX="276.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="park name : " wrappingWidth="123.99999380111694">
+      <Text layoutX="281.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="park name : " wrappingWidth="123.99999380111694">
          <font>
             <Font name="Futura Bold" size="21.0" />
          </font>
       </Text>
-      <Button fx:id="Show" layoutX="702.0" layoutY="101.0" mnemonicParsing="false" onAction="#showBtn" text="Show" />
-      <Label fx:id="averageCanceltxt" layoutX="275.0" layoutY="272.0" prefHeight="23.0" prefWidth="299.0" text="Average cancellation  :">
+      <Button fx:id="Show" layoutX="702.0" layoutY="133.0" mnemonicParsing="false" onAction="#showBtn" text="Show" />
+      <ComboBox fx:id="parkNameCombo" layoutX="405.0" layoutY="133.0" prefWidth="150.0" promptText="select" />
+      <Text layoutX="266.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from:" wrappingWidth="123.99999380111694">
          <font>
-            <Font name="David Bold" size="15.0" />
+            <Font name="Futura Bold" size="21.0" />
          </font>
-      </Label>
-      <ComboBox fx:id="parkNameCombo" layoutX="386.0" layoutY="101.0" prefWidth="150.0" promptText="select" />
-      <BarChart fx:id="CancellationChart" layoutX="262.0" layoutY="303.0" prefHeight="207.0" prefWidth="526.0">
-         <xAxis>
-            <CategoryAxis label="day " layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="378.0" side="BOTTOM" translateX="1.0" fx:id="xAxisR" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis fx:id="yAxisR" label="AVG. Cancellation " lowerBound="5.0" side="LEFT" tickLabelFill="#3c0505" tickLabelGap="10.0" />
-         </yAxis>
-      </BarChart>
-      <TableView fx:id="tableView" layoutX="290.0" layoutY="148.0" prefHeight="120.0" prefWidth="491.0">
-         <columns>
-            <TableColumn fx:id="orderNumberC" prefWidth="119.0" text="Order Number" />
-            <TableColumn fx:id="parkNameC" minWidth="0.0" prefWidth="111.66665649414062" text="Visitor ID" />
-            <TableColumn fx:id="dateTimeC" prefWidth="101.33334350585938" text="Date &amp; Time" />
-            <TableColumn fx:id="numOfVisitorsC" prefWidth="159.0" text="Number Of Visitors" />
-         </columns>
-      </TableView>
+      </Text>
+      <DatePicker fx:id="FromDate" layoutX="316.0" layoutY="85.0" prefHeight="31.0" prefWidth="178.0" />
+      <Text layoutX="530.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to:" wrappingWidth="143.99999380111694">
+         <font>
+            <Font name="Futura Bold" size="21.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="ToDate" layoutX="565.0" layoutY="85.0" prefHeight="31.0" prefWidth="196.0" />
+      <ScrollPane fx:id="ScrollPane" layoutX="277.0" layoutY="195.0" prefHeight="308.0" prefWidth="506.0">
+         <content>
+            <VBox fx:id="pieChartContainer" alignment="CENTER" prefWidth="481.0">
+               <children>
+                  <PieChart fx:id="PieChartSolo" legendSide="TOP" legendVisible="false" />
+                  <PieChart fx:id="PieChartGroup" legendSide="TOP" legendVisible="false" />
+                  <PieChart fx:id="PieChartGuided" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

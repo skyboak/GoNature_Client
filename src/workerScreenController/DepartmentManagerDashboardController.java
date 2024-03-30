@@ -63,10 +63,10 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 
     private ArrayList<ManagerRequestDetail> requestList;
     
-    @FXML
-    void cancellationReportBtn(ActionEvent event) {
-
-    }
+    
+    
+    
+    
 
     @FXML
     void confirmChangesBtn(ActionEvent event) throws Exception {
