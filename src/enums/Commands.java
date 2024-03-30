@@ -39,8 +39,12 @@ public enum Commands {
 	removeRequest, RequestRemoved,
 
 
+
 	CheckSixSlots, CurrentOccupancy, MaxOccupancy, BookingDetails, 
-	ChangePaymentStatusInDB
+	ChangePaymentStatusInDB,
+
+	 AddReport, AddReportCheck, getReportTable, SetReportList
+
 
 
 	;

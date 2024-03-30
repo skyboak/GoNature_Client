@@ -14,6 +14,7 @@ import logic.BookingDetail;
 import logic.CancellationDetail;
 import logic.ManagerRequestDetail;
 import logic.Message;
+import logic.ReportDetail;
 import logic.WorkerDetail;
 
 public class Client extends AbstractClient
@@ -156,7 +157,7 @@ public class Client extends AbstractClient
 	      		break;
 	      	case RequestRemoved:
 	      		workerController.setGotResponse(true);
-	      			      
+	      		break;
 	      	case CurrentOccupancy:
 	      		String CurrOcc = (String)m.getObj();
 	      		workerController.setCurrentOccupancy(CurrOcc);
@@ -171,11 +172,23 @@ public class Client extends AbstractClient
 	  		  	BookingDetail bd = (BookingDetail)m.getObj();
 	  		  	bookingController.setBookingDetails(bd);
 	  		  	break;
+
 	  		  	
 	  	  case ChangePaymentStatusInDB:
 	  		  bookingController.setPaymentStatus();
 	  		  break;
 	      		
+
+	  	  case AddReportCheck:
+	  		  boolean reportCheck = (boolean)m.getObj();
+	  		  reportController.setAddReportCheck(reportCheck);
+	  		  break;
+	  		  
+	  	  case SetReportList:
+	  		ArrayList<ReportDetail> ReportList = (ArrayList<ReportDetail>)m.getObj();
+	  		reportController.setReportList(ReportList);
+	  		  break;
+
 		default:
 			break;
 	      		
