@@ -103,6 +103,11 @@ public class BookingController {
 
 	}
 	
+	public void setPaymentStatus() {
+		this.isGotResponse = true;
+		
+	}
+	
 	/*public void CreateNewBooking(String vistorID   ) {
 		
 	}

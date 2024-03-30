@@ -16,9 +16,18 @@ public class BookingDetail implements Serializable {
     private String visitorID;
     private String TableName;
     private int VisitDuration;
+    private String PaymentStatus;
 
     
-    public int getVisitDuration() {
+    public String getPaymentStatus() {
+		return PaymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.PaymentStatus = paymentStatus;
+	}
+
+	public int getVisitDuration() {
 		return VisitDuration;
 	}
 

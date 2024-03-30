@@ -4,6 +4,7 @@ package screenController;
 
 import java.util.ArrayList;
 
+import client.Client;
 import client.ClientController;
 import enums.Commands;
 import javafx.collections.FXCollections;
@@ -78,10 +79,25 @@ public class PaymentController extends VisitorScreenController
 
 	public void finishBtn(ActionEvent event) throws Exception 
 	{
+		boolean awaitResponse = false;
 		 if(paymentCombo.getValue() == null) {
 		        errorT.setVisible(true);
 		    } 
 		 else if(paymentCombo.getValue().equals("Pay at visit")) {
+			 //pay at visit
+			 details.setPaymentStatus("NO");
+		    	Message PaymentStatusToDB = new Message(details,Commands.ChangePaymentStatusInDB);
+		    	ClientController.client.sendToServer(PaymentStatusToDB);
+		    	
+		    	while (!awaitResponse) 
+	    		{
+	    			try {
+	    				Thread.sleep(100);
+	    				awaitResponse = ClientController.client.bookingController.isGotResponse();
+	    			} catch (InterruptedException e) {
+	    				e.printStackTrace();
+	    			}
+	    		}
 		    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/payatparkconfirm.fxml"));
 				loader.setController(this); // Set the controller
 		    	Parent root = loader.load();
@@ -94,6 +110,21 @@ public class PaymentController extends VisitorScreenController
 		    	primaryStage.show();
 		        ((Node)event.getSource()).getScene().getWindow().hide();
 		    } else {
+		    	//pay now
+		    	details.setPaymentStatus("YES");
+		    	Message PaymentStatusToDB = new Message(details,Commands.ChangePaymentStatusInDB);
+		    	ClientController.client.sendToServer(PaymentStatusToDB);
+		    	
+		    	while (!awaitResponse) 
+	    		{
+	    			try {
+	    				Thread.sleep(100);
+	    				awaitResponse = ClientController.client.bookingController.isGotResponse();
+	    			} catch (InterruptedException e) {
+	    				e.printStackTrace();
+	    			}
+	    		}
+		    	
 		        ((Node)event.getSource()).getScene().getWindow().hide();
 		        ReceiptScreenController newScreen = new ReceiptScreenController();
 		        newScreen.start(new Stage(), details, discountPrice);
@@ -102,6 +133,8 @@ public class PaymentController extends VisitorScreenController
 	}
 	public void okBtn(ActionEvent event) throws Exception {
 		((Node)event.getSource()).getScene().getWindow().hide();
+		MyBookingController newScreen = new MyBookingController();
+		newScreen.start(new Stage());
 	}
 	
 	public void cancelBtn(ActionEvent event) throws Exception

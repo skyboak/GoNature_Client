@@ -171,6 +171,10 @@ public class Client extends AbstractClient
 	  		  	BookingDetail bd = (BookingDetail)m.getObj();
 	  		  	bookingController.setBookingDetails(bd);
 	  		  	break;
+	  		  	
+	  	  case ChangePaymentStatusInDB:
+	  		  bookingController.setPaymentStatus();
+	  		  break;
 	      		
 		default:
 			break;
