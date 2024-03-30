@@ -98,9 +98,6 @@ public class WorkerController {
 		
 	}
 
-
-
-
 	public void setMaxOccupancy(String MaxOcc) {
 		MaxOccupancy = MaxOcc;
 		this.gotResponse = true;
@@ -115,5 +112,17 @@ public class WorkerController {
 		return MaxOccupancy;
 	}
 
+
+
+
+	public void setEnterPark() {
+		this.gotResponse = true;
+	}
+
+	public void setExitPark() {
+		this.gotResponse = true;
+	}
+	
+	
 
 }

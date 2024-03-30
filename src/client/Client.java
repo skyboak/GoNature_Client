@@ -187,8 +187,7 @@ public class Client extends AbstractClient
 	  		  	
 	  	  case ChangePaymentStatusInDB:
 	  		  bookingController.setPaymentStatus();
-	  		  break;
-	      		
+	  		  break;	      		
 
 	  	  case AddReportCheck:
 	  		  boolean reportCheck = (boolean)m.getObj();
@@ -199,7 +198,15 @@ public class Client extends AbstractClient
 	  		ArrayList<ReportDetail> ReportList = (ArrayList<ReportDetail>)m.getObj();
 	  		reportController.setReportList(ReportList);
 	  		  break;
-
+	  		  
+	  	  case EnterPark:
+	  		  workerController.setEnterPark();
+	  		  break;
+	      	
+	  	  case ExitPark:
+	  		workerController.setExitPark();
+	  		  break;
+	  		  
 		default:
 			break;
 

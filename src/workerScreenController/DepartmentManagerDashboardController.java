@@ -12,12 +12,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
+
 import java.util.ResourceBundle;
+
+
+
+import client.ClientController;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
-import client.ClientController;
 import enums.Commands;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

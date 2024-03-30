@@ -14,6 +14,7 @@ public class BookingController {
 	private boolean bookingAvailable = false;
 	private BookingDetail newBooking;
 	private ArrayList<String> SixSlots;
+	private BookingDetail BD;
 	
 
 	public BookingDetail getNewBooking() {
@@ -98,9 +99,12 @@ public class BookingController {
 	}
 
 	public void setBookingDetails(BookingDetail bd) {
-		newBooking = bd;
+		BD = bd;
 		this.isGotResponse = true;	
-
+	}
+	
+	public BookingDetail getBookingDetails() {
+		return BD;	
 	}
 	
 	public void setPaymentStatus() {
