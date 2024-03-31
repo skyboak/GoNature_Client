@@ -61,7 +61,12 @@ public enum Commands {
 
 	ChangePaymentStatusInDB, EnterPark, ExitPark,
 
- statReportData
+
+	statReportData,
+
+
+	 
+	 terminate,ClientDisconnect
 
 
 

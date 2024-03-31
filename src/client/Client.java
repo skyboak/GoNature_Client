@@ -231,6 +231,17 @@ public class Client extends AbstractClient
 	  		HashMap<String,Integer> statReportData = (HashMap<String,Integer>)m.getObj();
 	  		workerController.setstatReportData(statReportData);
 	  		break;
+	  	  case terminate:
+	  	    // Exit the application
+      		Message newMsg = new Message(null, Commands.ClientDisconnect);
+      		try {
+				sendToServer(newMsg);
+				this.closeConnection();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	         System.exit(0);
+	  		 break;
 
 	  		  
 		default:
