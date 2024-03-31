@@ -58,6 +58,7 @@
                </image>
             </ImageView>
             <Text fx:id="errorT" fill="RED" layoutX="50.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" wrappingWidth="295.6708984375" />
+            <Button id="Cancel" layoutX="348.0" layoutY="2.0" mnemonicParsing="false" onAction="#xBtn" prefHeight="20.0" prefWidth="30.0" stylesheets="@../images/CancelButton.css" text="X" textAlignment="CENTER" fx:id="x" />
          </children>
       </Pane>
       <ImageView blendMode="DARKEN" fitHeight="533.0" fitWidth="371.0" pickOnBounds="true">
