@@ -20,7 +20,8 @@ public enum Commands {
 	newBookingToDB//to enter to db
 	,
 	VisitorStatisticRequest,
-
+	
+	CancellationReportRequest,
 
 	AverageParkStayTimeCheck, OnlineBookingCapacityCheck, ParkCapacityCheck, 
 	checkIfExist,
@@ -30,9 +31,11 @@ public enum Commands {
 	
 
 	visitorStatisticData,
+
 	CancellationReportData, ClientConnect, 
 
-
+	visitReportRequest ,
+	
 	CancelNonPayedBooking,
 
 	getVisitorAmountInPark, vistorAmountData, AddManagerRequestDetail, getRequestTable, RequestTableData,
@@ -41,11 +44,26 @@ public enum Commands {
 
 
 	CheckSixSlots, CurrentOccupancy, MaxOccupancy, BookingDetails, 
-	ChangePaymentStatusInDB,
+
 
 	 AddReport, AddReportCheck, getReportTable, SetReportList, 
 	 CheckVisitorAlerts, 
-	 AlertBooks, AlertConfirmInDB, AlertCancelInDB
+	 AlertBooks, AlertConfirmInDB, AlertCancelInDB,
+
+
+
+	visitorReportData, 
+
+
+
+
+
+
+	ChangePaymentStatusInDB, EnterPark, ExitPark,
+
+ statReportData
+
+
 
 
 

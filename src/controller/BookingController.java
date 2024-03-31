@@ -16,6 +16,7 @@ public class BookingController {
 	private ArrayList<String> SixSlots;
 	private boolean IsVisitorAlerted;
 	private boolean AlertedConfirmStatus;
+	private BookingDetail BD;
 	
 
 	public boolean getAlertedConfirmStatus() {
@@ -119,9 +120,12 @@ public class BookingController {
 	}
 
 	public void setBookingDetails(BookingDetail bd) {
-		newBooking = bd;
+		BD = bd;
 		this.isGotResponse = true;	
-
+	}
+	
+	public BookingDetail getBookingDetails() {
+		return BD;	
 	}
 	
 	public void setPaymentStatus() {

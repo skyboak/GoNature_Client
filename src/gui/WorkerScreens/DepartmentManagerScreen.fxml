@@ -22,7 +22,7 @@
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="parksVisitsReport" mnemonicParsing="false" onAction="#parksVisitsReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park's Visits Report">
+                  <Button fx:id="parksVisitsReport" mnemonicParsing="false" onAction="#VisitsReportBtn" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="Park's Visits Report">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>

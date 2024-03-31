@@ -7,10 +7,12 @@ import controller.*;
 import enums.Commands;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import ocsf.client.AbstractClient;
 import logic.BookingDetail;
+import logic.CancellationData;
 import logic.CancellationDetail;
 import logic.ManagerRequestDetail;
 import logic.Message;
@@ -125,16 +127,25 @@ public class Client extends AbstractClient
 	      		bookingController.setCheckIfExistBooking(checkexistig);
 	      		break;
 	      		
+	      	case visitorReportData:
+	      		Map<String, int[]> VisitorReportData = (Map<String, int[]>)m.getObj();
+	      		reportController.setvisitorReportData(VisitorReportData);
+	      		break;
+	      		
+	      		
+	      		
 	      	case visitorStatisticData:
 	      		Map<LocalDate, int[]> visitorStatisticData = (Map<LocalDate, int[]>)m.getObj();
 	      		reportController.setvisitorStatisticData(visitorStatisticData);
 	      		break;
 	      		
 	      	case CancellationReportData:
-	      		//CancellationData CancellationReportData = (CancellationData)m.getObj();
-	      		//reportController.setCancellationReportData(CancellationReportData);
+	      		 CancellationData CancellationReportData = (CancellationData)m.getObj();
+	      		 reportController.setCancellationReportData(CancellationReportData.getCancellations());
+	      		 reportController.setDayCount(CancellationReportData.getDayCount());
 	      		break;
 	      		
+
 	      	case CheckSixSlots:
 	      		ArrayList<String> SixSlotsFromDB = (ArrayList<String>)m.getObj();
 	      		bookingController.setSixSlots(SixSlotsFromDB);
@@ -162,6 +173,7 @@ public class Client extends AbstractClient
 	      		String CurrOcc = (String)m.getObj();
 	      		workerController.setCurrentOccupancy(CurrOcc);
 	      		break;
+
 	  		  
 	  	  case MaxOccupancy:
 	  		  	String MaxOcc = (String)m.getObj();
@@ -176,8 +188,7 @@ public class Client extends AbstractClient
 	  		  	
 	  	  case ChangePaymentStatusInDB:
 	  		  bookingController.setPaymentStatus();
-	  		  break;
-	      		
+	  		  break;	      		
 
 	  	  case AddReportCheck:
 	  		  boolean reportCheck = (boolean)m.getObj();
@@ -207,8 +218,25 @@ public class Client extends AbstractClient
 	  		bookingController.setAlertedCancelStatus();	  		  
 	  		  break;
 
+	  		  
+	  	  case EnterPark:
+	  		  workerController.setEnterPark();
+	  		  break;
+	      	
+	  	  case ExitPark:
+	  		workerController.setExitPark();
+	  		  break;
+
+	  	  case statReportData:
+	  		HashMap<String,Integer> statReportData = (HashMap<String,Integer>)m.getObj();
+	  		workerController.setstatReportData(statReportData);
+	  		break;
+
+	  		  
 		default:
 			break;
+
+
 	      		
 	      
 	      }

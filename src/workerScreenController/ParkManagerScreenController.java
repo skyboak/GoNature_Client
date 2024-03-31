@@ -1,7 +1,6 @@
 package workerScreenController;
 import javafx.scene.image.Image;
 
-
 import java.io.IOException;
 
 import client.ClientController;
@@ -19,6 +18,9 @@ import javafx.stage.Stage;
 import logic.LoginDetail;
 import logic.ManagerRequestDetail;
 import logic.Message;
+import workerScreenController.WorkerScreenController;
+
+
 public class ParkManagerScreenController extends WorkerScreenController{
 	
 	@FXML

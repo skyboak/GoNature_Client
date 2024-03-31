@@ -59,7 +59,7 @@ public class PaymentController extends VisitorScreenController
 	public void price() {
 	//    int fullPrice, discountPrice;
 		fullpricetoshow = 100 * Integer.parseInt(details.getNumOfVisitors());
-	    if ("Guided Group".equals(details.getVisitType())) {
+	    if ("Guided".equals(details.getVisitType())) {
 	    	fullpricetoshow-=100;
 	        discountPrice = (int) (fullpricetoshow * 0.75); // 25% discount
 	        // Applying second discount of 12% if payment is "Cash"

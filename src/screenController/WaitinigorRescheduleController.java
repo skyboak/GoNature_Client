@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import client.ClientController;
 import enums.Commands;
 import javafx.beans.property.SimpleStringProperty;

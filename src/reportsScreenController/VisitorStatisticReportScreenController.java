@@ -6,8 +6,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.scene.control.TextField;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,8 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+
 import javax.imageio.ImageIO;
 import logic.ReportDetail;
+
+
 import client.ClientController;
 import client.ClientUI;
 import enums.Commands;
@@ -44,6 +45,8 @@ import javafx.util.Callback;
 import logic.DateDetail;
 import logic.Message;
 import workerScreenController.WorkerScreenController;
+
+
 import java.io.File; 
 public class VisitorStatisticReportScreenController extends WorkerScreenController implements Initializable {
 	@FXML

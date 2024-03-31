@@ -1,6 +1,7 @@
 package screenController;
 
 import java.util.ArrayList;
+
 import client.ClientController;
 import client.ClientUI;
 import enums.Commands;
@@ -21,6 +22,7 @@ import logic.LoginDetail;
 import logic.Message;
 import logic.WorkerDetail;
 import workerScreenController.ParkManagerScreenController;
+import workerScreenController.WorkerParkDashboardController;
 import workerScreenController.DepartmentManagerDashboardController;
 
 public class LoginController extends ScreenController {

@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import logic.BookingDetail;
 import logic.LoginDetail;
 import logic.Message;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -146,7 +147,7 @@ public class NewBookingController extends VisitorScreenController {
 				{
 					if (Integer.valueOf(numOfVisitorsCombo.getValue())>1)
 					{
-						details.setVisitType("Family");					
+						details.setVisitType("Group");					
 					}
 					else
 						details.setVisitType("Solo");				
