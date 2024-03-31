@@ -43,7 +43,9 @@ public enum Commands {
 	CheckSixSlots, CurrentOccupancy, MaxOccupancy, BookingDetails, 
 	ChangePaymentStatusInDB,
 
-	 AddReport, AddReportCheck, getReportTable, SetReportList
+	 AddReport, AddReportCheck, getReportTable, SetReportList, 
+	 CheckVisitorAlerts, 
+	 AlertBooks, AlertConfirmInDB, AlertCancelInDB
 
 
 

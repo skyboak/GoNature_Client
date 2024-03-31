@@ -76,7 +76,13 @@ public class WaitinigorRescheduleController extends VisitorScreenController
 	    }
 	    
 
-	    
+	    @FXML
+	    void backbtn(ActionEvent event) throws Exception {
+	    	((Node)event.getSource()).getScene().getWindow().hide();
+	    	NewBookingController newScreen = new NewBookingController();
+			newScreen.start(new Stage());
+
+	    }
 
 	    @FXML
 	    public void okBtn(ActionEvent event) throws Exception //alternative date 
@@ -160,11 +166,18 @@ public class WaitinigorRescheduleController extends VisitorScreenController
     		ClientController.client.bookingController.setGotResponse();
     		ArrayList<String> AvailableSlots = ClientController.client.bookingController.getSixSlots();
     		
-    		// Convert ArrayList to ObservableList
-    	    ObservableList<String> observableSlots = FXCollections.observableArrayList(AvailableSlots);
-    	    dateTime.getItems().clear(); // Clear previous data
-    	    dateTime.setItems(observableSlots); // Set the items directly to the TableView
-	    	
+    		if (AvailableSlots.size()<1) {
+    	        // Display "Too many visitors" message in the TableView
+    	        dateTime.getItems().clear(); // Clear previous data
+    	        dateTime.setItems(FXCollections.observableArrayList("You try to book more visitors than park capacity")); // Display message
+    	        
+    	    } else {
+    	        // Convert ArrayList to ObservableList and display in the TableView
+    	        ObservableList<String> observableSlots = FXCollections.observableArrayList(AvailableSlots);
+    	        dateTime.getItems().clear(); // Clear previous data
+    	        dateTime.setItems(observableSlots); // Set the items directly to the TableView
+    	    }
+    		
 	    }
 
 }

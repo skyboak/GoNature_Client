@@ -14,7 +14,28 @@ public class BookingController {
 	private boolean bookingAvailable = false;
 	private BookingDetail newBooking;
 	private ArrayList<String> SixSlots;
+	private boolean IsVisitorAlerted;
+	private boolean AlertedConfirmStatus;
 	
+
+	public boolean getAlertedConfirmStatus() {
+		return AlertedConfirmStatus;
+	}
+
+	public void setAlertedConfirmStatus(boolean alertedConfirmStatus) {
+		AlertedConfirmStatus = alertedConfirmStatus;
+		this.isGotResponse = true;
+	}
+
+	public boolean getIsVisitorAlerted() {
+		return IsVisitorAlerted;
+		
+	}
+
+	public void setIsVisitorAlerted(boolean isVisitorAlerted) {
+		IsVisitorAlerted = isVisitorAlerted;
+		this.isGotResponse = true;
+	}
 
 	public BookingDetail getNewBooking() {
 		return newBooking;
@@ -106,6 +127,10 @@ public class BookingController {
 	public void setPaymentStatus() {
 		this.isGotResponse = true;
 		
+	}
+
+	public void setAlertedCancelStatus() {
+		this.isGotResponse = true;		
 	}
 	
 	/*public void CreateNewBooking(String vistorID   ) {

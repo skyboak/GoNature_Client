@@ -408,7 +408,36 @@ public class NewBookingController extends VisitorScreenController {
 		numOfVisitorsGCombo.getSelectionModel().select("1");//check if guide get enter alone?
 	}
 	
-
+	
+	public boolean CheckIfVisitorisalerted() throws Exception
+	{
+		boolean awaitResponse;
+		String savedID = ClientController.client.bookingController.getID();
+		BookingDetail IdToCheckAlerts = new BookingDetail();
+		IdToCheckAlerts.setVisitorID(savedID);
+		Message IdToCheckAlertsMsg = new Message(IdToCheckAlerts,Commands.CheckVisitorAlerts);
+		
+		ClientController.client.sendToServer(IdToCheckAlertsMsg);
+		awaitResponse = false;
+		while (!awaitResponse) 
+		{
+			try {
+				Thread.sleep(100);
+				awaitResponse = ClientController.client.bookingController.isGotResponse();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		ClientController.client.bookingController.setGotResponse();
+		
+		if(ClientController.client.bookingController.getIsVisitorAlerted())
+		{
+        	NotficationController newS = new NotficationController();
+            newS.start(new Stage());
+            return true;
+		}
+		return false;
+	}
 	
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/NewBookingScreen.fxml"));
@@ -422,6 +451,7 @@ public class NewBookingController extends VisitorScreenController {
     	setComboBox();
     	configureDatePicker();
     	guide.setDisable(checkGuide());//Permission for group guide only
+    	CheckIfVisitorisalerted();
     	//add a method to check if this client is in the 24 hour pending table (commingbooks)
     	
 	}

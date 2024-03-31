@@ -61,7 +61,7 @@
             <TableColumn id="pointsColumn_tableExam" fx:id="pointsColumn_tableExam" prefWidth="279.0" text="Date and Time" />
          </columns>
       </TableView>
-      <Button id="sale" fx:id="ok" disable="true" layoutX="120.0" layoutY="384.0" mnemonicParsing="false" onAction="#okBtn" prefHeight="30.0" prefWidth="80.0" stylesheets="@../images/LoginButton.css" text="ok">
+      <Button id="sale" fx:id="ok" disable="true" layoutX="222.0" layoutY="387.0" mnemonicParsing="false" onAction="#okBtn" prefHeight="30.0" prefWidth="80.0" stylesheets="@../images/LoginButton.css" text="ok">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -71,5 +71,6 @@
             <Image url="@../images/forest.png" />
          </image>
       </ImageView>
+      <Button id="Cancel" fx:id="back" layoutX="42.0" layoutY="387.0" mnemonicParsing="false" onAction="#backbtn" stylesheets="@../images/CancelButton.css" text="Back" />
    </children>
 </AnchorPane>

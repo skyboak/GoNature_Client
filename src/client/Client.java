@@ -188,6 +188,24 @@ public class Client extends AbstractClient
 	  		ArrayList<ReportDetail> ReportList = (ArrayList<ReportDetail>)m.getObj();
 	  		reportController.setReportList(ReportList);
 	  		  break;
+	  		  
+	  	  case CheckVisitorAlerts:
+	  		  boolean AlertedVisitor = (boolean)m.getObj();
+	  		  bookingController.setIsVisitorAlerted(AlertedVisitor);
+	  		  break;
+	  		  
+	  	  case AlertBooks:
+	  		ArrayList<BookingDetail> AlertedBookingList = (ArrayList<BookingDetail>)m.getObj();
+      		bookingController.setMyBookingTableList(AlertedBookingList);
+      		break;
+      		
+	  	  case AlertConfirmInDB:
+	  		  boolean IsAlertConfirmed = (boolean)m.getObj();
+	  		  bookingController.setAlertedConfirmStatus(IsAlertConfirmed);
+	  		  break;
+	  	  case AlertCancelInDB:
+	  		bookingController.setAlertedCancelStatus();	  		  
+	  		  break;
 
 		default:
 			break;

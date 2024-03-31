@@ -14,7 +14,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.LoginDetail;
 import logic.Message;
 import logic.WorkerDetail;
@@ -153,11 +155,13 @@ public class LoginController extends ScreenController {
 				errorT.setText("**User is already logged in");
 			}
 			else {
-				//move to visitor screen
+				//move to visitor screen				
 				((Node)event.getSource()).getScene().getWindow().hide();
 				NewBookingController newScreen = new NewBookingController();
 				ClientController.client.bookingController.setID(getID()); // saves user ID
 				newScreen.start(new Stage());
+				
+				
 			}
 		}
 
