@@ -7,6 +7,7 @@ import controller.*;
 import enums.Commands;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import ocsf.client.AbstractClient;
@@ -198,6 +199,7 @@ public class Client extends AbstractClient
 	  		ArrayList<ReportDetail> ReportList = (ArrayList<ReportDetail>)m.getObj();
 	  		reportController.setReportList(ReportList);
 	  		  break;
+
 	  		  
 	  	  case EnterPark:
 	  		  workerController.setEnterPark();
@@ -206,6 +208,12 @@ public class Client extends AbstractClient
 	  	  case ExitPark:
 	  		workerController.setExitPark();
 	  		  break;
+
+	  	  case statReportData:
+	  		HashMap<String,Integer> statReportData = (HashMap<String,Integer>)m.getObj();
+	  		workerController.setstatReportData(statReportData);
+	  		break;
+
 	  		  
 		default:
 			break;

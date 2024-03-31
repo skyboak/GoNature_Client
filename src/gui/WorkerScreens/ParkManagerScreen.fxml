@@ -33,11 +33,6 @@
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="aboutUs" mnemonicParsing="false" prefHeight="36.0" prefWidth="255.0" style="-fx-background-color: dff9e8;" text="DELETE THE PARK">
-                     <font>
-                        <Font name="System Bold Italic" size="17.0" />
-                     </font>
-                  </Button>
                </children>
             </VBox>
             <Text fill="#dff9e8" layoutX="21.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go Nature">
@@ -69,26 +64,34 @@
       </Text>
       <Pane layoutX="360.0" layoutY="370.0">
          <children>
-            <Pane layoutX="-95.0">
+            <Pane layoutX="-40.0" layoutY="-10.0">
                <children>
-                  <TextField fx:id="ParkCapacityT" alignment="CENTER" layoutX="170.0" />
-                  <Button fx:id="setParkCapacity" mnemonicParsing="false" onAction="#setParkCapacityBtn" prefHeight="25.0" prefWidth="163.0" text="Set Park Capacity" />
-               </children>
-            </Pane>
-            <Pane layoutX="-95.0" layoutY="50.0">
-               <children>
-                  <TextField fx:id="OnlineBookingCapacityT" alignment="CENTER" layoutX="170.0" />
-                  <Button fx:id="setOnlineBookingCapacity" mnemonicParsing="false" onAction="#setOnlineBookingCapacityBtn" prefHeight="25.0" prefWidth="163.0" text="Set Online Booking Capacity">
+                  <TextField fx:id="ParkCapacityT" alignment="CENTER" layoutX="240.0" layoutY="-13.0" prefHeight="45.0" prefWidth="80.0" />
+                  <Button fx:id="setParkCapacity" layoutX="-40.0" layoutY="-14.0" mnemonicParsing="false" onAction="#setParkCapacityBtn" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Set Park Capacity">
                      <font>
-                        <Font size="11.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
                </children>
             </Pane>
-            <Pane layoutX="-95.0" layoutY="100.0">
+            <Pane layoutX="-40.0" layoutY="55.0">
                <children>
-                  <TextField fx:id="AverageParkStayTimeT" alignment="CENTER" layoutX="170.0" />
-                  <Button fx:id="setAverageParkStayTime" mnemonicParsing="false" onAction="#setAverageParkStayTimeBtn" prefHeight="25.0" prefWidth="163.0" text="Set Average Park Stay Time" />
+                  <TextField fx:id="OnlineBookingCapacityT" alignment="CENTER" layoutX="240.0" layoutY="-13.0" prefHeight="45.0" prefWidth="80.0" />
+                  <Button fx:id="setOnlineBookingCapacity" layoutX="-40.0" layoutY="-14.0" mnemonicParsing="false" onAction="#setOnlineBookingCapacityBtn" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Set Online Booking Capacity">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="-40.0" layoutY="120.0">
+               <children>
+                  <TextField fx:id="AverageParkStayTimeT" alignment="CENTER" layoutX="240.0" layoutY="-13.0" prefHeight="45.0" prefWidth="80.0" />
+                  <Button fx:id="setAverageParkStayTime" layoutX="-40.0" layoutY="-14.0" mnemonicParsing="false" onAction="#setAverageParkStayTimeBtn" prefHeight="45.0" prefWidth="250.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Set Average Park Stay Time">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
@@ -103,5 +106,10 @@
             <Font size="7.0" />
          </font>
       </Button>
+      <Text fill="#1e525b" layoutX="278.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Park Settings:" wrappingWidth="270.0000040233135">
+         <font>
+            <Font name="System Bold Italic" size="32.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

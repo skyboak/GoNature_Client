@@ -50,11 +50,14 @@ public enum Commands {
 	visitorReportData, 
 
 
-	 AddReport, AddReportCheck, getReportTable, SetReportList,
 
 
 
-	ChangePaymentStatusInDB, EnterPark, ExitPark
+
+	ChangePaymentStatusInDB, EnterPark, ExitPark,
+
+	 AddReport, AddReportCheck, getReportTable, SetReportList, statReportData
+
 
 
 

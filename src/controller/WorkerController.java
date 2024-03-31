@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import logic.ManagerRequestDetail;
 import logic.WorkerDetail;
@@ -11,7 +12,7 @@ public class WorkerController {
 	private WorkerDetail workerDetail;
 	private int vistorAmount;
 	private ArrayList<ManagerRequestDetail> requestList;
-
+	private HashMap<String, Integer> statReportData;
 	private String CurrentOccupancy;
 	private String MaxOccupancy;
 
@@ -110,6 +111,11 @@ public class WorkerController {
 
 	public String getMaxOccupancy() {
 		return MaxOccupancy;
+	}
+
+	public void setstatReportData(HashMap<String, Integer> statReportData) {
+		this.statReportData = statReportData;
+		this.gotResponse = true;
 	}
 
 
