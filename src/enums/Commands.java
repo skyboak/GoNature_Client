@@ -59,6 +59,9 @@ public enum Commands {
 
 
 
+	 OccasionalBookingNumber, CheckBookInDB,
+
+
 	ChangePaymentStatusInDB, EnterPark, ExitPark,
 
 

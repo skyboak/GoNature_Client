@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import client.ClientController;
+import controller.WorkerController;
 import enums.Commands;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -37,6 +38,10 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     @FXML
     private Text workerNameT;
     @FXML
+    private Text bookingNumber;
+    @FXML
+    private Text bookingNumberT;
+    @FXML
     private Text visitorsInParkT;
     @FXML
     private Text orderNumberT;
@@ -52,6 +57,8 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     private Text visitorsT;
     @FXML
     private Text errorT;
+    @FXML
+    private Text orderNumber;  
     @FXML
     private TextField checkOrderT;
     @FXML
@@ -71,7 +78,7 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     @FXML
     private Button clearDetails1;
     @FXML
-    private ComboBox visitorCombo;
+    private ComboBox<String> visitorCombo;
     @FXML
     private CheckBox groupGuide;
     @FXML
@@ -79,19 +86,11 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     @FXML
     private CheckBox exitCheck;
     @FXML
-    private ComboBox groupCombo;
+    private ComboBox<String> groupCombo;
     @FXML
-    private Text email;
-    @FXML
-    private Text telephone;
+    private Text dateTimeT;
     @FXML
     private Text dateTime;
-    @FXML
-    private TextField emailT;
-    @FXML
-    private TextField telephoneT;
-    @FXML
-    private TextField dateTimeT;
     @FXML
     private Text priceT;
     @FXML
@@ -99,7 +98,8 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     @FXML
     private Text totalPriceT;;
     private BookingDetail order;
-    
+    private BookingDetail ocOrder;
+    private int Occasioanlnumber;
     
     //clears booking order details
     public void clearDetailsBtn(ActionEvent event) throws IOException  {
@@ -119,77 +119,181 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 		approve.setDisable(true);
 		enterCheck.setDisable(true);
 		exitCheck.setDisable(true);
+		enterCheck.setSelected(false);
+		exitCheck.setSelected(false);
     }
     
     //clears occaisonal visitor order details
     public void clearDetails1Btn(ActionEvent event) throws IOException {
-    	orderNumberT.setText("");
+    	bookingNumberT.setText("");
+    	bookingNumber.setVisible(false);
     	visitorID.setText("");
     	groupGuide.setVisible(false);
 		groupCombo.setVisible(false);
 		occasionalVisitNumT.setVisible(false);
 		visitorCombo.setVisible(false);
-		email.setVisible(false);
-		telephone.setVisible(false);
 		dateTime.setVisible(false);
-		emailT.setVisible(false);
-		telephoneT.setVisible(false);
-		dateTimeT.setVisible(false);
-		emailT.setText("");
-		telephoneT.setText("");
+		dateTimeT.setText("");
 		priceT.setText("");
 		totalPriceT.setText("");
 		payment.setDisable(true);
 		approve.setDisable(true);
+		groupGuide.setSelected(false);
+		enterCheck.setSelected(false);
+		exitCheck.setSelected(false);
     }
     
     // according to exit or enter updates current occupancy. 
     public void approveBtn(ActionEvent event) throws IOException  {
-    	if(Integer.parseInt(getCurrentOccupancy()) + Integer.parseInt(order.getNumOfVisitors()) > Integer.parseInt(getMaxOccupancy())) {
-    		error.setText("Park is full!");
-    		return;
-    	}
-    	error.setText("");
-    	if(enterCheck.isSelected()) {
-    		ParkEntryDetails details = new ParkEntryDetails(
-    				order.getOrderNumber(), order.getVisitType(), order.getParkName(),
-    				Time.valueOf(LocalTime.now()), order.getNumOfVisitors(), getCurrentOccupancy(), Date.valueOf(LocalDate.now())
-    				);
+    	   	 	
+    	if(!orderNumberT.getText().isEmpty()) {
+    		//check if park is full
+    		if(Integer.parseInt(getCurrentOccupancy()) + Integer.parseInt(order.getNumOfVisitors()) > Integer.parseInt(getMaxOccupancy()) && enterCheck.isSelected()) {
+        		error.setText("Park is full!");
+        		return;
+        	}
+	    	error.setText("");
+	    	if(enterCheck.isSelected()) {
+	    		ParkEntryDetails details = new ParkEntryDetails(
+	    				order.getOrderNumber(), order.getVisitType(), order.getParkName(),
+	    				Time.valueOf(LocalTime.now()), order.getNumOfVisitors(), getCurrentOccupancy(), Date.valueOf(LocalDate.now())
+	    				);
+	    		
+	    		Message enterPark = new Message(details,Commands.EnterPark);
+	    		ClientController.client.sendToServer(enterPark);
+	    		boolean awaitResponse = false;
+	    		while (!awaitResponse) 
+	    		{
+	    			try {
+	    				Thread.sleep(100);
+	    				awaitResponse = ClientController.client.workerController.isGotResponse();
+	    			} catch (InterruptedException e) {
+	    				e.printStackTrace();
+	    			}
+	    		}
+	    		ClientController.client.workerController.setGotResponse(false);
+	    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
+	    	}
+	    	if(exitCheck.isSelected()) {
+	    		ParkEntryDetails details = new ParkEntryDetails(
+	    				order.getOrderNumber(), Time.valueOf(LocalTime.now()), order.getParkName(), order.getNumOfVisitors());
+	    		Message exitPark = new Message(details,Commands.ExitPark);
+	    		ClientController.client.sendToServer(exitPark);
+	    		boolean awaitResponse = false;
+	    		while (!awaitResponse) 
+	    		{
+	    			try {
+	    				Thread.sleep(100);
+	    				awaitResponse = ClientController.client.workerController.isGotResponse();
+	    			} catch (InterruptedException e) {
+	    				e.printStackTrace();
+	    			}
+	    		}
+	    		ClientController.client.workerController.setGotResponse(false);
+	    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
+	    	}
+    	}	
+	    if(!visitorID.getText().isEmpty()) {
+    		if(groupGuide.isSelected()) {
+    			
+    			ocOrder.setNumOfVisitors(groupCombo.getSelectionModel().getSelectedItem());
+    			
+    			ocOrder.setVisitType("Guided");					
+    		}
+    		else {
+    		if(Integer.valueOf(visitorCombo.getSelectionModel().getSelectedItem()) < 2)
+    			ocOrder.setVisitType("Solo");
+    		else 
+    			ocOrder.setVisitType("Group");
+    		ocOrder.setNumOfVisitors(visitorCombo.getSelectionModel().getSelectedItem());
+    		}	
+    		if(enterCheck.isSelected()) {
+	    		ParkEntryDetails details = new ParkEntryDetails(
+	    				ocOrder.getOrderNumber(), ocOrder.getVisitType(), ocOrder.getParkName(),
+	    				Time.valueOf(LocalTime.now()), ocOrder.getNumOfVisitors(), getCurrentOccupancy(), Date.valueOf(LocalDate.now())
+	    				);
+	    		
+	    		Message enterPark = new Message(details,Commands.EnterPark);
+	    		ClientController.client.sendToServer(enterPark);
+	    		boolean awaitResponse = false;
+	    		while (!awaitResponse) 
+	    		{
+	    			try {
+	    				Thread.sleep(100);
+	    				awaitResponse = ClientController.client.workerController.isGotResponse();
+	    			} catch (InterruptedException e) {
+	    				e.printStackTrace();
+	    			}
+	    		}
+	    		ClientController.client.workerController.setGotResponse(false);
+	    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
+	    	}
+	    	if(exitCheck.isSelected()) {
+	    		ParkEntryDetails details = new ParkEntryDetails(
+	    				ocOrder.getOrderNumber(), Time.valueOf(LocalTime.now()), ocOrder.getParkName(), ocOrder.getNumOfVisitors());
+	    		Message exitPark = new Message(details,Commands.ExitPark);
+	    		ClientController.client.sendToServer(exitPark);
+	    		boolean awaitResponse = false;
+	    		while (!awaitResponse) 
+	    		{
+	    			try {
+	    				Thread.sleep(100);
+	    				awaitResponse = ClientController.client.workerController.isGotResponse();
+	    			} catch (InterruptedException e) {
+	    				e.printStackTrace();
+	    			}
+	    		}
+	    		ClientController.client.workerController.setGotResponse(false);
+	    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
+	    	}
     		
-    		Message enterPark = new Message(details,Commands.EnterPark);
-    		ClientController.client.sendToServer(enterPark);
-    		boolean awaitResponse = false;
-    		while (!awaitResponse) 
-    		{
-    			try {
-    				Thread.sleep(100);
-    				awaitResponse = ClientController.client.workerController.isGotResponse();
-    			} catch (InterruptedException e) {
-    				e.printStackTrace();
-    			}
+    		
+    	} else {
+    		error.setText("");
+    		if(enterCheck.isSelected()) {
+	    		ParkEntryDetails details = new ParkEntryDetails(
+	    				order.getOrderNumber(), order.getVisitType(), order.getParkName(),
+	    				Time.valueOf(LocalTime.now()), order.getNumOfVisitors(), getCurrentOccupancy(), Date.valueOf(LocalDate.now())
+	    				);
     		}
-    		ClientController.client.workerController.setGotResponse(false);
-    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
-    	}
-    	if(exitCheck.isSelected()) {
-    		ParkEntryDetails details = new ParkEntryDetails(
-    				order.getOrderNumber(), Time.valueOf(LocalTime.now()), order.getParkName(), order.getNumOfVisitors());
-    		Message exitPark = new Message(details,Commands.ExitPark);
-    		ClientController.client.sendToServer(exitPark);
-    		boolean awaitResponse = false;
-    		while (!awaitResponse) 
-    		{
-    			try {
-    				Thread.sleep(100);
-    				awaitResponse = ClientController.client.workerController.isGotResponse();
-    			} catch (InterruptedException e) {
-    				e.printStackTrace();
-    			}
+    		
+    		if(groupGuide.isSelected()) {
+    			
+    			order.setNumOfVisitors(groupCombo.getSelectionModel().getSelectedItem());
+    			
+    			order.setVisitType("Group");					
     		}
-    		ClientController.client.workerController.setGotResponse(false);
-    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
+    		else {
+    		if(Integer.valueOf(visitorCombo.getSelectionModel().getSelectedItem()) < 2)
+    			order.setVisitType("Solo");
+    		else
+    			order.setVisitType("Group");
+    		order.setNumOfVisitors(visitorCombo.getSelectionModel().getSelectedItem());
+    		}
     	}
-    }
+    		
+//	    	if(enterCheck.isSelected()) {
+//	    		if(Integer.parseInt(getCurrentOccupancy()) + Integer.parseInt(visitorCombo.getSelectionModel().getSelectedItem()) > Integer.parseInt(getMaxOccupancy()) && enterCheck.isSelected()) {
+//	        		error.setText("Park is full!");
+//	        		return;
+//	        	}
+//	    		String type = null;
+//	    		if(groupGuide.isSelected())
+//	    			type = "Guided";
+//	    		else if(Integer.valueOf(visitorCombo.getSelectionModel().getSelectedItem()) < 2)
+//	    			type = "Solo";
+//	    		else
+//	    			type = "Group";
+//	    		
+//	    		//TODO insert to DB
+//	    		ParkEntryDetails visit = new ParkEntryDetails(
+//	    				bookingNumberT.getText(), type, 
+//	    				ClientController.client.workerController.getWorkerDetail().getParkName(), 
+//	    				Time.valueOf(LocalTime.now()), 
+//	    				);
+//	    	}
+    	}
+    
     
     //checks if the visitor is a group guide. if so, give the visitor option to book a visit as guide.
     public void checkIDBtn(ActionEvent event) throws IOException  {
@@ -226,13 +330,45 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 			occasionalVisitNumT.setVisible(true);
 			groupGuide.setVisible(true);
 		}
-		email.setVisible(true);
-		telephone.setVisible(true);
+		bookingNumber.setVisible(true);
+		bookingNumberT.setVisible(true);
 		dateTime.setVisible(true);
-		emailT.setVisible(true);
-		telephoneT.setVisible(true);
 		dateTimeT.setVisible(true);
-    }
+		payment.setDisable(false);
+		
+		//give the occaisonal visitor booking number
+		Message msg = new Message(null,Commands.OccasionalBookingNumber);
+		boolean awaitResponse1 = false;
+		try {
+			ClientController.client.sendToServer(msg);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+            // wait for response
+		while (!awaitResponse1) {
+			try {
+				Thread.sleep(100);
+				awaitResponse1 = ClientController.client.bookingController.isGotResponse();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		ClientController.client.bookingController.setGotResponse();
+		Occasioanlnumber = Integer.valueOf(ClientController.client.bookingController.getOccasioanlBookingNumber()) + 1;
+		bookingNumberT.setText(String.valueOf(Occasioanlnumber));
+		LocalDateTime currentDate = LocalDateTime.now();
+		String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+		dateTimeT.setText(formattedDate);
+		priceT.setText("100");
+		totalPriceT.setText("100");
+		this.ocOrder = new BookingDetail();
+		ocOrder.setOrderNumber(String.valueOf(Occasioanlnumber));
+		ocOrder.setParkName(ClientController.client.workerController.getWorkerDetail().getParkName());
+		
+		}
+		
+		
+    
     
     //checks if order exist in DB. if yes, order information is displayed
     public void checkOrderBtn(ActionEvent event) throws IOException {
@@ -242,6 +378,7 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     	BookingDetail orderDet = new BookingDetail();
     	orderDet.setOrderNumber(checkOrderT.getText());
     	orderDet.setParkName(ClientController.client.workerController.getWorkerDetail().getParkName());
+    	//get booking details
     	Message checkOrder = new Message(orderDet,Commands.BookingDetails);
     	try {
 			ClientController.client.sendToServer(checkOrder);
@@ -263,15 +400,18 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 			
 		//if booking exist in the database
 		if(order != null) {
-//			//checks if booking is not old
-//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-//	        LocalDateTime currentDateTime = LocalDateTime.now();
-//	        LocalDateTime visitDateTime = LocalDateTime.parse(order.getDate(),formatter);      
-//	        if(visitDateTime.isBefore(currentDateTime)) {
-//	        	errorT.setText("**Sorry, wait until time of booking");
-//	        	return;
-//	        }
-					
+			      				
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+			LocalDate currentDate = LocalDate.now();
+			LocalTime currentTime = LocalTime.now();
+			LocalDateTime visitDateTime = LocalDateTime.parse(order.getDate(), formatter);      
+			LocalDate visitDate = visitDateTime.toLocalDate(); // Extracting just the date part
+			LocalTime visitTime = visitDateTime.toLocalTime();// Extracting just the time part
+			if (!visitDate.isEqual(currentDate)) {
+			    errorT.setText("**Sorry, booking date is not today");
+			    return;
+			}
+								
 			errorT.setText("");
 			orderNumberT.setText(order.getOrderNumber());
 			parkNameT.setText(order.getParkName());
@@ -279,9 +419,12 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 			visitTypeT.setText(order.getVisitType());
 			numOfVisitorsT.setText(order.getNumOfVisitors());	        	
 				
+									
 			//if booking not payed
 			if(order.getPaymentStatus().equals("NO")) {
 				payment.setDisable(false);
+				enterCheck.setDisable(true);
+				exitCheck.setDisable(true);
 				int fullpricetoshow;
 		    	int discountPrice;	    	
 	    		fullpricetoshow = 100 * Integer.parseInt(order.getNumOfVisitors());
@@ -296,28 +439,74 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 			else {
 				enterCheck.setDisable(false);
 				exitCheck.setDisable(false);
-			}				
+				
+			}
 		}
-		//if booking doesnt exist in the database
-		else
-		{
-			order = null;
-			errorT.setText("**Error, booking number doesnt exist!");
-			orderNumberT.setText("");
-			parkNameT.setText("");
-			dateT.setText("");
-			visitTypeT.setText("");
-			numOfVisitorsT.setText("");
-			payment.setDisable(true);
+		else {
+			//CheckBookInDB
+	    	Message checkBook = new Message(checkOrderT.getText(),Commands.CheckBookInDB);
+	    	try {
+				ClientController.client.sendToServer(checkBook);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	    	boolean awaitResponsebook = false;
+			while (!awaitResponsebook) 
+			{
+				try {
+					Thread.sleep(100);
+					awaitResponsebook = ClientController.client.workerController.isGotResponse();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			ClientController.client.workerController.setGotResponse(false);
+			int flag = ClientController.client.workerController.getCheckBookInDB();
+			
+			if(flag==1){
+				
+				ocOrder.setOrderNumber(getCurrentOccupancy());
+				
+				//Maybe add here the order number
+				exitCheck.setDisable(false);
+				approve.setDisable(false);
+			}
+			//getCheckBookInDB
+			//if booking doesnt exist in the database
+			else
+			{
+				order = null;
+				errorT.setText("**Error, booking number doesnt exist!");
+				orderNumberT.setText("");
+				parkNameT.setText("");
+				dateT.setText("");
+				visitTypeT.setText("");
+				numOfVisitorsT.setText("");
+				payment.setDisable(true);
+				enterCheck.setDisable(true);
+				exitCheck.setDisable(true);
+				
+			}	
 		}
     }
   
     //if user didnt pay from advance or it is an occaisional visitor
     public void paymentBtn(ActionEvent event) throws IOException {
-    	//TODO show receipt to visitor and update payment to 'yes'
-    	payment.setDisable(true);
+		payment.setDisable(true);
     	enterCheck.setDisable(false);
-		exitCheck.setDisable(false);
+    	exitCheck.setDisable(false);
+    	approve.setDisable(false);
+    	if(!orderNumberT.getText().isEmpty()) {
+	    	BookingDetail BD = new BookingDetail();
+	    	BD.setOrderNumber(order.getOrderNumber());
+	    	BD.setPaymentStatus("YES");
+	    	Message msg = new Message(BD,Commands.ChangePaymentStatusInDB);
+	    	try {
+				ClientController.client.sendToServer(msg);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+    	}
     }
     
     // sets visuals
@@ -340,9 +529,6 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 		visitorCombo.setItems(list1);
 		ObservableList<String> list2 = FXCollections.observableArrayList(group);
 		groupCombo.setItems(list2);
-		
-		visitorCombo.getSelectionModel().select("1");
-		groupCombo.getSelectionModel().select("1");
     }
     
     // returns currOccupancy of the park
@@ -453,6 +639,23 @@ public class WorkerParkDashboardController extends WorkerScreenController {
                 approve.setDisable(true);  // Disable button if neither checkbox is selected
             }
         });
+    	// Listener for visitorCombo
+    	visitorCombo.setOnAction(event -> {
+    	    if (visitorCombo.getSelectionModel().getSelectedItem() != null) {
+    	        int numOfVisitors = Integer.parseInt(String.valueOf(visitorCombo.getSelectionModel().getSelectedItem()));  	        
+    	        numOfVisitors = 100 * numOfVisitors;
+    	        priceT.setText(String.valueOf(numOfVisitors) + "₪");
+    	        totalPriceT.setText(String.valueOf(numOfVisitors) + "₪");
+    	    }
+    	});
+    	// Listener for groupCombo
+    	groupCombo.setOnAction(event -> {
+    	    if (groupCombo.getSelectionModel().getSelectedItem() != null) {
+    	        int numOfVisitors = Integer.parseInt(String.valueOf(groupCombo.getSelectionModel().getSelectedItem()));
+    	        priceT.setText(String.valueOf(100 * numOfVisitors) + "₪");
+    		    int price =(int) ((100 * numOfVisitors) - (0.1 * (100 * numOfVisitors)));
+    		    totalPriceT.setText(String.valueOf(price) + "₪");
+    	    }
+    	});
     }
-
 }

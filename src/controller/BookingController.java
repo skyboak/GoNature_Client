@@ -17,6 +17,7 @@ public class BookingController {
 	private boolean IsVisitorAlerted;
 	private boolean AlertedConfirmStatus;
 	private BookingDetail BD;
+	private String occasionalBookingNumber;
 	
 
 	public boolean getAlertedConfirmStatus() {
@@ -133,8 +134,18 @@ public class BookingController {
 		
 	}
 
+
 	public void setAlertedCancelStatus() {
 		this.isGotResponse = true;		
+	}
+	public String getOccasioanlBookingNumber() {
+		return occasionalBookingNumber;
+	}
+	
+	public void setOccasioanlBookingNumber(String bookingNumber) {
+		occasionalBookingNumber = bookingNumber;
+		isGotResponse = true;
+
 	}
 	
 	/*public void CreateNewBooking(String vistorID   ) {

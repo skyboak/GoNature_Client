@@ -244,6 +244,16 @@ public class Client extends AbstractClient
 	  		 break;
 
 	  		  
+	  	  case OccasionalBookingNumber:
+	  		  String  st =(String)m.getObj();
+	  		  bookingController.setOccasioanlBookingNumber(st);
+;	  		  break;
+
+	  	  case CheckBookInDB:
+	  		  int result = (int)m.getObj();
+	  		  workerController.setCheckBookInDB(result);
+	  		  break;
+	  		  
 		default:
 			break;
 

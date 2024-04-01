@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1058.0" style="-fx-border-color: #311906#311906; -fx-border-width: 6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1050.0" style="-fx-border-color: #311906#311906; -fx-border-width: 6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<Pane layoutY="2.0" prefHeight="576.0" prefWidth="255.0" style="-fx-background-color: #1e525b; -fx-background-radius: 30 0 0 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
@@ -78,27 +78,27 @@
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Text>
-      <Text fx:id="orderNumberT" layoutX="861.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
+      <Text fx:id="orderNumberT" layoutX="855.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="177.6708984375">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Text>
-      <Text fx:id="parkNameT" layoutX="861.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
+      <Text fx:id="parkNameT" layoutX="851.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Text>
-      <Text fx:id="dateT" layoutX="861.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
+      <Text fx:id="dateT" layoutX="851.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Text>
-      <Text fx:id="visitTypeT" layoutX="861.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
+      <Text fx:id="visitTypeT" layoutX="851.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Text>
-      <Text fx:id="numOfVisitorsT" layoutX="861.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
+      <Text fx:id="numOfVisitorsT" layoutX="851.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.6708984375">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
@@ -152,7 +152,7 @@
             <Font name="System Bold Italic" size="32.0" />
          </font>
       </Text>
-      <Text fx:id="occasionalVisitNumT" fill="#61a994" layoutX="276.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Visitors:" visible="false" wrappingWidth="155.99999636411667">
+      <Text fx:id="occasionalVisitNumT" fill="#61a994" layoutX="276.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Visitors:" visible="false" wrappingWidth="155.99999636411667">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
@@ -173,27 +173,14 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <ComboBox fx:id="visitorCombo" layoutX="449.0" layoutY="383.0" prefHeight="31.0" prefWidth="105.0" visible="false" />
+      <ComboBox fx:id="visitorCombo" layoutX="443.0" layoutY="470.0" prefHeight="31.0" prefWidth="105.0" visible="false" />
       <CheckBox fx:id="groupGuide" layoutX="276.0" layoutY="354.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="127.0" text="Group Guide" visible="false" />
-      <ComboBox fx:id="groupCombo" layoutX="449.0" layoutY="383.0" prefHeight="31.0" prefWidth="105.0" visible="false" />
-      <Text fx:id="email" fill="#61a994" layoutX="276.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" visible="false" wrappingWidth="58.00000262260437">
+      <ComboBox fx:id="groupCombo" layoutX="443.0" layoutY="469.0" prefHeight="31.0" prefWidth="105.0" visible="false" />
+      <Text fx:id="dateTime" fill="#61a994" layoutX="278.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date &amp; Time:" visible="false" wrappingWidth="111.9999882131815">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="emailT" layoutX="408.0" layoutY="421.0" visible="false" />
-      <Text fx:id="telephone" fill="#61a994" layoutX="276.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone:" visible="false" wrappingWidth="93.9999882131815">
-         <font>
-            <Font name="System Bold Italic" size="17.0" />
-         </font>
-      </Text>
-      <TextField fx:id="telephoneT" layoutX="408.0" layoutY="459.0" visible="false" />
-      <Text fx:id="dateTime" fill="#61a994" layoutX="278.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date &amp; Time:" visible="false" wrappingWidth="111.9999882131815">
-         <font>
-            <Font name="System Bold Italic" size="17.0" />
-         </font>
-      </Text>
-      <TextField fx:id="dateTimeT" editable="false" layoutX="408.0" layoutY="494.0" visible="false" />
       <Button fx:id="clearDetails" layoutX="711.0" layoutY="218.0" mnemonicParsing="false" onAction="#clearDetailsBtn" prefHeight="36.0" prefWidth="136.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Clear Details">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -220,6 +207,21 @@
          </font>
       </Text>
       <Text fx:id="error" fill="#d70a0a" layoutX="677.0" layoutY="597.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="bookingNumber" fill="#61a994" layoutX="282.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking Number:" visible="false" wrappingWidth="144.99999845027924">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="bookingNumberT" layoutX="443.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="224.0000101327896">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="dateTimeT" layoutX="443.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="217.96875369548798">
          <font>
             <Font size="17.0" />
          </font>

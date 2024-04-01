@@ -9,6 +9,7 @@ import logic.WorkerDetail;
 public class WorkerController {
 	
 	private boolean gotResponse = false;
+	private int result;
 	private WorkerDetail workerDetail;
 	private int vistorAmount;
 	private ArrayList<ManagerRequestDetail> requestList;
@@ -121,7 +122,13 @@ public class WorkerController {
 	public void setExitPark() {
 		this.gotResponse = true;
 	}
-	
-	
 
+	public void setCheckBookInDB(int result) {
+		this.result =result;
+		this.gotResponse = true;
+	}
+	
+	public int getCheckBookInDB() {
+		return result;
+	}
 }
