@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import reportsScreenController.CancellationReportScreenController;
+import reportsScreenController.ParkAvailabilityReportScreenController;
 import reportsScreenController.VisitorStatisticReportScreenController;
 import reportsScreenController.VisitsReportScreenController;
 import screenController.ScreenController;
@@ -29,13 +30,24 @@ public class WorkerScreenController extends ScreenController {
 	//Those Buttons Will Transition From Screen to Screen in the workers Screens
 //	
 	public  void DashboardBtn(ActionEvent event) throws Exception{
-		System.out.println("DUMB FUCK");
+		((Node)event.getSource()).getScene().getWindow().hide();
+		ParkManagerScreenController newScreen = new ParkManagerScreenController();
+		newScreen.start(new Stage());
 	}
 //	
 //	public void parkAvailabilityReportBtn(ActionEvent event) throws Exception{
 //		
 //	}
-//	
+	
+    
+    public void DMDashboardBtn(ActionEvent event) throws Exception {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    	DepartmentManagerDashboardController newScreen = new DepartmentManagerDashboardController();
+		newScreen.start(new Stage());
+
+    }
+	
+	
 	
 	public void VisitorStatisticReportBtn(ActionEvent event) throws Exception{
 		((Node)event.getSource()).getScene().getWindow().hide();
@@ -57,6 +69,7 @@ public class WorkerScreenController extends ScreenController {
 		((Node)event.getSource()).getScene().getWindow().hide();
 		CancellationReportScreenController newScreen = new CancellationReportScreenController();
 		newScreen.start(new Stage());
+		
 	}
 	
 	
@@ -70,18 +83,13 @@ public class WorkerScreenController extends ScreenController {
 	}
 
 
-
-	
-
     
-   
-    
-    void parksVisitsReportBtn(ActionEvent event) {
-    	System.out.println("DUMB FUCK");
+	//TODO 
+	public void availabilityReportBtn(ActionEvent event) throws Exception {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    	ParkAvailabilityReportScreenController newScreen = new ParkAvailabilityReportScreenController();
+		newScreen.start(new Stage());
     }
-	
-	
-	
 	
 
 }

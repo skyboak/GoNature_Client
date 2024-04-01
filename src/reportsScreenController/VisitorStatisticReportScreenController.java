@@ -49,6 +49,7 @@ import workerScreenController.WorkerScreenController;
 
 import java.io.File; 
 public class VisitorStatisticReportScreenController extends WorkerScreenController implements Initializable {
+	
 	@FXML
 	private TextField directoryTextField;
 
@@ -97,6 +98,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     private Text msgToUser;
     @FXML
     private Button sendReportToSystem;
+    
     @FXML
     private DateDetail dateDetail;
     

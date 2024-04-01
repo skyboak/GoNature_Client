@@ -2,7 +2,10 @@ package workerScreenController;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
-
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import client.ClientController;
 import enums.Commands;
 import javafx.event.ActionEvent;
@@ -11,8 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.LoginDetail;
@@ -31,6 +32,18 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	private TextField AverageParkStayTimeT;
 	@FXML
 	private ImageView parkImgT;
+    @FXML
+    private Button parkDashboard;
+
+    @FXML
+    private Button visitorStatisticReport;
+
+    @FXML
+    private Button parkAvailabilityReport;
+
+    @FXML
+    private Button logout;
+
 	@FXML
 	private Text parkNameT;
 	@FXML

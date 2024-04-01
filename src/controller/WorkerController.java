@@ -12,17 +12,12 @@ public class WorkerController {
 	private WorkerDetail workerDetail;
 	private int vistorAmount;
 	private ArrayList<ManagerRequestDetail> requestList;
-	private HashMap<String, Integer> statReportData;
+	private HashMap<String, Integer> AvilabilityReportData;
 	private String CurrentOccupancy;
 	private String MaxOccupancy;
-
-
-
-	
-	
-
 	private boolean AverageParkStayTime,OnlineBookingCapacity,ParkCapacity;
 
+	
 	public boolean getAverageParkStayTime() {
 		return AverageParkStayTime;
 	}
@@ -95,9 +90,9 @@ public class WorkerController {
 		this.gotResponse = true;
 	}
 
-	public WorkerController() {
-		
-	}
+//	public WorkerController() {
+//		
+//	}
 
 	public void setMaxOccupancy(String MaxOcc) {
 		MaxOccupancy = MaxOcc;
@@ -113,12 +108,10 @@ public class WorkerController {
 		return MaxOccupancy;
 	}
 
-	public void setstatReportData(HashMap<String, Integer> statReportData) {
-		this.statReportData = statReportData;
-		this.gotResponse = true;
-	}
-
-
+//	public void setstatReportData(HashMap<String, Integer> statReportData) {
+//		this.statReportData = statReportData;
+//		this.gotResponse = true;
+//	}
 
 
 	public void setEnterPark() {

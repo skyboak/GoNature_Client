@@ -229,7 +229,7 @@ public class Client extends AbstractClient
 
 	  	  case statReportData:
 	  		HashMap<String,Integer> statReportData = (HashMap<String,Integer>)m.getObj();
-	  		workerController.setstatReportData(statReportData);
+	  		reportController.setVisitorStatData(statReportData);
 	  		break;
 	  	  case terminate:
 	  	    // Exit the application

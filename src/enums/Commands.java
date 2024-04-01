@@ -54,7 +54,7 @@ public enum Commands {
 
 	visitorReportData, 
 
-
+	GetVisitorStatReport, //for the park availability report
 
 
 
@@ -62,14 +62,13 @@ public enum Commands {
 	ChangePaymentStatusInDB, EnterPark, ExitPark,
 
 
-	statReportData,
-
 
 	 
-	 terminate,ClientDisconnect
+	 terminate,ClientDisconnect,
 
 
-
+	  statReportData, 
+	 
 
 
 	;

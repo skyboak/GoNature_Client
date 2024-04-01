@@ -9,12 +9,26 @@ import logic.CancellationDetail;
 import logic.ReportDetail;
 
 public class ReportController {
+	
 	private boolean gotResponse = true;
 	private Map<LocalDate, int[]> visitorStatisticData;
 	private ArrayList<CancellationDetail> cancellationReportData;
 	private int[] dayCount;
 	private Map<String, int[]> visitorReportData;
-	
+	private Map<String, Integer> visitorAvilaData; //reportdata
+
+
+
+	public Map<String, Integer> getVisitorStatData() {
+		return visitorAvilaData;
+	}
+
+
+
+	public void setVisitorStatData(Map<String, Integer> visitorStatData) {
+		this.visitorAvilaData = visitorStatData;
+		this.gotResponse = false;
+	}
 
 
 

@@ -60,7 +60,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
     private NumberAxis yAxisR;
 
     @FXML
-    private ComboBox<String> parkNameCombo;
+    private ComboBox<String> visitorIDCombo;
 
 	@FXML
     private TableView<CancellationDetail> tableView;
@@ -69,7 +69,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
     private TableColumn<CancellationDetail, Integer> orderNumberC;
 
     @FXML
-    private TableColumn<CancellationDetail, String> parkNameC;
+    private TableColumn<CancellationDetail, String> visitorIDC;
 
     @FXML
     private TableColumn<CancellationDetail, LocalDate> dateTimeC;
@@ -83,12 +83,13 @@ public class CancellationReportScreenController extends WorkerScreenController i
     
    
 
-	public void setParkNameCombo(ComboBox<String> parkNameCombo) {
-		this.parkNameCombo = parkNameCombo;
+	public void setvisitorIDCombo(ComboBox<String> visitorIDCombo) {
+		this.visitorIDCombo = visitorIDCombo;
 	}
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	
         setComboBox();
      // Set the gapStartAndEnd property to true
         
@@ -104,7 +105,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
         
         // Set cell value factories for table columns
         orderNumberC.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));
-        parkNameC.setCellValueFactory(new PropertyValueFactory<>("parkName"));
+        visitorIDC.setCellValueFactory(new PropertyValueFactory<>("Visitor ID"));
         dateTimeC.setCellValueFactory(new PropertyValueFactory<>("visitTime"));
         numOfVisitorsC.setCellValueFactory(new PropertyValueFactory<>("numVisitors"));
         
@@ -115,13 +116,14 @@ public class CancellationReportScreenController extends WorkerScreenController i
         parkNames.add("BlackForest");
         parkNames.add("Hyde Park");
         parkNames.add("YellowStone");
-        parkNameCombo.setItems(FXCollections.observableArrayList(parkNames));
+        visitorIDCombo.setItems(FXCollections.observableArrayList(parkNames));
+        
     }
 
     public void showBtn(ActionEvent event) throws IOException {
     	
     	
-    	String selectedParkName = parkNameCombo.getValue();
+    	String selectedParkName = visitorIDCombo.getValue();
     	System.out.println(selectedParkName);
         if (selectedParkName != null) {
             // Call method to get cancellation data for the selected park and update the chart
@@ -218,7 +220,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
 	    
 	    
 		//checking if the inputs are invalid
-//		if (parkNameCombo.getValue() == null) {
+//		if (visitorIDCombo.getValue() == null) {
 //	        errorMessage.append("parkname is missing.\n");
 		
 
