@@ -23,6 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
 import workerScreenController.WorkerScreenController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -130,6 +131,7 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 	        else {
 	            msgToUser.setText("Error Creating Report");
 	        }
+	        errortxt.setFill(Color.RED);
 	        sendReportToSystem.setDisable(true);
 	    }
 	    
@@ -181,7 +183,9 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 		        visitorstatData =  ClientController.client.reportController.getVisitorStatData();
 		        CreateAVBarChar(visitorstatData);
 	        }else {
+	        	errortxt.setVisible(true);
 	            errortxt.setText("Please select both From and To dates.");
+	            errortxt.setFill(Color.RED);
 	        }
 	    }
 

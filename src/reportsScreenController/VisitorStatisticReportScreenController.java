@@ -39,6 +39,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -87,6 +88,9 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
 
     @FXML
     private Button Show;
+    
+    @FXML
+    private Text errortxt;
 
     @FXML
     private Label Totalvisitortxt;
@@ -101,6 +105,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     
     @FXML
     private DateDetail dateDetail;
+    
     
     @FXML
     public void sendReportToSystemBtn(ActionEvent event) throws IOException {
@@ -131,13 +136,19 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
             }
         }
         ClientController.client.reportController.setGotResponse(true);
-        if (ClientController.client.reportController.isReportCheck())
-            msgToUser.setText("Report Created And Saved To Server Successfully");
+        if (ClientController.client.reportController.isReportCheck()) {
+        	msgToUser.setVisible(true);
+            msgToUser.setText("Report Created And Saved To Server Successfully");}
         else {
+        	msgToUser.setVisible(true);
             msgToUser.setText("Error Creating Report");
+            errortxt.setFill(Color.RED);
         }
+            
         sendReportToSystem.setDisable(true);
+    
     }
+    
     
     
     @Override
@@ -147,10 +158,12 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
 //        if (visitorChart == null) {
 //            visitorChart = new BarChart<>(new CategoryAxis(), new NumberAxis());
 //        }
+        visitorChart.getData().clear();
         // Initialize method
         setDateDefultForVisitsReport();
 	    // Initialize the DirectoryChooser
 	    directoryChooser = new DirectoryChooser();
+	    
     }
 
     // Method to handle report button action
@@ -160,6 +173,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         // Variables to store the fromDate and toDate
         LocalDate fromDate = FromDate.getValue();
         LocalDate toDate = ToDate.getValue();
+        if (fromDate != null && toDate != null) { // Check if both dates are selected
         dateDetail = new DateDetail(fromDate, toDate);
         dateDetail.setParkName(ClientController.client.workerController.getWorkerDetail().getParkName());
         //dateDetail.setParkName("Hyde Park"); 
@@ -180,16 +194,22 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         visitorData =  ClientController.client.reportController.getVisitorStatisticData();
         sendReportToSystem.setDisable(false);
         CreateVisitorStatisticsBarChar(visitorData);
+        }
+        else {
+        	errortxt.setVisible(true);
+        	errortxt.setText("Please select both From and To dates.");
+        	errortxt.setFill(Color.RED);
+        }
     }
 
     
     // Method to create visitor statistics bar chart
 	private void CreateVisitorStatisticsBarChar(Map<LocalDate, int[]> visitorData) {
-        // Clear existing data from the chart
+        //Clear existing data from the chart
         visitorChart.getData().clear();
         xAxisR = new CategoryAxis();
 		yAxisR = new NumberAxis(0, 20, 2);
-		visitorChart.setAnimated(false);
+		visitorChart.setAnimated(true);
 		visitorChart.setBarGap(1.0d);
 		visitorChart.setCategoryGap(10.0);
         // new array to hold the dates
@@ -203,7 +223,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         for (int i = 0; i < dates.size(); i++) {
             categories[i] = dates.get(i).toString();
         }
-
+        
         // Set categories on the x-axis
         xAxisR.setCategories(FXCollections.observableArrayList(Arrays.asList(categories)));
 

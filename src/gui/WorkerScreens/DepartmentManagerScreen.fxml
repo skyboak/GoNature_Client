@@ -114,7 +114,7 @@
             <Font name="System Bold Italic" size="44.0" />
          </font>
       </Text>
-      <Pane layoutX="331.0" layoutY="24.0" prefHeight="60.0" prefWidth="587.0" style="-fx-background-color: #1e525b; -fx-effect: 6; -fx-position-shape: 22; -fx-background-radius: 68;">
+      <Pane layoutX="336.0" layoutY="22.0" prefHeight="60.0" prefWidth="593.0" style="-fx-background-color: #1e525b; -fx-background-radius: 68;">
          <children>
             <Text fx:id="welcomebackt" fill="#ecfcff" layoutX="43.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="welcome back " textAlignment="CENTER" wrappingWidth="529.365234375">
                <font>

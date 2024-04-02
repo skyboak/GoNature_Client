@@ -107,11 +107,11 @@
 				<Font name="Arial Bold" size="21.0" />
 			</font>
 		</Label>
-		<Button fx:id="BackBtn" layoutX="943.0" layoutY="524.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="8.0" prefWidth="81.0" style="-fx-background-color: #FFC152 #FFC152; -fx-background-radius: 10 10 10 10; &quot; text=&quot;Logout&quot; xmlns=&quot;http: //javafx.com/javafx/8.0.171&quot; xmlns:fx=&quot;http://javafx.com/fxml/1&quot;&gt;   &lt;font&gt;      &lt;Font name=&quot;System Bold&quot; size=&quot;14.0&quot; /&gt;   &lt;/font&gt;&lt;/Button&gt;;" text="Clear">
-			<cursor>
-				<Cursor fx:constant="W_RESIZE" />
-			</cursor>
-		</Button>
+		<Button fx:id="BackBtn" layoutX="943.0" layoutY="524.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="8.0" prefWidth="81.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10;" text="Logout">
+		<font>
+		<Font name="System Bold" size="14.0" />
+		</font>
+	</Button>
       <Button fx:id="sendReportToSystem" disable="true" layoutX="705.0" layoutY="612.0" mnemonicParsing="false" onAction="#sendReportToSystemBtn" prefHeight="31.0" prefWidth="196.0" text="Send Report To System">
          <effect>
             <InnerShadow choke="0.15" color="#8d7d7d" height="30.0" radius="14.5" width="30.0" />
@@ -129,7 +129,8 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Pane layoutX="336.0" layoutY="22.0" prefHeight="60.0" prefWidth="593.0" style="-fx-background-color: #1e525b; -fx-effect: 6; -fx-position-shape: 22; -fx-background-radius: 68;">
+     <Pane layoutX="336.0" layoutY="22.0" prefHeight="60.0" prefWidth="593.0" style="-fx-background-color: #1e525b; -fx-background-radius: 68;">
+
          <children>
       		<Text fill="#ecfcff" layoutX="42.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visitor statistic numbers" textAlignment="CENTER" wrappingWidth="529.365234375">
       			<font>

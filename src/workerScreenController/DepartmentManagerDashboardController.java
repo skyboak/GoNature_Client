@@ -11,6 +11,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+
 import java.util.ArrayList;
 
 import java.util.ResourceBundle;
@@ -84,6 +86,9 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 
     @FXML
     private Button logout;
+    
+    @FXML
+    private Text errortxt;
 
     @FXML
     private TableView<ManagerRequestDetail> requestTable;
