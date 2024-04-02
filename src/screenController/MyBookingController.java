@@ -35,6 +35,8 @@ public class MyBookingController extends VisitorScreenController {
 	private TableColumn<String,BookingDetail> dateTimeC;
 	@FXML
 	private TableColumn<String,BookingDetail> numOfVisitorsC;
+    @FXML
+    private TableColumn<String, BookingDetail> status;
 	@FXML
 	private TableView<BookingDetail> tableView;
 	@FXML
@@ -48,6 +50,7 @@ public class MyBookingController extends VisitorScreenController {
     	parkNameC.setCellValueFactory(new PropertyValueFactory<>("parkName"));
     	dateTimeC.setCellValueFactory(new PropertyValueFactory<>("Date"));
     	numOfVisitorsC.setCellValueFactory(new PropertyValueFactory<>("NumOfVisitors"));
+    	status.setCellValueFactory(new PropertyValueFactory<>("Status"));
 		LoginDetail myBookingList = new LoginDetail(ClientController.client.bookingController.getID());
 		Message myBookingListMsg = new Message(myBookingList,Commands.VisitorMyBooking);
 		try {

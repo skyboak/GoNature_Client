@@ -75,7 +75,8 @@
                 <TableColumn fx:id="orderNumberC" prefWidth="119.0" text="Order Number" />
                 <TableColumn fx:id="parkNameC" minWidth="0.0" prefWidth="103.0" text="Park Name" />
                   <TableColumn fx:id="dateTimeC" prefWidth="110.0" text="Date &amp; Time" />
-                  <TableColumn fx:id="numOfVisitorsC" prefWidth="159.0" text="Number Of Visitors" />
+                  <TableColumn fx:id="numOfVisitorsC" prefWidth="77.0" text="Visitors num" />
+                  <TableColumn fx:id="status" prefWidth="82.0" text="Status" />
               </columns>
             </TableView>
             <Text layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select booking to cancel">

@@ -76,6 +76,18 @@ public class PaymentController extends VisitorScreenController
 	    
 	    
 	}
+	 @FXML
+	    void aprvConfirmBtn(ActionEvent event) throws Exception {
+		 ((Node)event.getSource()).getScene().getWindow().hide();
+	        ReceiptScreenController newScreen = new ReceiptScreenController();
+	        newScreen.start(new Stage(), details, discountPrice);
+
+	    }
+
+	    @FXML
+	    void aprvcancelBtn(ActionEvent event) {
+
+	    }
 
 	public void finishBtn(ActionEvent event) throws Exception 
 	{
@@ -124,10 +136,20 @@ public class PaymentController extends VisitorScreenController
 	    				e.printStackTrace();
 	    			}
 	    		}
+		    	FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/gui/PaymentApprove.fxml"));
+				loader1.setController(this); // Set the controller
+		    	Parent root1 = loader1.load();
+		    	Scene scene1 = new Scene(root1);
+		    	Stage primaryStage = new Stage();
+		    	primaryStage.setTitle("ConfimMsg");
+		    	primaryStage.setScene(scene1);
+		    	primaryStage.initModality(Modality.APPLICATION_MODAL); //blocks all actions until user presses yes/no
+		    	primaryStage.initStyle(StageStyle.UNDECORATED); // removes top bar
+		    	primaryStage.show();
+		    	((Node)event.getSource()).getScene().getWindow().hide();
 		    	
-		        ((Node)event.getSource()).getScene().getWindow().hide();
-		        ReceiptScreenController newScreen = new ReceiptScreenController();
-		        newScreen.start(new Stage(), details, discountPrice);
+		    	//move to confirmbutton
+		        
 		        //TODO add the booking to sql.
 		    }
 	}

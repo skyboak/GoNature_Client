@@ -22,7 +22,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Text fill="#1e525b" layoutX="94.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Everthing looks fine," wrappingWidth="166.0">
+      <Text fill="#1e525b" layoutX="81.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Everthing looks fine," wrappingWidth="188.1005898118019">
          <font>
             <Font name="System Bold Italic" size="19.0" />
          </font>

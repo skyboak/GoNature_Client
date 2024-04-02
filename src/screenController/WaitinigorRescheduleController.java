@@ -33,8 +33,9 @@ import logic.Message;
 
 public class WaitinigorRescheduleController extends VisitorScreenController
 {
+    @FXML
+    private Button enter;
 
-	
 
 		@FXML
 		private TableView<String> dateTime;
@@ -51,6 +52,8 @@ public class WaitinigorRescheduleController extends VisitorScreenController
 		private String NewDateAndTime;
 
 	    @FXML
+	    
+	    ArrayList<String> AvailableSlots;
 	    public void enterBtn(ActionEvent event) throws Exception //enter waiting list
 	    {
 	    	//set the apropriate table
@@ -131,7 +134,7 @@ public class WaitinigorRescheduleController extends VisitorScreenController
 	    	primaryStage.show();
 	    	CheckavailableSlotinDB();
 	    	dateTime.setOnMouseClicked(event -> {
-	    		if (dateTime.getSelectionModel().getSelectedItem() != null) {
+	    		if (AvailableSlots.size()>1) {
 	    			ok.setDisable(false);
 	    			NewDateAndTime = dateTime.getSelectionModel().getSelectedItem().toString();
 	    	    } 
@@ -165,12 +168,13 @@ public class WaitinigorRescheduleController extends VisitorScreenController
     			}
     		}
     		ClientController.client.bookingController.setGotResponse();
-    		ArrayList<String> AvailableSlots = ClientController.client.bookingController.getSixSlots();
+    		AvailableSlots = ClientController.client.bookingController.getSixSlots();
     		
     		if (AvailableSlots.size()<1) {
     	        // Display "Too many visitors" message in the TableView
     	        dateTime.getItems().clear(); // Clear previous data
     	        dateTime.setItems(FXCollections.observableArrayList("You try to book more visitors than park capacity")); // Display message
+    	        enter.setDisable(true);
     	        
     	    } else {
     	        // Convert ArrayList to ObservableList and display in the TableView
