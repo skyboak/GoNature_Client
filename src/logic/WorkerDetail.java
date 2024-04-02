@@ -32,6 +32,12 @@ public class WorkerDetail implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Override
+	public String toString() {
+		return "WorkerDetail [workerId=" + workerId + ", role=" + role + ", parkName=" + parkName + ", name=" + name
+				+ "]";
+	}
+	
 	
 
 }
