@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,7 +27,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.BookingDetail;
 import logic.LoginDetail;
 import logic.Message;
@@ -145,8 +148,9 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     
     // according to exit or enter updates current occupancy. 
     public void approveBtn(ActionEvent event) throws IOException  {
-    	   	 	
+    	//rightside	
     	if(!orderNumberT.getText().isEmpty()) {
+    		//rightside
     		//check if park is full
     		if(Integer.parseInt(getCurrentOccupancy()) + Integer.parseInt(order.getNumOfVisitors()) > Integer.parseInt(getMaxOccupancy()) && enterCheck.isSelected()) {
         		error.setText("Park is full!");
@@ -192,8 +196,10 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 	    		ClientController.client.workerController.setGotResponse(false);
 	    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
 	    	}
-    	}	
+    	}
+    	//left side
 	    if(!visitorID.getText().isEmpty()) {
+	    	exitCheck.setDisable(true);
     		if(groupGuide.isSelected()) {
     			
     			ocOrder.setNumOfVisitors(groupCombo.getSelectionModel().getSelectedItem());
@@ -227,8 +233,12 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 	    		}
 	    		ClientController.client.workerController.setGotResponse(false);
 	    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
+	    		
 	    	}
+    		
 	    	if(exitCheck.isSelected()) {
+	    		
+	    		/*
 	    		ParkEntryDetails details = new ParkEntryDetails(
 	    				ocOrder.getOrderNumber(), Time.valueOf(LocalTime.now()), ocOrder.getParkName(), ocOrder.getNumOfVisitors());
 	    		Message exitPark = new Message(details,Commands.ExitPark);
@@ -244,11 +254,13 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 	    			}
 	    		}
 	    		ClientController.client.workerController.setGotResponse(false);
-	    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());
+	    		visitorsT.setText(getCurrentOccupancy()+ "/" + getMaxOccupancy());*/
 	    	}
     		
     		
-    	} else {
+    	} 
+	    /*
+	    else {
     		error.setText("");
     		if(enterCheck.isSelected()) {
 	    		ParkEntryDetails details = new ParkEntryDetails(
@@ -270,7 +282,7 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     			order.setVisitType("Group");
     		order.setNumOfVisitors(visitorCombo.getSelectionModel().getSelectedItem());
     		}
-    	}
+    	}*/
     		
 //	    	if(enterCheck.isSelected()) {
 //	    		if(Integer.parseInt(getCurrentOccupancy()) + Integer.parseInt(visitorCombo.getSelectionModel().getSelectedItem()) > Integer.parseInt(getMaxOccupancy()) && enterCheck.isSelected()) {
@@ -400,6 +412,11 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 			
 		//if booking exist in the database
 		if(order != null) {
+			if(Integer.valueOf(order.getOrderNumber())>90000)
+			{
+				order.setPaymentStatus("YES");
+				
+			}
 			      				
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 			LocalDate currentDate = LocalDate.now();
@@ -494,8 +511,28 @@ public class WorkerParkDashboardController extends WorkerScreenController {
     public void paymentBtn(ActionEvent event) throws IOException {
 		payment.setDisable(true);
     	enterCheck.setDisable(false);
-    	exitCheck.setDisable(false);
+    	
+    	if(!visitorID.getText().isEmpty())
+    	{
+    		exitCheck.setDisable(true);
+    		
+    	}
+    	else
+    	{
+    		exitCheck.setDisable(false);    		
+    	}
+    	
     	approve.setDisable(false);
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/PaymentApprove.fxml"));
+		loader.setController(this); // Set the controller
+    	Parent root = loader.load();
+    	Scene scene = new Scene(root);
+    	Stage primaryStage = new Stage();
+    	primaryStage.setTitle("ConfimMsg");
+    	primaryStage.setScene(scene);
+    	primaryStage.initModality(Modality.APPLICATION_MODAL); //blocks all actions until user presses yes/no
+    	primaryStage.initStyle(StageStyle.UNDECORATED); // removes top bar
+    	primaryStage.show();
     	if(!orderNumberT.getText().isEmpty()) {
 	    	BookingDetail BD = new BookingDetail();
 	    	BD.setOrderNumber(order.getOrderNumber());
@@ -507,6 +544,17 @@ public class WorkerParkDashboardController extends WorkerScreenController {
 				e.printStackTrace();
 			} 
     	}
+    }
+    @FXML
+    void aprvConfirmBtn(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+
+    }
+    
+    @FXML
+    void aprvcancelBtn(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+
     }
     
     // sets visuals

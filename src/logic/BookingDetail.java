@@ -18,9 +18,18 @@ public class BookingDetail implements Serializable {
     private int VisitDuration;
     private String PaymentStatus;
     private String Status;
+    private String visitorType;
 
     
-    public String getStatus() {
+    public String getVisitorType() {
+		return visitorType;
+	}
+
+	public void setVisitorType(String visitorType) {
+		this.visitorType = visitorType;
+	}
+
+	public String getStatus() {
 		return Status;
 	}
 
