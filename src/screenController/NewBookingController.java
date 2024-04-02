@@ -118,9 +118,6 @@ public class NewBookingController extends VisitorScreenController {
 	}
 
 	
-	//check park capacity{}
-	//check timeslot by maxstaytime
-	
 	public void nextBtn(ActionEvent event) throws Exception {
 		String Ordernumberstr;
 			if(validateInputs()) 

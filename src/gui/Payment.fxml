@@ -98,12 +98,12 @@
             <Font name="System Bold Italic" size="19.0" />
          </font>
       </Text>
-      <Text fx:id="priceBeforeDiscount" layoutX="575.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99998950958252">
+      <Text fx:id="priceBeforeDiscount" layoutX="609.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99998950958252">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="totalPrice" layoutX="577.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99998950958252">
+      <Text fx:id="totalPrice" layoutX="609.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99998950958252">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
