@@ -136,5 +136,10 @@
       <ComboBox fx:id="numOfVisitorsCombo" layoutX="508.0" layoutY="266.0" prefHeight="31.0" prefWidth="95.0" />
       <CheckBox fx:id="guide" layoutX="661.0" layoutY="271.0" mnemonicParsing="false" onAction="#guideCB" prefHeight="21.0" prefWidth="89.0" text="Guide" />
       <ComboBox fx:id="numOfVisitorsGCombo" disable="true" layoutX="508.0" layoutY="266.0" prefHeight="31.0" prefWidth="95.0" visible="false" />
+      <ImageView fitHeight="87.0" fitWidth="130.0" layoutX="65.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GoNatureLogoGB.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

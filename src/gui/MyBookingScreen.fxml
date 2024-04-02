@@ -50,6 +50,11 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
+            <ImageView fitHeight="87.0" fitWidth="130.0" layoutX="65.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/GoNatureLogoGB.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Separator layoutX="261.0" layoutY="99.0" opacity="0.5" prefHeight="5.0" prefWidth="385.0" style="-fx-background-color: #242633;" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="0.0" />

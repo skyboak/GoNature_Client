@@ -39,6 +39,8 @@ public class VisitorScreenController extends ScreenController {
 	}
 	
 	public void aboutUsBtn(ActionEvent event) throws Exception {
-		
+		((Node)event.getSource()).getScene().getWindow().hide();
+		AboutUsController newScreen = new AboutUsController();
+		newScreen.start(new Stage());
 	}
 }
