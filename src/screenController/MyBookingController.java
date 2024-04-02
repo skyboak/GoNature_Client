@@ -44,7 +44,11 @@ public class MyBookingController extends VisitorScreenController {
 	@FXML
 	private Text errorT;
 	
-	
+	/**
+	 * Sets up the table view to display the bookings associated with the current visitor.
+	 * Fetches the booking details from the server, updates the table view with the retrieved data,
+	 * and populates it accordingly.
+	 */
 	public void setTable() {
 		orderNumberC.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));
     	parkNameC.setCellValueFactory(new PropertyValueFactory<>("parkName"));
@@ -87,7 +91,15 @@ public class MyBookingController extends VisitorScreenController {
     	primaryStage.show();
 	}
 	
-	// if the user presses 'yes', deletes the booking
+	/**
+	 * Handles the action when the user confirms deletion of a booking by pressing 'yes'.
+	 * Sends a request to cancel the booking associated with the selected order ID to the server.
+	 * Updates the UI by removing the booking from the table view if the cancellation was successful,
+	 * otherwise displays an error message.
+	 *
+	 * @param event The MouseEvent triggering the action.
+	 * @throws Exception If an error occurs during the cancellation of the booking.
+	 */
 	public void yesBtn(MouseEvent event) throws Exception {
 		BookingDetail cancelBookingID = new BookingDetail();
 		cancelBookingID.setOrderNumber(orderID);
@@ -124,32 +136,55 @@ public class MyBookingController extends VisitorScreenController {
 		((Node)event.getSource()).getScene().getWindow().hide();
 	}
 	
+	
+	/**
+	 * Initializes and displays the MyBookingScreen interface.
+	 *
+	 * @param primaryStage The primary stage of the JavaFX application.
+	 * @throws Exception If an error occurs during the initialization of the MyBookingScreen interface.
+	 */
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MyBookingScreen.fxml"));
-    	loader.setController(this); // Set the controller
-    	Parent root = loader.load();
-    	Scene scene = new Scene(root);
-    	primaryStage.setTitle("MyBooking");
-    	primaryStage.setScene(scene);
-    	RemoveTopBar(primaryStage,root);
-    	primaryStage.show();
-    	setTable();    	
-    	//enables cancel button and saves orderID
-    	tableView.setOnMouseClicked(event -> {
-    		if (tableView.getSelectionModel().getSelectedItem() != null) {
-    	        cancel.setDisable(false);
-    	        orderID = tableView.getSelectionModel().getSelectedItem().getOrderNumber();
-    	    } else {
-    	        // If no row is selected, disable the cancel button
-    	        cancel.setDisable(true);
-    	        }
-    		});
-    	//if pressed outside of the tableview, the selection is cleared and cancel button is disabled
-    	scene.setOnMousePressed(event -> {
-            if (!tableView.getBoundsInParent().contains(event.getX(), event.getY())) {
-                tableView.getSelectionModel().clearSelection();
-                cancel.setDisable(true);
-            }
-        });
+	    // Load the FXML file for the MyBookingScreen interface
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MyBookingScreen.fxml"));
+	    loader.setController(this); // Set the controller
+	    Parent root = loader.load();
+	    
+	    // Create a new scene with the loaded root
+	    Scene scene = new Scene(root);
+	    
+	    // Set the title of the stage
+	    primaryStage.setTitle("MyBooking");
+	    
+	    // Set the scene to the primary stage
+	    primaryStage.setScene(scene);
+	    
+	    // Remove the top bar from the primary stage
+	    RemoveTopBar(primaryStage, root);
+	    
+	    // Display the primary stage
+	    primaryStage.show();
+	    
+	    // Set up the table view with booking details
+	    setTable();
+	    
+	    // Enable cancel button and save orderID when a row in the table view is clicked
+	    tableView.setOnMouseClicked(event -> {
+	        if (tableView.getSelectionModel().getSelectedItem() != null) {
+	            cancel.setDisable(false);
+	            orderID = tableView.getSelectionModel().getSelectedItem().getOrderNumber();
+	        } else {
+	            // If no row is selected, disable the cancel button
+	            cancel.setDisable(true);
+	        }
+	    });
+	    
+	    // Clear selection and disable cancel button when clicked outside the table view
+	    scene.setOnMousePressed(event -> {
+	        if (!tableView.getBoundsInParent().contains(event.getX(), event.getY())) {
+	            tableView.getSelectionModel().clearSelection();
+	            cancel.setDisable(true);
+	        }
+	    });
 	}
+
 }

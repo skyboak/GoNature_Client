@@ -57,6 +57,12 @@ public class PricesScreenController extends VisitorScreenController {
         tableView.setSelectionModel(null);
     }
 
+    /**
+     * Initializes and displays the Prices GUI.
+     *
+     * @param primaryStage The primary stage for the Prices GUI.
+     * @throws Exception If an error occurs while loading the FXML file, setting up the GUI, or initializing the table.
+     */
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Prices.fxml"));
         loader.setController(this); // Set the controller

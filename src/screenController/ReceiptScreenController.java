@@ -46,13 +46,23 @@ public class ReceiptScreenController extends VisitorScreenController {
 	    
 	    private BookingDetail details;
 	
+	/**
+	 * Handles the action event when the OK button is clicked to close the current window and open the MyBooking screen.
+	 *
+	 * @param event The action event triggered by clicking the OK button.
+	 * @throws Exception If an error occurs while setting up the MyBooking screen.
+	 */
 	public void okBtn(ActionEvent event) throws Exception{
 		((Node)event.getSource()).getScene().getWindow().hide();
 		MyBookingController newScreen = new MyBookingController();
 		newScreen.start(new Stage());
 	}
 	
-	
+	/**
+	 * Sets the details on the receipt GUI with the provided price.
+	 *
+	 * @param price The price to be displayed on the receipt.
+	 */
 	public void setDetails(int price){
 		id.setText(details.getVisitorID().toString());
 		email.setText(details.getEmail().toString());
@@ -67,7 +77,14 @@ public class ReceiptScreenController extends VisitorScreenController {
 	}
 	
 	
-	
+	/**
+	 * Initializes and displays the Receipt GUI.
+	 *
+	 * @param primaryStage The primary stage for the Receipt GUI.
+	 * @param details      The booking details to be displayed on the receipt.
+	 * @param disprice     The discounted price to be displayed on the receipt.
+	 * @throws Exception If an error occurs while loading the FXML file or setting up the GUI.
+	 */
 	public void start(Stage primaryStage,BookingDetail details,int disprice) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Receipt.fxml"));
     	loader.setController(this); // Set the controller
