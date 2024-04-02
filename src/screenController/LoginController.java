@@ -85,6 +85,7 @@ public class LoginController extends ScreenController {
 		icon2.setVisible(Condition1);
 		icon3.setVisible(Condition1);
 	}
+
 	public void xBtn(ActionEvent event) throws Exception {
 		Message disconnectClient = new Message(null,Commands.ClientDisconnect);
 		ClientController.client.sendToServer(disconnectClient);

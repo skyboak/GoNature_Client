@@ -60,7 +60,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
     private NumberAxis yAxisR;
 
     @FXML
-    private ComboBox<String> visitorIDCombo;
+    private ComboBox<String> parkNameCombo;
 
 	@FXML
     private TableView<CancellationDetail> tableView;
@@ -83,16 +83,15 @@ public class CancellationReportScreenController extends WorkerScreenController i
     
    
 
-	public void setvisitorIDCombo(ComboBox<String> visitorIDCombo) {
-		this.visitorIDCombo = visitorIDCombo;
+	public void setvisitorIDCombo(ComboBox<String> parkNameCombo) {
+		this.parkNameCombo = parkNameCombo;
 	}
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	
-        setComboBox();
-     // Set the gapStartAndEnd property to true
-        
+    	setComboBox();
+        // Set the gapStartAndEnd property to true
         xAxisR = new CategoryAxis();
 		yAxisR = new NumberAxis(0, 20, 2);
 		//visitorChart.setAnimated(false);
@@ -116,14 +115,14 @@ public class CancellationReportScreenController extends WorkerScreenController i
         parkNames.add("BlackForest");
         parkNames.add("Hyde Park");
         parkNames.add("YellowStone");
-        visitorIDCombo.setItems(FXCollections.observableArrayList(parkNames));
+        parkNameCombo.setItems(FXCollections.observableArrayList(parkNames));
         
     }
 
     public void showBtn(ActionEvent event) throws IOException {
     	
     	
-    	String selectedParkName = visitorIDCombo.getValue();
+    	String selectedParkName = parkNameCombo.getValue();
     	System.out.println(selectedParkName);
         if (selectedParkName != null) {
             // Call method to get cancellation data for the selected park and update the chart
@@ -152,6 +151,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
             System.out.println("Please select a park.");
         }
     }
+    
 
     private void CreateCancellationStatisticsBarChar(int[] cancelldayAVGCount) {
     	

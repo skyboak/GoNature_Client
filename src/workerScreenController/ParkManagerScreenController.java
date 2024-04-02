@@ -115,7 +115,8 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	
 	private void setPark(String parkName) {
 		this.parkName = parkName;
-		//getcapacity()
+		//getcapacity();
+		System.out.println(parkName + "this is the park u are ahrai alav");
 		parkNameT.setText(parkName);
 		String imgS = "/images/" + parkName + ".jpeg";
 		Image img = new Image(imgS);

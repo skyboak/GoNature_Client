@@ -299,12 +299,17 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 		}
 		ClientController.client.reportController.setGotResponse(true);
 		reportList =  ClientController.client.reportController.getReportList();
-		
-        for (ReportDetail reportData : reportList) {
-        	reportTable.getItems().add(reportData);}
-        reportTable.getSelectionModel().selectFirst();
-        reportSelected =  reportTable.getSelectionModel().getSelectedItem();
-        reportTable.refresh();
+		if (reportList == null || reportList.isEmpty()) {
+			System.out.println("there is no report yet");
+		}
+		else {
+			for (ReportDetail reportData : reportList) {
+	        	reportTable.getItems().add(reportData);}
+	        reportTable.getSelectionModel().selectFirst();
+	        reportSelected =  reportTable.getSelectionModel().getSelectedItem();
+	        reportTable.refresh();
+			
+		}
 		
     }
     
