@@ -85,12 +85,12 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="#1e525b" layoutX="116.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Everthing looks fine," wrappingWidth="166.0">
+      <Text fill="#1e525b" layoutX="109.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Everthing looks fine," wrappingWidth="187.9999947542201">
          <font>
             <Font name="System Bold Italic" size="19.0" />
          </font>
       </Text>
-      <Text fill="#1e525b" layoutX="120.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We will wait for you!" wrappingWidth="166.0">
+      <Text fill="#1e525b" layoutX="111.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We will wait for you!" wrappingWidth="202.0">
          <font>
             <Font name="System Bold Italic" size="19.0" />
          </font>
