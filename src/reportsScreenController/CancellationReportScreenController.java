@@ -26,6 +26,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.CancellationData;
 import logic.CancellationDetail;
@@ -58,6 +60,9 @@ public class CancellationReportScreenController extends WorkerScreenController i
 
     @FXML
     private NumberAxis yAxisR;
+    
+    @FXML
+    private Text errortxt;
 
     @FXML
     private ComboBox<String> parkNameCombo;
@@ -94,13 +99,16 @@ public class CancellationReportScreenController extends WorkerScreenController i
         // Set the gapStartAndEnd property to true
         xAxisR = new CategoryAxis();
 		yAxisR = new NumberAxis(0, 20, 2);
+		
 		//visitorChart.setAnimated(false);
 		CancellationChart.setBarGap(1.0d);
 		CancellationChart.setCategoryGap(10.0);
+		
         xAxisR.setCategories(daysOfWeek);
         
         
         averageCanceltxt.setText("Average cancellation :");
+        
         
         // Set cell value factories for table columns
         orderNumberC.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));
@@ -110,7 +118,9 @@ public class CancellationReportScreenController extends WorkerScreenController i
         
     }
 
-    private void setComboBox() {
+    
+
+	private void setComboBox() {
         ArrayList<String> parkNames = new ArrayList<String>();
         parkNames.add("BlackForest");
         parkNames.add("Hyde Park");
@@ -127,7 +137,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
      */
     public void showBtn(ActionEvent event) throws IOException {
     	
-    	
+    	errortxt.setVisible(false);
     	String selectedParkName = parkNameCombo.getValue();
     	System.out.println(selectedParkName);
         if (selectedParkName != null) {
@@ -154,9 +164,12 @@ public class CancellationReportScreenController extends WorkerScreenController i
             updateTableView(cancellationData);
         } else {
             // Handle case when no park is selected
-            System.out.println("Please select a park.");
+        	errortxt.setVisible(true);
+        	errortxt.setText("Please select Park.");
+        	errortxt.setFill(Color.RED);
         }
-    }
+     }
+    
     
 
     /**
@@ -236,6 +249,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
 	    public void backBtn(ActionEvent event) {
 	        // Clear existing data from the chart
 	    	CancellationChart.getData().clear();
+	    	xAxisR.setCategories(daysOfWeek); // Reset categories for the x-axis
 	        xAxisR = new CategoryAxis();
 			yAxisR = new NumberAxis(0, 20, 2);
 			//visitorChart.setAnimated(false);

@@ -117,6 +117,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
      * @throws IOException If an I/O error occurs while saving the image or sending the report details.
      */
     public void sendReportToSystemBtn(ActionEvent event) throws IOException {
+    	errortxt.setVisible(false);
         WritableImage image = visitorChart.snapshot(new SnapshotParameters(), null);
 
         // Get the directory path from the text field
@@ -192,6 +193,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
      * @throws IOException If an I/O exception occurs while sending the request.
      */
     public void showBtn(ActionEvent event) throws IOException {
+    	errortxt.setVisible(false);
         // HashMap to store visitor data
         Map<LocalDate, int[]> visitorData;
         // Variables to store the fromDate and toDate

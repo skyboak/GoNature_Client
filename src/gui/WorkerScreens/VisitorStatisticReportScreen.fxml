@@ -78,7 +78,7 @@
             </Pane>
 			</children>
 		</Pane>
-		<BarChart fx:id="visitorChart" layoutX="271.0" layoutY="192.0" prefHeight="364.0" prefWidth="736.0">
+		<BarChart fx:id="visitorChart" layoutX="271.0" layoutY="192.0" prefHeight="370.0" prefWidth="736.0">
 			<xAxis>
 				<CategoryAxis endMargin="10.0" label="day " prefHeight="58.0" prefWidth="650.0" side="BOTTOM" tickLabelRotation="4.4" tickLength="10.0" fx:id="xAxisR">
                <tickLabelFont>
@@ -94,20 +94,20 @@
 				<Font name="Futura Bold" size="21.0" />
 			</font>
 		</Text>
-		<Text layoutX="585.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to:" wrappingWidth="143.99999380111694">
+		<Text layoutX="607.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to:" wrappingWidth="143.99999380111694">
 			<font>
 				<Font name="Futura Bold" size="21.0" />
 			</font>
 		</Text>
 		<DatePicker fx:id="FromDate" layoutX="343.0" layoutY="114.0" prefHeight="31.0" prefWidth="178.0" />
-		<DatePicker fx:id="ToDate" layoutX="611.0" layoutY="115.0" prefHeight="31.0" prefWidth="188.0" />
+		<DatePicker fx:id="ToDate" layoutX="641.0" layoutY="114.0" prefHeight="31.0" prefWidth="188.0" />
 		<Button fx:id="Show" layoutX="949.0" layoutY="113.0" mnemonicParsing="false" onAction="#showBtn" prefHeight="31.0" prefWidth="69.0" text="Show" />
 		<Label fx:id="Totalvisitortxt" layoutX="282.0" layoutY="556.0" prefHeight="40.0" prefWidth="486.0" text="Total visitors:">
 			<font>
 				<Font name="Arial Bold" size="21.0" />
 			</font>
 		</Label>
-		<Button fx:id="BackBtn" layoutX="943.0" layoutY="524.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="8.0" prefWidth="81.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10;" text="Logout">
+		<Button fx:id="BackBtn" layoutX="943.0" layoutY="576.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="8.0" prefWidth="81.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10;" text="Clear">
 		<font>
 		<Font name="System Bold" size="14.0" />
 		</font>
@@ -146,17 +146,18 @@
       <Line endX="514.0" layoutX="521.0" layoutY="681.0" startX="-249.0" />
       <Line endX="-258.5" endY="412.5" layoutX="1294.0" layoutY="268.0" startX="-258.5" startY="-252.5" />
       <Line endX="543.0" endY="1.0000152587890625" layoutX="492.0" layoutY="14.0" startX="-220.0" />
-      <Line endX="516.0" layoutX="520.0" layoutY="94.0" startX="-249.5" stroke="#ffc152" strokeWidth="5.0" />
+      <Line endX="512.0" layoutX="520.0" layoutY="94.0" startX="-249.5" stroke="#cd8d1f" strokeWidth="5.0" />
       <ImageView fitHeight="40.0" fitWidth="63.0" layoutX="525.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/Screenshot%202024-03-31%20150207.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="63.0" layoutX="812.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="63.0" layoutX="840.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/Screenshot%202024-03-31%20150207.png" />
          </image>
       </ImageView>
       <Text fx:id="errortxt" layoutX="406.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="error" visible="false" wrappingWidth="469.99999564886093" />
+      <Line endX="508.0" layoutX="528.0" layoutY="96.0" startX="-258.5" stroke="#ffc152" strokeWidth="5.0" />
 	</children>
 </AnchorPane>

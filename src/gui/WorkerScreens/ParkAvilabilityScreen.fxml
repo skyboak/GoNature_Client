@@ -108,16 +108,8 @@
          </font>
       </Text>
       <DatePicker fx:id="FromDate" layoutX="357.0" layoutY="110.0" prefHeight="31.0" prefWidth="178.0" />
-      <DatePicker fx:id="ToDate" layoutX="664.0" layoutY="110.0" prefHeight="31.0" prefWidth="188.0" />
+      <DatePicker fx:id="ToDate" layoutX="663.0" layoutY="112.0" prefHeight="31.0" prefWidth="188.0" />
       <Button fx:id="Show" layoutX="945.0" layoutY="110.0" mnemonicParsing="false" onAction="#showBtn" prefHeight="31.0" prefWidth="59.0" text="Show" />
-      <Button fx:id="BackBtn" layoutX="936.0" layoutY="570.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="31.0" prefWidth="78.0" text="clear">
-         <effect>
-            <InnerShadow choke="0.15" color="#8d7d7d" height="30.0" radius="14.5" width="30.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Pane layoutX="336.0" layoutY="22.0" prefHeight="60.0" prefWidth="593.0" style="-fx-background-color: #1e525b; -fx-background-radius: 68;">
          <children>
             <Text fill="#ecfcff" layoutX="42.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Park Availability" textAlignment="CENTER" wrappingWidth="529.365234375">
@@ -140,7 +132,7 @@
             <Image url="@../../images/Screenshot%202024-03-31%20150207.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="63.0" layoutX="864.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="63.0" layoutX="856.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/Screenshot%202024-03-31%20150207.png" />
          </image>
@@ -157,5 +149,10 @@
          </cursor>
       </Button>
       <Text fx:id="msgToUser" layoutX="377.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="367.9999910891056" />
+      <Button fx:id="BackBtn" layoutX="945.0" layoutY="571.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="8.0" prefWidth="81.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10;" text="Clear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

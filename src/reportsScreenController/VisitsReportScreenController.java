@@ -107,6 +107,7 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	
         setComboBox();
         setDatePickerCellFactory(FromDate);
         setDatePickerCellFactory(ToDate);

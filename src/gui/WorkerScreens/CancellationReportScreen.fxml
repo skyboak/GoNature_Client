@@ -9,7 +9,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -70,14 +69,6 @@
             </Text>
          </children>
       </Pane>
-      <Button fx:id="BackBtn" layoutX="931.0" layoutY="636.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="31.0" prefWidth="78.0" text="Clear">
-         <effect>
-            <InnerShadow choke="0.15" color="#8d7d7d" height="30.0" radius="14.5" width="30.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Text layoutX="276.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="park name : " wrappingWidth="123.99999380111694">
          <font>
             <Font name="Futura Bold" size="21.0" />
@@ -138,10 +129,20 @@
          </image>
       </ImageView>
       <Line endX="-266.0" endY="425.5" layoutX="536.0" layoutY="255.0" startX="-266.0" startY="-242.0" />
-      <Line endX="514.0" layoutX="523.0" layoutY="681.0" startX="-249.0" />
+      <Line endX="514.0" layoutX="521.0" layoutY="681.0" startX="-249.0" />
       <Line endX="-258.5" endY="412.5" layoutX="1293.0" layoutY="268.0" startX="-258.5" startY="-252.5" />
       <Line endX="547.0" layoutX="491.0" layoutY="14.0" startX="-220.0" />
-      <Line endX="515.0" layoutX="519.0" layoutY="84.0" startX="-249.5" stroke="#ffc152" strokeLineJoin="BEVEL" strokeWidth="5.0" />
+      <Line endX="515.0" layoutX="519.0" layoutY="88.0" startX="-249.5" stroke="#ffc152" strokeLineJoin="BEVEL" strokeWidth="5.0" />
       <Text fx:id="errortxt" layoutX="764.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="error" visible="false" wrappingWidth="177.99999564886093" />
+      <ImageView fitHeight="60.0" fitWidth="124.0" layoutX="942.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/forestline.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="BackBtn" layoutX="950.0" layoutY="625.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="8.0" prefWidth="81.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10;" text="Clear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

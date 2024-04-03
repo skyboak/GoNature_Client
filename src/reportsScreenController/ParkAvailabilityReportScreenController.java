@@ -156,18 +156,41 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 	        setDatePickerCellFactory(ToDate);
 	        
 	        directoryChooser = new DirectoryChooser();
+	     // Call the method to set default values
+	        setDateDefaultForAvailabilityReport(); 
 			
 		}
 
+		
+		/**
+		 * Sets default values for the Park Availability Report screen.
+		 * This method generates default data for the last week, sets the FromDate and ToDate accordingly,
+		 * and displays the default data on the chart.
+		 * If an error occurs while displaying the default data, it will be caught and printed to the standard error stream.
+		 */
+	    private void setDateDefaultForAvailabilityReport() {
+	    	 LocalDate currentDate = LocalDate.now();
+	         LocalDate lastWeek = currentDate.minusWeeks(1);
+	         FromDate.setValue(lastWeek);
+	         ToDate.setValue(currentDate);
 
+	         // Then, you can call the showBtn method to display the default data
+	         try {
+	             showBtn(new ActionEvent());
+	         } catch (IOException e) {
+	             e.printStackTrace();
+	         }
+			
+		}
+
+		    /**
+		     * Handles the action event when the show button is clicked to display visitor statistics.
+		     * Retrieves visitor statistics data within the selected date range and updates the bar chart.
+		     *
+		     * @param event The ActionEvent triggered by clicking the show button.
+		     * @throws IOException Signals that an I/O exception has occurred.
+		     */
 	    @FXML
-	    /**
-	     * Handles the action event when the show button is clicked to display visitor statistics.
-	     * Retrieves visitor statistics data within the selected date range and updates the bar chart.
-	     *
-	     * @param event The ActionEvent triggered by clicking the show button.
-	     * @throws IOException Signals that an I/O exception has occurred.
-	     */
 	    void showBtn(ActionEvent event) throws IOException {
 	    	 // HashMap to store visitor data
 	        Map<String, Integer> visitorstatData;

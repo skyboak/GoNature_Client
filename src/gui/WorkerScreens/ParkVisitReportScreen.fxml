@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -86,14 +85,6 @@
             </Pane>
          </children>
       </Pane>
-      <Button fx:id="BackBtn" layoutX="954.0" layoutY="636.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="31.0" prefWidth="78.0" text="clear">
-         <effect>
-            <InnerShadow choke="0.15" color="#8d7d7d" height="30.0" radius="14.5" width="30.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Text fill="#1e525b" layoutX="380.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="462.3333201408386">
          <font>
             <Font name="System Bold Italic" size="44.0" />
@@ -162,5 +153,10 @@
       <Line endX="-258.5" endY="412.5" layoutX="1294.0" layoutY="264.0" startX="-258.5" startY="-252.5" />
       <Line endX="543.0" endY="1.0000152587890625" layoutX="492.0" layoutY="10.0" startX="-220.0" />
       <Line endX="515.0" layoutX="520.0" layoutY="90.0" startX="-249.5" stroke="#ffc152" strokeWidth="5.0" />
+      <Button fx:id="BackBtn" layoutX="939.0" layoutY="636.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="8.0" prefWidth="81.0" style="-fx-background-color: #FFC152; -fx-background-radius: 10;" text="Clear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
