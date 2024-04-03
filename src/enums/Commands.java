@@ -70,7 +70,7 @@ public enum Commands {
 	 terminate,ClientDisconnect,
 
 
-	  statReportData, 
+	  statReportData, ParkNames, 
 	 
 
 

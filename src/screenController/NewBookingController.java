@@ -387,15 +387,29 @@ public class NewBookingController extends VisitorScreenController {
 	 */
 	private void setComboBox() {
 	    // Initialize ArrayLists to store predefined options for park names, number of visitors, time, and number of visitors for guided tours
-	    ArrayList<String> parkNames = new ArrayList<String>();
+	    
+		ClientController.client.mainScreenController.getParkNames();
+		boolean awaitResponse = true;
+		while (awaitResponse) {
+            try {
+                Thread.sleep(100);
+                awaitResponse = ClientController.client.mainScreenController.isGotResponse();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+		ClientController.client.mainScreenController.setGotResponse(true);
+		ArrayList<String> parkNames = ClientController.client.mainScreenController.allParkNames();
+		
+		//ArrayList<String> parkNames = new ArrayList<String>();
 	    ArrayList<String> NumOfVisitors = new ArrayList<String>();
 	    ArrayList<String> NumOfVisitorsG = new ArrayList<String>();
 	    ArrayList<String> Time = new ArrayList<String>();
 	    
-	    // Populate the parkNames list with predefined park names
-	    parkNames.add("BlackForest");
-	    parkNames.add("Hyde Park");
-	    parkNames.add("YellowStone");
+//	    // Populate the parkNames list with predefined park names
+//	    parkNames.add("BlackForest");
+//	    parkNames.add("Hyde Park");
+//	    parkNames.add("YellowStone");
 	    
 	    // Populate the NumOfVisitors list with options for the number of visitors (1 to 5)
 	    for (int i = 1; i < 6; i++) {

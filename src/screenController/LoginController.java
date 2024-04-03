@@ -89,7 +89,8 @@ public class LoginController extends ScreenController {
 	public void xBtn(ActionEvent event) throws Exception {
 		Message disconnectClient = new Message(null,Commands.ClientDisconnect);
 		ClientController.client.sendToServer(disconnectClient);
-		System.exit(0);
+		((Node)event.getSource()).getScene().getWindow().hide();
+		//System.exit(0);
 	}
 	
 	/**
@@ -98,53 +99,54 @@ public class LoginController extends ScreenController {
 	 * @throws Exception Throws Exception if an error occurs during execution.
 	 */
 	public void loginBtn(ActionEvent event) throws Exception {
+
 	    // Hide any previous error message
 	    errorT.setVisible(false);
 
-	    // Check if worker checkbox is selected
-	    if(workerCB.isSelected()) {
-	        // Create login details object for worker
-	        LoginDetail loginDetail = new LoginDetail(getUsername(), getPassword());
-	        // Create a message containing login details and command to check worker login
-	        Message loginDetailMsg = new Message(loginDetail, Commands.CheckWorkerLogin);
+		//TODO: Add Implementation.
+		if(workerCB.isSelected()) {
+			LoginDetail loginDetail = new LoginDetail(getUsername(),getPassword());
+			Message loginDetailMsg = new Message(loginDetail,Commands.CheckWorkerLogin);
+			
+			boolean awaitResponse = true;
+			ClientController.client.sendToServer(loginDetailMsg);
+	            // wait for response
+			while (awaitResponse) {
+				try {
+					Thread.sleep(100);
+					awaitResponse = ClientController.client.mainScreenController.isGotResponse();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			ClientController.client.mainScreenController.setGotResponse(true);
+			WorkerDetail workerDetail = ClientController.client.mainScreenController.getWorkerLoginValid();
 
-	        // Send message to server and wait for response
-	        boolean awaitResponse = true;
-	        ClientController.client.sendToServer(loginDetailMsg);
-	        while (awaitResponse) {
-	            try {
-	                Thread.sleep(100);
-	                awaitResponse = ClientController.client.mainScreenController.isGotResponse();
-	            } catch (InterruptedException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	        
-	        // Reset gotResponse flag
-	        ClientController.client.mainScreenController.setGotResponse(true);
+			//move to workerscreen
+			System.out.println(workerDetail.toString());
+			ClientController.client.workerController.setWorkerDetail(workerDetail);
+			if( workerDetail.getWorkerId() == -1) {
+				errorT.setVisible(true);
+				errorT.setText("**Worker is already logged in");
+				System.out.println("Worker Already Logged in");
+			}
+			else if(workerDetail.getRole().equals("Park Manager")) {
+				System.out.println("Entring Park Manager..");
+				System.out.println(workerDetail.getParkName());
+				((Node)event.getSource()).getScene().getWindow().hide();
+				ParkManagerScreenController newScreen = new ParkManagerScreenController();
+				newScreen.start(new Stage());
+			}
 
-	        // Retrieve worker details from response
-	        WorkerDetail workerDetail = ClientController.client.mainScreenController.getWorkerLoginValid();
+			else if(workerDetail.getRole().equals("Department Manager")) {
+				System.out.println("Entring Department Manager..");
+				((Node)event.getSource()).getScene().getWindow().hide();
+				DepartmentManagerDashboardController newScreen = new DepartmentManagerDashboardController();
+				newScreen.start(new Stage());
+			}	
 
-	        // Move to respective worker screen based on role
-	        System.out.println(workerDetail.getRole());
-	        ClientController.client.workerController.setWorkerDetail(workerDetail);
-	        if(workerDetail.getRole().equals("Park Manager")) {
-	            System.out.println("Entering Park Manager..");
-	            System.out.println(workerDetail.getParkName());
-	            ((Node)event.getSource()).getScene().getWindow().hide();
-	            ParkManagerScreenController newScreen = new ParkManagerScreenController();
-	            newScreen.start(new Stage());
-	        }
 
-	        if(workerDetail.getRole().equals("Department Manager")) {
-	            System.out.println("Entering Department Manager..");
-	            ((Node)event.getSource()).getScene().getWindow().hide();
-	            DepartmentManagerDashboardController newScreen = new DepartmentManagerDashboardController();
-	            newScreen.start(new Stage());
-	        }
-
-	        if(workerDetail.getRole().equals("Park Worker")) {
+			else if(workerDetail.getRole().equals("Park Worker")) {
 	            ((Node)event.getSource()).getScene().getWindow().hide();
 	            WorkerParkDashboardController newScreen = new WorkerParkDashboardController();
 	            newScreen.start(new Stage());

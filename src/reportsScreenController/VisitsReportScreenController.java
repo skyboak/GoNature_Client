@@ -314,10 +314,24 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
 
 
     private void setComboBox() {
-        ArrayList<String> parkNames = new ArrayList<>();
-        parkNames.add("BlackForest");
-        parkNames.add("Hyde Park");
-        parkNames.add("YellowStone Park");
+    	
+		ClientController.client.mainScreenController.getParkNames();
+		boolean awaitResponse = true;
+		while (awaitResponse) {
+            try {
+                Thread.sleep(100);
+                awaitResponse = ClientController.client.mainScreenController.isGotResponse();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+		ClientController.client.mainScreenController.setGotResponse(true);
+		ArrayList<String> parkNames = ClientController.client.mainScreenController.allParkNames();
+    	
+//        ArrayList<String> parkNames = new ArrayList<>();
+//        parkNames.add("BlackForest");
+//        parkNames.add("Hyde Park");
+//        parkNames.add("YellowStone Park");
         parkNameCombo.setItems(FXCollections.observableArrayList(parkNames));
     }
 

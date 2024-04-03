@@ -112,13 +112,13 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 	        String directoryPath = directoryTextField.getText();
 
 	        // Create a File object with the directory path and image file name
-	        File outputFile = new File(directoryPath, "VisitorStatistic.png");
+	        File outputFile = new File(directoryPath, "ParkAvailability.png");
 
 	        // Save the WritableImage to the file
 	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", outputFile);
 	        
 	        // Create the ReportDetail object with the image byte array
-	        ReportDetail report = new ReportDetail(dateDetail.getParkName(), dateDetail.getStart(), dateDetail.getEnd(), "Visitor Statistic Report", outputFile.getAbsolutePath(), directoryTextField.getText());
+	        ReportDetail report = new ReportDetail(dateDetail.getParkName(), dateDetail.getStart(), dateDetail.getEnd(), "Park Availability Report", outputFile.getAbsolutePath(), directoryTextField.getText());
 	        System.out.println("gina");
 	        Message msg = new Message(report, Commands.AddReport);
 	        ClientController.client.sendToServer(msg);
@@ -219,6 +219,7 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 		        ClientController.client.reportController.setGotResponse(true);
 		        visitorstatData =  ClientController.client.reportController.getVisitorStatData();
 		        CreateAVBarChar(visitorstatData);
+		        sendReportToSystem.setDisable(false);
 	        }else {
 	        	errortxt.setVisible(true);
 	            errortxt.setText("Please select both From and To dates.");

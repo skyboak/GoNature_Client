@@ -58,8 +58,8 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 
     @FXML
     private Button cancellationReport;
-
-
+    @FXML
+    private Text welcomebackt;
     @FXML
     private TableView<ReportDetail> reportTable;
 
@@ -105,6 +105,9 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 
     @FXML
     private Button confirmChanges;
+
+    @FXML
+    private Button denyChanges;
 	@FXML
 	private TextField directoryTextField;
 
@@ -121,8 +124,10 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 	    directoryChooser = new DirectoryChooser();
     }
 	
-   
-
+    @FXML
+    void denyChangesBtn(ActionEvent event) throws Exception {
+    	removeRequest(requestSelected.getRequestNumber());
+    }
 
     @FXML
     void confirmChangesBtn(ActionEvent event) throws Exception {
@@ -186,9 +191,13 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     	//requestTable.getItems().remove(requestSelected);
 		ClientController.client.workerController.setGotResponse(false);
 		System.out.println("Set complete");
-		Message requestIndexmsg = new Message(requestSelected.getRequestNumber(),Commands.removeRequest);
+		removeRequest(requestSelected.getRequestNumber());
+    }
+    
+    private void removeRequest(int requestNumber) throws Exception {
+		Message requestIndexmsg = new Message(requestNumber,Commands.removeRequest);
 		ClientController.client.sendToServer(requestIndexmsg);
-		awaitResponse = false;
+		boolean awaitResponse = false;
         // wait for response
 		while (!awaitResponse) {
 			try {
@@ -201,6 +210,7 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 		ClientController.client.workerController.setGotResponse(false);
 		refresh();
     }
+    
 
     @FXML
     void parksVisitsReportBtn(ActionEvent event) {
@@ -231,7 +241,7 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 	{
 		ArrayList<String> parkNames = new ArrayList<String>();
 		parkNames.add("Visitor Statistic Report");
-		parkNames.add("Pay now");
+		parkNames.add("Park Availability Report");
 		ObservableList<String> list1 = FXCollections.observableArrayList(parkNames);
 		reportComboBox.setItems(list1);
 		reportComboBox.getSelectionModel().selectFirst();
@@ -359,6 +369,8 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     	setComboBox();
     	startRequestTable();
     	startReportTable();
+    	welcomebackt.setText("Welcome Back " + ClientController.client.workerController.getWorkerDetail().getName());
+    	
     	requestTable.setOnMouseClicked(event -> {
     		confirmChanges.setDisable(false);
     		requestSelected = requestTable.getSelectionModel().getSelectedItem();

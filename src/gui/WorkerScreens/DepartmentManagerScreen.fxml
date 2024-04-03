@@ -103,7 +103,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="confirmChanges" layoutX="874.0" layoutY="647.0" mnemonicParsing="false" onAction="#confirmChangesBtn" text="Confirm Changes" />
+      <Button fx:id="confirmChanges" layoutX="854.0" layoutY="650.0" mnemonicParsing="false" onAction="#confirmChangesBtn" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Confirm Changes" />
       <Button layoutX="303.0" layoutY="644.0" mnemonicParsing="false" onAction="#refreshBtn" prefHeight="36.0" prefWidth="84.0" text="Refresh" textAlignment="CENTER" textFill="#0e1422" wrapText="true" />
       <Text layoutX="479.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Report : " wrappingWidth="126.60205078125" />
       <Button fx:id="downloadReport" disable="true" layoutX="649.0" layoutY="335.0" mnemonicParsing="false" onAction="#downloadReportBtn" text="Download Report" />
@@ -142,5 +142,6 @@
       </ImageView>
       <Line endX="516.0" layoutX="515.0" layoutY="92.0" startX="-245.5" stroke="#ffc152" strokeWidth="5.0" />
       <Text fx:id="errortxt" layoutX="820.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="error" visible="false" wrappingWidth="177.99999564886093" />
+      <Button fx:id="denyChanges" layoutX="729.0" layoutY="650.0" mnemonicParsing="false" onAction="#denyChangesBtn" style="-fx-background-color: #FFC152; -fx-background-radius: 10 10 10 10;" text="Deny Changes" />
    </children>
 </AnchorPane>

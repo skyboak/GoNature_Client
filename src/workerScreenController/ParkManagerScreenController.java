@@ -49,6 +49,9 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	@FXML
 	private Text visitorAmountT;
 	
+	@FXML
+	private Text MessageT;
+	
 	private String parkName;
 	
 	private String getParkCapacity() {
@@ -62,7 +65,8 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	}
 	
 	public void refreshBtn(ActionEvent event) throws Exception{
-		setVisitorAmount();
+		//setVisitorAmount();
+		visitorAmountT.setText(getCurrentOccupancy());
 	}
 	
 	/**
@@ -73,13 +77,20 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	 */
 	public void setParkCapacityBtn(ActionEvent event) throws Exception
 	{
+		MessageT.setVisible(true);
 		String valueTo = getParkCapacity();
-		//Message msg = new Message(valueTo,Commands.ChangeParkCapacity);
+		if(valueTo == "") {
+			MessageT.setText("Please Enter A value First.");
+		}
+		else if(valueTo.length() > 7 || Integer.valueOf(valueTo) < 0)
+			MessageT.setText("Invalid Value, Try Again.");
+		else {
 		ManagerRequestDetail managerRequestDetail = new ManagerRequestDetail(parkName,"Set Park Capacity of ",valueTo);
-		//ClientController.client.workerController.addRequest(managerRequestDetail);
-		
 		Message addmsg = new Message(managerRequestDetail,Commands.AddManagerRequestDetail);
 		ClientController.client.sendToServer(addmsg);
+		MessageT.setText("Message Sent To Department Manager For Confirmation.");
+		ParkCapacityT.clear();
+		}
 		
 	}
 	
@@ -91,12 +102,20 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	 */
 	public void setOnlineBookingCapacityBtn(ActionEvent event) throws Exception
 	{
+		MessageT.setVisible(true);
 		String valueTo = getOnlineBookingCapacity();
-		//Message msg = new Message(valueTo,Commands.ChangeOnlineBookingCapacity);
+		if(valueTo == "") {
+			MessageT.setText("Please Enter A value First.");
+		}
+		else if(valueTo.length() > 7 || Integer.valueOf(valueTo) < 0)
+			MessageT.setText("Invalid Value, Try Again.");
+		else {
 		ManagerRequestDetail managerRequestDetail = new ManagerRequestDetail(parkName,"Set Online Booking Capacity of ",valueTo);
-		
 		Message addmsg = new Message(managerRequestDetail,Commands.AddManagerRequestDetail);
 		ClientController.client.sendToServer(addmsg);
+		MessageT.setText("Message Sent To Department Manager For Confirmation.");
+		OnlineBookingCapacityT.clear();
+		}
 	}
 	
 	/**
@@ -107,14 +126,21 @@ public class ParkManagerScreenController extends WorkerScreenController{
 	 */
 	public void setAverageParkStayTimeBtn(ActionEvent event) throws Exception
 	{
-		
+		MessageT.setVisible(true);
 		String valueTo = getAverageParkStayTime();
-		//Message msg = new Message(valueTo,Commands.ChangeAverageParkStayTime);
+		if(valueTo == "") {
+			MessageT.setText("Please Enter A value First.");
+		}
+		else if(valueTo.length() > 7 || Integer.valueOf(valueTo) < 0)
+			MessageT.setText("Invalid Value, Try Again.");
+		else {
 		ManagerRequestDetail managerRequestDetail = new ManagerRequestDetail(parkName,"Set Park Stay Time of ",valueTo);
-
-		
 		Message addmsg = new Message(managerRequestDetail,Commands.AddManagerRequestDetail);
 		ClientController.client.sendToServer(addmsg);
+		
+		MessageT.setText("Message Sent To Department Manager For Confirmation.");
+		AverageParkStayTimeT.clear();
+		}
 	}
 	
 	/**
@@ -132,7 +158,9 @@ public class ParkManagerScreenController extends WorkerScreenController{
     	RemoveTopBar(primaryStage,root);
     	primaryStage.show();
     	setPark(ClientController.client.workerController.getWorkerDetail().getParkName());
-    	setVisitorAmount();
+    	//welcomebackt.setText("Welcome Back " + ClientController.client.workerController.getWorkerDetail().getName());
+    	//setVisitorAmount();
+    	visitorAmountT.setText(getCurrentOccupancy());
 
 	}
 	

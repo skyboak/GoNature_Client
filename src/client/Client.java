@@ -243,6 +243,14 @@ public class Client extends AbstractClient
 	         System.exit(0);
 	  		 break;
 
+//	  	  case statReportData:
+//	  		HashMap<String,Integer> statReportData = (HashMap<String,Integer>)m.getObj();
+//	  		workerController.setstatReportData(statReportData);
+//	  		break;
+
+	  	  case ParkNames:
+	  		mainScreenController.setParkNames((ArrayList<String>)m.getObj());
+	  		break;
 	  		  
 	  	  case OccasionalBookingNumber:
 	  		  String  st =(String)m.getObj();

@@ -112,7 +112,7 @@ public class CancellationReportScreenController extends WorkerScreenController i
         
         // Set cell value factories for table columns
         orderNumberC.setCellValueFactory(new PropertyValueFactory<>("orderNumber"));
-        visitorIDC.setCellValueFactory(new PropertyValueFactory<>("Visitor ID"));
+        visitorIDC.setCellValueFactory(new PropertyValueFactory<>("visitorID"));
         dateTimeC.setCellValueFactory(new PropertyValueFactory<>("visitTime"));
         numOfVisitorsC.setCellValueFactory(new PropertyValueFactory<>("numVisitors"));
         
@@ -121,10 +121,24 @@ public class CancellationReportScreenController extends WorkerScreenController i
     
 
 	private void setComboBox() {
-        ArrayList<String> parkNames = new ArrayList<String>();
-        parkNames.add("BlackForest");
-        parkNames.add("Hyde Park");
-        parkNames.add("YellowStone");
+		ClientController.client.mainScreenController.getParkNames();
+		boolean awaitResponse = true;
+		while (awaitResponse) {
+            try {
+                Thread.sleep(100);
+                awaitResponse = ClientController.client.mainScreenController.isGotResponse();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+		ClientController.client.mainScreenController.setGotResponse(true);
+		ArrayList<String> parkNames = ClientController.client.mainScreenController.allParkNames();
+		
+//        ArrayList<String> parkNames = new ArrayList<String>();
+//        parkNames.add("BlackForest");
+//        parkNames.add("Hyde Park");
+//        parkNames.add("YellowStone");
+        parkNames.add("All Parks");
         parkNameCombo.setItems(FXCollections.observableArrayList(parkNames));
         
     }

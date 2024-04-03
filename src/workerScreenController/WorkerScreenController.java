@@ -1,5 +1,6 @@
 package workerScreenController;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,6 +25,27 @@ import screenController.LoginController;
 public class WorkerScreenController extends ScreenController {
 	
 
+    public String getCurrentOccupancy() {
+    	String parkName = ClientController.client.workerController.getWorkerDetail().getParkName();
+    	Message currOccupancy = new Message(parkName,Commands.CurrentOccupancy);
+    	try {
+			ClientController.client.sendToServer(currOccupancy);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	boolean awaitResponse = false;
+		while (!awaitResponse) 
+		{
+			try {
+				Thread.sleep(100);
+				awaitResponse = ClientController.client.workerController.isGotResponse();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		ClientController.client.workerController.setGotResponse(false);
+    	return ClientController.client.workerController.getCurrentOccupancy();
+    }
 	
 	
 	

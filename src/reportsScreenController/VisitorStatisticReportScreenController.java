@@ -202,7 +202,7 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         if (fromDate != null && toDate != null) { // Check if both dates are selected
         dateDetail = new DateDetail(fromDate, toDate);
         dateDetail.setParkName(ClientController.client.workerController.getWorkerDetail().getParkName());
-        //dateDetail.setParkName("Hyde Park"); 
+
         System.out.println(dateDetail.getEnd());
         Message msg = new Message(dateDetail, Commands.VisitorStatisticRequest);
         ClientController.client.sendToServer(msg);

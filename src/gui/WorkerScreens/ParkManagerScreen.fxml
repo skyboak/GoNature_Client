@@ -136,6 +136,9 @@
          </font>
       </Button>
       <TextField fx:id="AverageParkStayTimeT" alignment="CENTER" layoutX="603.0" layoutY="584.0" prefHeight="45.0" prefWidth="80.0" />
-      <Text fx:id="MessageT" layoutX="789.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+      <Text fx:id="MessageT" fill="#db1515" layoutX="713.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Message Sent To Department Manager For Confirmation." visible="false" wrappingWidth="311.98138427734375">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
    </children>
 </AnchorPane>
