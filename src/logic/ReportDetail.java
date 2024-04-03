@@ -6,7 +6,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import javafx.scene.image.WritableImage;
-
+/**
+ * Represents details of a report including park name, date range, title, image, and file.
+ */
 public class ReportDetail implements Serializable {
 	
 	private String parkName;

@@ -3,7 +3,9 @@ package logic;
 import java.io.Serializable;
 
 import enums.Commands;
-
+/**
+ * Represents a message containing an object and a command.
+ */
 public class Message implements Serializable{
 	
 	/**

@@ -3,7 +3,9 @@ package controller;
 import java.util.ArrayList;
 
 import logic.BookingDetail;
-
+/**
+ * The BookingController class manages booking-related operations and communication with the client.
+ */
 public class BookingController {
 	private boolean isAvailable;
 	private String ID;

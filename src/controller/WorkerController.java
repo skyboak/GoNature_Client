@@ -5,7 +5,9 @@ import java.util.HashMap;
 
 import logic.ManagerRequestDetail;
 import logic.WorkerDetail;
-
+/**
+ * The WorkerController class manages worker-related data and responses.
+ */
 public class WorkerController {
 	
 	private boolean gotResponse = false;

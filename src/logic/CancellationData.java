@@ -2,7 +2,9 @@ package logic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * Represents cancellation data including a list of cancellation details and an array of day counts.
+ */
 public class CancellationData implements Serializable{
 	private ArrayList<CancellationDetail> Cancellations;
     private int[] dayCount;

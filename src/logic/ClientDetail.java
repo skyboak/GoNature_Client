@@ -1,6 +1,8 @@
 package logic;
 
-
+/**
+ * Represents details of a client.
+ */
 public class ClientDetail {
 	
 	private String ip;

@@ -144,6 +144,11 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 	        downloadReport.setDisable(false);
 	    }
 	}
+	
+	/**
+	 * Confirms the requested change and sends the corresponding message to the server.
+	 * @throws Exception Throws Exception if an error occurs during execution.
+	 */
     private void confirm() throws Exception {
 
     	Message msg = null;
@@ -208,6 +213,7 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     	requestTable.getItems().clear();
     	refresh();
     }
+    
     @FXML
     void downloadReportBtn(ActionEvent event) throws Exception {
     	
@@ -235,6 +241,10 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 
 	}
     
+	/**
+	 * Refreshes the request table by clearing it and fetching updated data from the server.
+	 * @throws Exception Throws Exception if an error occurs during execution.
+	 */
     private void refresh() throws Exception {
     	requestTable.getItems().clear();
     	requestList = null;
@@ -264,6 +274,10 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     	requestTable.refresh();
     }
     
+    /**
+     * Initializes the request table by setting cell value factories and refreshing the table.
+     * @throws Exception Throws Exception if an error occurs during execution.
+     */
     private void startRequestTable() throws Exception 
     {
         requestNumber.setCellValueFactory(new PropertyValueFactory<>("requestNumber"));
@@ -273,6 +287,10 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
         refresh();
     }
     
+    /**
+     * Initializes the report table by setting cell value factories and refreshing the table.
+     * @throws Exception Throws Exception if an error occurs during execution.
+     */
     private void startReportTable() throws Exception 
     {
 
@@ -282,9 +300,15 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
     	toC.setCellValueFactory(new PropertyValueFactory<>("dateTo"));
     	reportRefresh();
     }
+    
 	public String getReportType() {
 		return reportComboBox.getValue();
 	}
+	
+	/**
+	 * Refreshes the report table by clearing it and fetching updated data from the server.
+	 * @throws Exception Throws Exception if an error occurs during execution.
+	 */
     private void reportRefresh() throws Exception {
     	reportTable.getItems().clear();
     	reportList = null;
@@ -318,6 +342,11 @@ public class DepartmentManagerDashboardController extends WorkerScreenController
 		
     }
     
+    /**
+     * Starts the Department Manager screen.
+     * @param primaryStage The primary stage to set the scene.
+     * @throws Exception Throws Exception if an error occurs during execution.
+     */
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/WorkerScreens/DepartmentManagerScreen.fxml"));
     	loader.setController(this); // Set the controller

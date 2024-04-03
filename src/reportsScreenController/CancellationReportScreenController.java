@@ -119,6 +119,12 @@ public class CancellationReportScreenController extends WorkerScreenController i
         
     }
 
+    /**
+     * Handles the action event when the show button is clicked to display cancellation statistics for the selected park.
+     *
+     * @param event The action event triggered by clicking the show button.
+     * @throws IOException If an I/O error occurs.
+     */
     public void showBtn(ActionEvent event) throws IOException {
     	
     	
@@ -153,6 +159,11 @@ public class CancellationReportScreenController extends WorkerScreenController i
     }
     
 
+    /**
+     * Creates a bar chart to display cancellation statistics based on the average cancellation count per day.
+     *
+     * @param cancelldayAVGCount An array containing the average cancellation count for each day of the week.
+     */
     private void CreateCancellationStatisticsBarChar(int[] cancelldayAVGCount) {
     	
     	int totalCancellations = 0;
@@ -184,6 +195,11 @@ public class CancellationReportScreenController extends WorkerScreenController i
         CancellationChart.getData().addAll(series);
     }
 
+    /**
+     * Updates the TableView with the provided list of cancellation data.
+     *
+     * @param cancellationData The list of cancellation details to be displayed in the TableView.
+     */
     private void updateTableView(ArrayList<CancellationDetail> cancellationData) {
         // Convert ArrayList to ObservableList
         ObservableList<CancellationDetail> data = FXCollections.observableArrayList(cancellationData);
@@ -192,7 +208,13 @@ public class CancellationReportScreenController extends WorkerScreenController i
         tableView.setItems(data);
     }
 		
-	    
+    /**
+     * Initializes and displays the Cancellation Report screen.
+     * Loads the FXML file, sets the controller, and displays the scene on the stage.
+     *
+     * @param primaryStage The primary stage for the Cancellation Report screen.
+     * @throws Exception If there is an error loading the FXML file or setting up the scene.
+     */
 	    public void start(Stage primaryStage) throws Exception {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/WorkerScreens/CancellationReportScreen.fxml"));
 			loader.setController(this); // Set the controller
@@ -205,6 +227,12 @@ public class CancellationReportScreenController extends WorkerScreenController i
 		}
 	 
 
+	    /**
+	     * Handles the action event when the back button is clicked.
+	     * Clears existing data from the cancellation chart and table view.
+	     *
+	     * @param event The ActionEvent triggered by clicking the back button.
+	     */
 	    public void backBtn(ActionEvent event) {
 	        // Clear existing data from the chart
 	    	CancellationChart.getData().clear();

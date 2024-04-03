@@ -1,7 +1,9 @@
 package logic;
 
 import java.io.Serializable;
-
+/**
+ * Represents login details including ID, username, and password.
+ */
 public class LoginDetail implements Serializable {
 	
 	

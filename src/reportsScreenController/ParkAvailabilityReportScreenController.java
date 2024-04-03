@@ -98,6 +98,13 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 	    private DirectoryChooser directoryChooser;
 	    
 	    @FXML
+	    /**
+	     * Handles the action event when the send report to system button is clicked.
+	     * Captures a snapshot of the usage chart, saves it as an image file, and sends a report to the system.
+	     *
+	     * @param event The ActionEvent triggered by clicking the send report to system button.
+	     * @throws IOException Signals that an I/O exception has occurred.
+	     */
 	    public void sendReportToSystemBtn(ActionEvent event) throws IOException {
 	        WritableImage image = UsageChart.snapshot(new SnapshotParameters(), null);
 
@@ -154,6 +161,13 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 
 
 	    @FXML
+	    /**
+	     * Handles the action event when the show button is clicked to display visitor statistics.
+	     * Retrieves visitor statistics data within the selected date range and updates the bar chart.
+	     *
+	     * @param event The ActionEvent triggered by clicking the show button.
+	     * @throws IOException Signals that an I/O exception has occurred.
+	     */
 	    void showBtn(ActionEvent event) throws IOException {
 	    	 // HashMap to store visitor data
 	        Map<String, Integer> visitorstatData;
@@ -190,6 +204,11 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 	    }
 
 
+	    /**
+	     * Creates a bar chart to display average park usage data.
+	     *
+	     * @param visitorStatMap A map containing average park usage data for each hour.
+	     */
 	
 	    private void CreateAVBarChar(Map<String, Integer> visitorStatMap) {
 	    	UsageChart.getData().clear();
@@ -232,7 +251,11 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 
 
 	    
-	   
+	    /**
+	     * Sets a custom day cell factory for the provided DatePicker to disable future dates and change their appearance.
+	     *
+	     * @param datePicker The DatePicker to which the custom day cell factory will be set.
+	     */
 		   private void setDatePickerCellFactory(DatePicker datePicker) {
 		        // Create a custom day cell factory to disable dates of today and future
 		        Callback<DatePicker, DateCell> dayCellFactory = new Callback<>() {
@@ -259,6 +282,13 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 
 
 
+	   /**
+	    * Initializes and displays the Park Availability Screen.
+	    * Loads the FXML file, sets the controller, and displays the scene on the primary stage.
+	    *
+	    * @param primaryStage The primary stage of the application.
+	    * @throws Exception If an error occurs during the initialization.
+	    */
 		public void start(Stage primaryStage) throws Exception {
 	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/WorkerScreens/ParkAvilabilityScreen.fxml"));
 	 			loader.setController(this); // Set the controller
@@ -272,6 +302,13 @@ public class ParkAvailabilityReportScreenController extends WorkerScreenControll
 	 	 
 	
 		@FXML
+		/**
+		 * Handles the action event when the user clicks the "Choose Directory" button.
+		 * It displays a directory chooser dialog for the user to select a directory.
+		 * If a directory is selected, it updates the text field with the chosen directory path.
+		 *
+		 * @param event The action event triggered by clicking the button.
+		 */
 		private void handleChooseDirectory(ActionEvent event) {
 		    // Show the directory chooser dialog
 		    File selectedDirectory = directoryChooser.showDialog(null);

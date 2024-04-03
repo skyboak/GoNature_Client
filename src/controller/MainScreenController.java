@@ -1,7 +1,9 @@
 package controller;
 
 import logic.WorkerDetail;
-
+/**
+ * The MainScreenController class manages login validations and responses for different types of users.
+ */
 public class MainScreenController {
 	
 

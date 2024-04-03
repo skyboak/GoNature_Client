@@ -1,7 +1,9 @@
 package logic;
 
 import java.io.Serializable;
-
+/**
+ * Represents details of a worker including worker ID, role, park name, and name.
+ */
 public class WorkerDetail implements Serializable{
 	
 	private int workerId;

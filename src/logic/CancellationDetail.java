@@ -1,7 +1,9 @@
 package logic;
 
 import java.io.Serializable;
-
+/**
+ * Represents the details of a cancellation.
+ */
 public class CancellationDetail implements Serializable {
     
     private String orderNumber;

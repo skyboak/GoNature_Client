@@ -3,7 +3,9 @@ package logic;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
+/**
+ * Represents details about a date range and park name.
+ */
 public class DateDetail implements Serializable{
 	
 	private LocalDate start,end;

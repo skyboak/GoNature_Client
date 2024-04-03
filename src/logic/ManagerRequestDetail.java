@@ -6,7 +6,9 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
+/**
+ * Represents details of a manager request.
+ */
 public class ManagerRequestDetail implements Serializable{
 	
 

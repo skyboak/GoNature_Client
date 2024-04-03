@@ -7,7 +7,9 @@ import java.util.Map;
 import logic.CancellationData;
 import logic.CancellationDetail;
 import logic.ReportDetail;
-
+/**
+ * The ReportController class manages report data and responses.
+ */
 public class ReportController {
 	
 	private boolean gotResponse = true;

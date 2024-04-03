@@ -108,6 +108,14 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     
     
     @FXML
+    /**
+     * Handles the action event when the user clicks the "Send Report To System" button.
+     * It takes a snapshot of the visitor chart, saves it as a PNG image, and sends the report details to the server.
+     * Additionally, it updates the user interface to indicate the status of the report creation and submission.
+     *
+     * @param event The action event triggered by clicking the button.
+     * @throws IOException If an I/O error occurs while saving the image or sending the report details.
+     */
     public void sendReportToSystemBtn(ActionEvent event) throws IOException {
         WritableImage image = visitorChart.snapshot(new SnapshotParameters(), null);
 
@@ -152,6 +160,14 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     
     
     @Override
+    /**
+     * Initializes the controller after its root element has been completely processed.
+     * It sets up the date picker cell factories, clears existing data from the visitor chart, and initializes default data for the visits report.
+     * Additionally, it initializes the DirectoryChooser for selecting directories.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     */
     public void initialize(URL location, ResourceBundle resources) {
     	setDatePickerCellFactory(FromDate);
         setDatePickerCellFactory(ToDate);
@@ -166,7 +182,15 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
 	    
     }
 
-    // Method to handle report button action
+    /**
+     * Handles the event when the "Show" button is clicked to display visitor statistics based on selected dates.
+     * It sends a request to the server to fetch visitor statistic data within the selected date range.
+     * If both the "From" and "To" dates are selected, it retrieves and displays the visitor statistics in a bar chart.
+     * If any date is not selected, it displays an error message.
+     *
+     * @param event The ActionEvent triggered by clicking the "Show" button.
+     * @throws IOException If an I/O exception occurs while sending the request.
+     */
     public void showBtn(ActionEvent event) throws IOException {
         // HashMap to store visitor data
         Map<LocalDate, int[]> visitorData;
@@ -203,7 +227,11 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     }
 
     
-    // Method to create visitor statistics bar chart
+    /**
+     * Creates and displays a visitor statistics bar chart based on the provided visitor data.
+     *
+     * @param visitorData The visitor data to be displayed on the chart.
+     */
 	private void CreateVisitorStatisticsBarChar(Map<LocalDate, int[]> visitorData) {
         //Clear existing data from the chart
         visitorChart.getData().clear();
@@ -268,7 +296,9 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         Totalvisitortxt.setText("Total visitor number is: ");
     }
 
-    // Method to set default values for visitors report
+	 /**
+	  * Sets default date and initializes the visitor chart for the visits report.
+	  */
     private void setDateDefultForVisitsReport() {
     	
     	xAxisR = new CategoryAxis();
@@ -283,6 +313,11 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
     	
     }
     
+    /**
+     * Generates default visitor data for the last week.
+     *
+     * @return A HashMap containing visitor data for each day of the last week.
+     */
     private HashMap<LocalDate, int[]> generateDefaultVisitorDataForLastWeek() {
         // Create a HashMap to hold visitor data
         HashMap<LocalDate, int[]> defaultVisitorData = new HashMap<>();
@@ -304,7 +339,12 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
 
         return defaultVisitorData;
     }
-    // Method to check if the selected date is before today's date
+
+    /**
+     * Checks if the selected dates are before the current date.
+     * 
+     * @return True if both selected dates are before the current date, false otherwise.
+     */
     public boolean checkCurrentTime() {
         LocalDate fromdate = FromDate.getValue();
         LocalDate todate = ToDate.getValue();
@@ -317,6 +357,11 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         return false; // Return false if any of the dates is not selected
     }
 
+    /**
+     * Sets a custom day cell factory for the provided DatePicker to disable future dates and change their appearance.
+     *
+     * @param datePicker The DatePicker to which the custom day cell factory will be set.
+     */
     private void setDatePickerCellFactory(DatePicker datePicker) {
         // Create a custom day cell factory to disable dates of today and future
         Callback<DatePicker, DateCell> dayCellFactory = new Callback<>() {
@@ -341,7 +386,12 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
         datePicker.setDayCellFactory(dayCellFactory);
     }
     
-    
+    /**
+     * Starts the Visitor Statistic Report screen by loading the FXML file and setting up the scene.
+     *
+     * @param primaryStage The primary stage for the Visitor Statistic Report screen.
+     * @throws Exception If an error occurs during loading or setting up the scene.
+     */
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/WorkerScreens/VisitorStatisticReportScreen.fxml"));
     	loader.setController(this); // Set the controller
@@ -354,6 +404,11 @@ public class VisitorStatisticReportScreenController extends WorkerScreenControll
 	}
 
 	@FXML
+	/**
+	 * Handles the action event when the "Choose Directory" button is clicked to select a directory.
+	 *
+	 * @param event The action event triggered by clicking the "Choose Directory" button.
+	 */
 	private void handleChooseDirectory(ActionEvent event) {
 	    // Show the directory chooser dialog
 	    File selectedDirectory = directoryChooser.showDialog(null);

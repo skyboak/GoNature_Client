@@ -5,7 +5,10 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-
+/**
+ * Represents details of park entry including order number, visit type, park name, 
+ * start and end time, number of visitors, park capacity, and visit date.
+ */
 public class ParkEntryDetails implements Serializable {
 	private String OrderNumber;
 	private String VisitType;

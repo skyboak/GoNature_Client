@@ -113,6 +113,12 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
     }
 
     @FXML
+    /**
+     * Handles the action event when the "Show" button is clicked to display visit reports.
+     *
+     * @param event The action event triggered by clicking the "Show" button.
+     * @throws IOException If an I/O exception occurs.
+     */
     void showBtn(ActionEvent event) throws IOException {
         String parkName = parkNameCombo.getValue();
         LocalDate fromDate = FromDate.getValue();
@@ -143,7 +149,11 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
         createPieCharts(visitorData);
     }
 
-    
+    /**
+     * Creates PieCharts for visitor data and displays them in the pieChartContainer.
+     *
+     * @param visitorData A map containing visitor types as keys and corresponding data arrays as values.
+     */
     private void createPieCharts(Map<String, int[]> visitorData) {
         pieChartContainer.getChildren().clear(); // Clear previous pie charts
         if (visitorData == null ) {
@@ -187,6 +197,14 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
   
     }
 
+    /**
+     * Creates a PieChart based on the provided counts, total start time count, and visitor type.
+     *
+     * @param counts             An array of counts representing the number of visits starting at each time category.
+     * @param totalStartTimeCount The total count of all visits starting at different times.
+     * @param visitorType        The type of visitor for which the PieChart is being created.
+     * @return A PieChart representing the distribution of visit start times for the specified visitor type.
+     */
     private PieChart createPieChartForStartTime(int[] counts, int totalStartTimeCount, String visitorType) {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
@@ -208,6 +226,14 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
         return pieChart;
     }
 
+    /**
+     * Creates a PieChart based on the provided counts, total duration count, and visitor type.
+     *
+     * @param counts             An array of counts representing the number of visits in each duration category.
+     * @param totalDurationCount The total count of all visit durations.
+     * @param visitorType        The type of visitor for which the PieChart is being created.
+     * @return A PieChart representing the distribution of visit durations for the specified visitor type.
+     */
     private PieChart createPieChartForDuration(int[] counts, int totalDurationCount, String visitorType) {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
@@ -229,6 +255,11 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
         return pieChart;
     }
 
+    /**
+     * Calculates the total count from an array of integers.
+     * @param data The array of integers to calculate the total count from.
+     * @return The total count.
+     */
     private int getTotalCount(int[] data) {
         int totalCount = 0;
         for (int count : data) {
@@ -249,6 +280,12 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
 //
 //        return pieChart;
 //    }
+    
+    /**
+     * Sets a custom day cell factory for the provided DatePicker component.
+     * Disables dates that are after today and changes their background color.
+     * @param datePicker The DatePicker component to set the custom day cell factory for.
+     */
     private void setDatePickerCellFactory(DatePicker datePicker) {
         // Create a custom day cell factory to disable dates of today and future
         Callback<DatePicker, DateCell> dayCellFactory = new Callback<>() {
@@ -283,6 +320,11 @@ public class VisitsReportScreenController extends WorkerScreenController impleme
         parkNameCombo.setItems(FXCollections.observableArrayList(parkNames));
     }
 
+    /**
+     * Initializes and displays the ParkVisitReportScreen.
+     * @param primaryStage The primary stage for the application.
+     * @throws Exception Throws Exception if an error occurs during initialization.
+     */
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/WorkerScreens/ParkVisitReportScreen.fxml"));
         loader.setController(this);

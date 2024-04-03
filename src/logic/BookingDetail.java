@@ -2,7 +2,9 @@
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
+/**
+ * Represents the details of a booking.
+ */
 public class BookingDetail implements Serializable {
 
 	private String orderNumber;
